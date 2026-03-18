@@ -35,6 +35,9 @@
 .vs/
 .vscode/
 
+# Idea
+.idea/
+
 # Gradle cache directory
 .gradle/
 
