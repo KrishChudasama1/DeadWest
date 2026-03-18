@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+
     private Vector2 movement;
+    private Vector2 lastMoveDir;
 
     void Start()
     {
@@ -22,17 +24,10 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        // Pass speed to animator (0 = idle, 1 = walking)
         animator.SetFloat("Speed", movement.magnitude);
+        animator.SetFloat("MoveX", movement.x);
+        animator.SetFloat("MoveY", movement.y);
 
-        // Pass direction so animator knows which walk clip to play
-        if (movement != Vector2.zero)
-        {
-            animator.SetFloat("MoveX", movement.x);
-            animator.SetFloat("MoveY", movement.y);
-        }
-
-        // Flip sprite left/right instead of needing separate left sprite
         if (movement.x != 0)
             spriteRenderer.flipX = movement.x > 0;
     }

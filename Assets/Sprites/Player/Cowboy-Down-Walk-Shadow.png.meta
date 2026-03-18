@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: 8415b899275bf4974a2257b868e3ff73
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6795621718091997541
+    second: Cowboy-Down-Walk-Shadow_0
+  - first:
+      213: 8626523177846259281
+    second: Cowboy-Down-Walk-Shadow_1
+  - first:
+      213: 7583308505412330426
+    second: Cowboy-Down-Walk-Shadow_2
+  - first:
+      213: -1034169241160954802
+    second: Cowboy-Down-Walk-Shadow_3
+  - first:
+      213: -4022226130961017675
+    second: Cowboy-Down-Walk-Shadow_4
+  - first:
+      213: 3080308808132150162
+    second: Cowboy-Down-Walk-Shadow_5
+  - first:
+      213: -7040275612821733678
+    second: Cowboy-Down-Walk-Shadow_6
+  - first:
+      213: -4000856946664924099
+    second: Cowboy-Down-Walk-Shadow_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 561adc6a2f5ee4e50800000000000000
+      internalID: 6795621718091997541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1
+        width: 28
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e333eff1197b770800000000000000
+      internalID: 8626523177846259281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 4
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab3ec4758e25d3960800000000000000
+      internalID: 7583308505412330426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 4
+        width: 27
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c47feed84e5a1f0800000000000000
+      internalID: -1034169241160954802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 0
+        width: 28
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b456c105ae2e28c0800000000000000
+      internalID: -4022226130961017675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 1
+        width: 29
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29349337a847fba20800000000000000
+      internalID: 3080308808132150162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 4
+        width: 29
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2de3ae091aaeb4e90800000000000000
+      internalID: -7040275612821733678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Walk-Shadow_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 4
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3c12e0fdc91a78c0800000000000000
+      internalID: -4000856946664924099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cowboy-Down-Walk-Shadow_0: 6795621718091997541
+      Cowboy-Down-Walk-Shadow_1: 8626523177846259281
+      Cowboy-Down-Walk-Shadow_2: 7583308505412330426
+      Cowboy-Down-Walk-Shadow_3: -1034169241160954802
+      Cowboy-Down-Walk-Shadow_4: -4022226130961017675
+      Cowboy-Down-Walk-Shadow_5: 3080308808132150162
+      Cowboy-Down-Walk-Shadow_6: -7040275612821733678
+      Cowboy-Down-Walk-Shadow_7: -4000856946664924099
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
