@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 318bae80f6f3442cd9c09e855a6e310c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9186444246761153850
+    second: Cowboy-Down-Idle(breathe)_0
+  - first:
+      213: -2187575893368444312
+    second: Cowboy-Down-Idle(breathe)_1
+  - first:
+      213: 4066904400859192053
+    second: Cowboy-Down-Idle(breathe)_2
+  - first:
+      213: -7540801264694331662
+    second: Cowboy-Down-Idle(breathe)_3
+  - first:
+      213: 6836268391978068873
+    second: Cowboy-Down-Idle(breathe)_4
+  - first:
+      213: -5140719647590287997
+    second: Cowboy-Down-Idle(breathe)_5
+  - first:
+      213: -2998196164018830733
+    second: Cowboy-Down-Idle(breathe)_6
+  - first:
+      213: 8791821690369895038
+    second: Cowboy-Down-Idle(breathe)_7
+  - first:
+      213: -6764670194123195962
+    second: Cowboy-Down-Idle(breathe)_8
+  - first:
+      213: -1546932851051671500
+    second: Cowboy-Down-Idle(breathe)_9
+  - first:
+      213: 4213455244268654531
+    second: Cowboy-Down-Idle(breathe)_10
+  - first:
+      213: 1617532838382425771
+    second: Cowboy-Down-Idle(breathe)_11
+  - first:
+      213: 1964098779382235105
+    second: Cowboy-Down-Idle(breathe)_12
+  - first:
+      213: -1260023161469898591
+    second: Cowboy-Down-Idle(breathe)_13
+  - first:
+      213: 4312739374081929823
+    second: Cowboy-Down-Idle(breathe)_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 5
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35212dde5ecc7f70800000000000000
+      internalID: 9186444246761153850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 5
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86ae094b05b24a1e0800000000000000
+      internalID: -2187575893368444312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 5
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa5fa4510c807830800000000000000
+      internalID: 4066904400859192053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6f310e331b95790800000000000000
+      internalID: -7540801264694331662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b6515e1ed4fde50800000000000000
+      internalID: 6836268391978068873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385728b97be78a8b0800000000000000
+      internalID: -5140719647590287997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37208b459744466d0800000000000000
+      internalID: -2998196164018830733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a621f0f33d20a70800000000000000
+      internalID: 8791821690369895038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_8
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c93d989c401f12a0800000000000000
+      internalID: -6764670194123195962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_9
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 430dea994c0388ae0800000000000000
+      internalID: -1546932851051671500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cfc3a78833397a30800000000000000
+      internalID: 4213455244268654531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_11
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba65054eb81a27610800000000000000
+      internalID: 1617532838382425771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_12
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef3bd00f61e14b10800000000000000
+      internalID: 1964098779382235105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_13
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 5
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a072db4c9f738ee0800000000000000
+      internalID: -1260023161469898591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Down-Idle(breathe)_14
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 5
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f527ef06c9de9db30800000000000000
+      internalID: 4312739374081929823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cowboy-Down-Idle(breathe)_0: 9186444246761153850
+      Cowboy-Down-Idle(breathe)_1: -2187575893368444312
+      Cowboy-Down-Idle(breathe)_10: 4213455244268654531
+      Cowboy-Down-Idle(breathe)_11: 1617532838382425771
+      Cowboy-Down-Idle(breathe)_12: 1964098779382235105
+      Cowboy-Down-Idle(breathe)_13: -1260023161469898591
+      Cowboy-Down-Idle(breathe)_14: 4312739374081929823
+      Cowboy-Down-Idle(breathe)_2: 4066904400859192053
+      Cowboy-Down-Idle(breathe)_3: -7540801264694331662
+      Cowboy-Down-Idle(breathe)_4: 6836268391978068873
+      Cowboy-Down-Idle(breathe)_5: -5140719647590287997
+      Cowboy-Down-Idle(breathe)_6: -2998196164018830733
+      Cowboy-Down-Idle(breathe)_7: 8791821690369895038
+      Cowboy-Down-Idle(breathe)_8: -6764670194123195962
+      Cowboy-Down-Idle(breathe)_9: -1546932851051671500
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -4,23 +4,18 @@ using UnityEngine;
 /// Bullet.cs
 ///
 /// Travels in a straight line until it hits a collider or exceeds maxRange.
-/// Receives damage from the weapon that spawned it — ready to apply to
-/// enemies once a Health component exists.
+/// Receives damage from the weapon that spawned it.
 ///
 /// Prefab requirements:
-///   - Rigidbody2D   (Gravity Scale = 0, Collision Detection = Continuous)
-///   - CircleCollider2D  (Is Trigger = true)
+///   - Rigidbody2D        (Gravity Scale = 0, Collision Detection = Continuous)
+///   - CircleCollider2D   (Is Trigger = true)
 ///   - This script
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    // ─── Inspector ────────────────────────────────────────────────────────────
-
     [SerializeField] private float speed    = 18f;
     [SerializeField] private float maxRange = 15f;
-
-    // ─── Private state ────────────────────────────────────────────────────────
 
     private Vector2    _direction;
     private Vector2    _spawnPosition;
@@ -45,7 +40,7 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb              = GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0f;
     }
 

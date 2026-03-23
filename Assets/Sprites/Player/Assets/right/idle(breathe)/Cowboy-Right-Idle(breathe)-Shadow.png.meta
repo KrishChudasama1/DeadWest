@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: d9c5227a125d249c9b0a229c4b4149ae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4092403836061603378
+    second: Cowboy-Right-Idle(breathe)-Shadow_0
+  - first:
+      213: 8309567481938955322
+    second: Cowboy-Right-Idle(breathe)-Shadow_1
+  - first:
+      213: 1860157637967960969
+    second: Cowboy-Right-Idle(breathe)-Shadow_2
+  - first:
+      213: -3648223531003724595
+    second: Cowboy-Right-Idle(breathe)-Shadow_3
+  - first:
+      213: 63582814970549886
+    second: Cowboy-Right-Idle(breathe)-Shadow_4
+  - first:
+      213: 5589328887936850999
+    second: Cowboy-Right-Idle(breathe)-Shadow_5
+  - first:
+      213: -1396969650144410410
+    second: Cowboy-Right-Idle(breathe)-Shadow_6
+  - first:
+      213: 4113695169693261911
+    second: Cowboy-Right-Idle(breathe)-Shadow_7
+  - first:
+      213: -1747049421229010882
+    second: Cowboy-Right-Idle(breathe)-Shadow_8
+  - first:
+      213: -3405232092632525263
+    second: Cowboy-Right-Idle(breathe)-Shadow_9
+  - first:
+      213: -4001743957892007805
+    second: Cowboy-Right-Idle(breathe)-Shadow_10
+  - first:
+      213: 3599366008101940857
+    second: Cowboy-Right-Idle(breathe)-Shadow_11
+  - first:
+      213: -1740615021894361200
+    second: Cowboy-Right-Idle(breathe)-Shadow_12
+  - first:
+      213: -7501106411371234658
+    second: Cowboy-Right-Idle(breathe)-Shadow_13
+  - first:
+      213: 3674495261892682691
+    second: Cowboy-Right-Idle(breathe)-Shadow_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 2
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec92a12c46cd437c0800000000000000
+      internalID: -4092403836061603378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 2
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3ccb1e4993815370800000000000000
+      internalID: 8309567481938955322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 2
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b5f45248b90d910800000000000000
+      internalID: 1860157637967960969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 2
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc3d451708ee5dc0800000000000000
+      internalID: -3648223531003724595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 2
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e76932cbb34e1e000800000000000000
+      internalID: 63582814970549886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c1e429209419d40800000000000000
+      internalID: 5589328887936850999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d404213187fc9ce0800000000000000
+      internalID: -1396969650144410410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_7
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750aec726f7c61930800000000000000
+      internalID: 4113695169693261911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_8
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30d792cecb31c7e0800000000000000
+      internalID: -1747049421229010882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_9
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 136d0e4147f2eb0d0800000000000000
+      internalID: -3405232092632525263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_10
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 388f7cb8213f678c0800000000000000
+      internalID: -4001743957892007805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_11
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97e2889605483f130800000000000000
+      internalID: 3599366008101940857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_12
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f17491cd718d7e0800000000000000
+      internalID: -1740615021894361200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_13
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 2
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9affcf1677b6e790800000000000000
+      internalID: -7501106411371234658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cowboy-Right-Idle(breathe)-Shadow_14
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 2
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c328fde8fd6ef230800000000000000
+      internalID: 3674495261892682691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cowboy-Right-Idle(breathe)-Shadow_0: -4092403836061603378
+      Cowboy-Right-Idle(breathe)-Shadow_1: 8309567481938955322
+      Cowboy-Right-Idle(breathe)-Shadow_10: -4001743957892007805
+      Cowboy-Right-Idle(breathe)-Shadow_11: 3599366008101940857
+      Cowboy-Right-Idle(breathe)-Shadow_12: -1740615021894361200
+      Cowboy-Right-Idle(breathe)-Shadow_13: -7501106411371234658
+      Cowboy-Right-Idle(breathe)-Shadow_14: 3674495261892682691
+      Cowboy-Right-Idle(breathe)-Shadow_2: 1860157637967960969
+      Cowboy-Right-Idle(breathe)-Shadow_3: -3648223531003724595
+      Cowboy-Right-Idle(breathe)-Shadow_4: 63582814970549886
+      Cowboy-Right-Idle(breathe)-Shadow_5: 5589328887936850999
+      Cowboy-Right-Idle(breathe)-Shadow_6: -1396969650144410410
+      Cowboy-Right-Idle(breathe)-Shadow_7: 4113695169693261911
+      Cowboy-Right-Idle(breathe)-Shadow_8: -1747049421229010882
+      Cowboy-Right-Idle(breathe)-Shadow_9: -3405232092632525263
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
