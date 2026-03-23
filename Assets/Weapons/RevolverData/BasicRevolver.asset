@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BasicRevolver
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
   weaponName: Basic Revolver
-  fireRate: 0.5
-  chamberSize: 6
+  fireRate: 0.2
+  chamberSize: 10
   reloadTime: 2
   damage: 10
   bulletPrefab: {fileID: 4226655067213873264, guid: 261a3dd96b65143b0adfb99720486a1f, type: 3}

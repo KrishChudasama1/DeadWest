@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 48729207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -667,7 +667,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.3333333, y: 4.1666665}
+    oldSize: {x: 1.4, y: 2.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -756,8 +756,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Revolver
   playerAnimator: {fileID: 711886451}
-  muzzlePoint: {fileID: 48729208}
   startingData: {fileID: 11400000, guid: 64052a5fd826346c8a7ff454e92d7140, type: 2}
+  drawDuration: 0.3
+  holsterDelay: 0.8
+  muzzleDistance: 0.4
+  muzzleBaseOffset: {x: 0, y: 0.1}
 --- !u!114 &711886454
 MonoBehaviour:
   m_ObjectHideFlags: 0
