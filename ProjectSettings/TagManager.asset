@@ -42,8 +42,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Characters
+  - name: ground
     uniqueID: 3078186327
+    locked: 0
+  - name: Buildings
+    uniqueID: 2098282635
+    locked: 0
+  - name: path
+    uniqueID: 717303133
+    locked: 0
+  - name: player
+    uniqueID: 3691452701
+    locked: 0
+  - name: overlay
+    uniqueID: 3538851771
     locked: 0
   m_RenderingLayers:
   - Default
