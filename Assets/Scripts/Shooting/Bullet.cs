@@ -58,7 +58,10 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player")) return;
 
-        // TODO: other.GetComponent<Health>()?.TakeDamage(_damage);
+        // Deal damage to ghost if hit
+        GhostEnemy ghost = other.GetComponent<GhostEnemy>();
+        if (ghost != null)
+            ghost.TakeDamage(_damage);
 
         Destroy(gameObject);
     }
