@@ -29,3 +29,4 @@ public class RevolverData : ScriptableObject
     [Tooltip("Swap to change bullet appearance for this gun.")]
     public GameObject bulletPrefab;
 }
+
