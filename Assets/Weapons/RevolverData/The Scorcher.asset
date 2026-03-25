@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb8583b620d8495a91cbc3ddd597a70, type: 3}
-  m_Name: BasicRevolver
+  m_Name: The Scorcher
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
-  weaponName: Basic Revolver
-  fireRate: 0.2
+  weaponName: Revolver
+  fireRate: 0.5
   chamberSize: 6
   reloadTime: 2
-  damage: 10
-  bulletPrefab: {fileID: 4226655067213873264, guid: 261a3dd96b65143b0adfb99720486a1f, type: 3}
+  damage: 25
+  bulletPrefab: {fileID: 4510673169719882859, guid: cdd1d317b67134d7e8e93efdec09bdeb, type: 3}
