@@ -43,6 +43,11 @@ public class PlayerShooting : MonoBehaviour
     {
         if (_weapon == null) return;
 
+        Cursor.visible = InventoryManager.IsInventoryOpen;
+
+        if (InventoryManager.IsInventoryOpen)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 shootDir = GetShootDirection();
@@ -79,6 +84,7 @@ public class PlayerShooting : MonoBehaviour
     private void OnGUI()
     {
         if (crosshairTexture == null) return;
+        if (InventoryManager.IsInventoryOpen) return;
 
         Vector2 mousePos = Event.current.mousePosition;
         float   half     = _currentCrosshairSize / 2f;
