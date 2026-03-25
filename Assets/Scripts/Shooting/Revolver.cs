@@ -61,6 +61,7 @@ public class Revolver : MonoBehaviour, IWeapon
     public bool         IsReloading    => _isReloading;
     public float        ReloadProgress => _reloadProgress;
     public RevolverData CurrentData    => _data;
+    public GameObject   CurrentBulletPrefab => _runtimeBulletPrefab;
 
     // ─── Private state ────────────────────────────────────────────────────────
 
@@ -73,6 +74,7 @@ public class Revolver : MonoBehaviour, IWeapon
     private bool           _isDrawn;
     private bool           _isDrawing;
     private float          _lastShotTime;
+    private GameObject     _runtimeBulletPrefab;
 
     // ─── Animator parameter hashes ────────────────────────────────────────────
 
@@ -122,11 +124,27 @@ public class Revolver : MonoBehaviour, IWeapon
         _isOnCooldown = false;
         _isDrawing    = false;
         _isDrawn      = false;
+        _runtimeBulletPrefab = data.bulletPrefab;
 
         _playerMovement?.SetGunDrawn(false);
         _playerMovement?.SetMovementLocked(false);
 
         Debug.Log($"[Revolver] Equipped: {data.weaponName}");
+    }
+
+    /// <summary>
+    /// Swaps the bullet prefab used by this revolver instance at runtime.
+    /// Does not modify the underlying RevolverData asset.
+    /// </summary>
+    public void SetBulletPrefab(GameObject bulletPrefab)
+    {
+        if (bulletPrefab == null)
+        {
+            Debug.LogWarning("[Revolver] Ignored null bullet prefab.");
+            return;
+        }
+
+        _runtimeBulletPrefab = bulletPrefab;
     }
 
     // ─── IWeapon ──────────────────────────────────────────────────────────────
@@ -336,14 +354,14 @@ public class Revolver : MonoBehaviour, IWeapon
     /// Instantiates a bullet at the directional muzzle position.
     private void SpawnBullet(Vector2 direction)
     {
-        if (_data.bulletPrefab == null)
+        if (_runtimeBulletPrefab == null)
         {
             Debug.LogWarning("[Revolver] No bullet prefab assigned in RevolverData.");
             return;
         }
 
         Vector2    spawnPos = GetMuzzlePosition(direction);
-        GameObject bulletGO = Instantiate(_data.bulletPrefab, spawnPos, Quaternion.identity);
+        GameObject bulletGO = Instantiate(_runtimeBulletPrefab, spawnPos, Quaternion.identity);
         Bullet     bullet   = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
