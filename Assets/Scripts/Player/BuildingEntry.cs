@@ -1,46 +1,61 @@
 using UnityEngine;
-using System.Collections;
 
+// Written by Mark Zhang - SE2250 Project Task 3
 public class BuildingEntry : MonoBehaviour
 {
-    [Header("Transition Settings")]
-    [Tooltip("How fast the Sheriff fades out")]
-    public float fadeSpeed = 1.5f;
+    public float fadeSpeed = 1.2f;
+    public float walkDistance = 0.75f;
     
-    [Tooltip("Should the Sheriff stop moving once they enter?")]
-    public bool lockMovement = true;
+    private GameObject sheriff;
+    private SpriteRenderer sheriffRender;
+    private bool isEntering = false;
+    
+    private Vector3 targetPos;
+    private float progress = 0f; 
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void Update()
     {
-        // Make sure the object entering has the "Player" tag
-        if (other.CompareTag("Player"))
+        if (isEntering && sheriff != null)
         {
-            StartCoroutine(FadeOutSheriff(other.gameObject));
+            progress += Time.deltaTime * fadeSpeed;
+
+            // Move sheriff into building
+            sheriff.transform.position = Vector3.Lerp(sheriff.transform.position, targetPos, progress);
+
+            // Update transparency
+            Color c = sheriffRender.color;
+            c.a = Mathf.Lerp(1f, 0f, progress);
+            sheriffRender.color = c;
+
+            // End transition
+            if (progress >= 1f)
+            {
+                isEntering = false;
+                Debug.Log("Sheriff entered building");
+            }
         }
     }
 
-    IEnumerator FadeOutSheriff(GameObject player)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        SpriteRenderer sprite = player.GetComponent<SpriteRenderer>();
-        
-        // If you have a PlayerController script, we disable it so they don't walk through the map
-        if (lockMovement)
+        // Start transition if player hits the trigger
+        if (other.CompareTag("Player") && !isEntering)
         {
-            var movementScript = player.GetComponent<MonoBehaviour>(); // Generic way to find your controller
-            if (movementScript != null) movementScript.enabled = false;
-        }
+            sheriff = other.gameObject;
+            sheriffRender = sheriff.GetComponent<SpriteRenderer>();
+            
+            targetPos = sheriff.transform.position + new Vector3(0, walkDistance, 0);
 
-        // Fading logic
-        Color alphaColor = sprite.color;
-        while (alphaColor.a > 0)
-        {
-            alphaColor.a -= Time.deltaTime * fadeSpeed;
-            sprite.color = alphaColor;
-            yield return null;
-        }
+            // Disable player control
+            var moveScript = sheriff.GetComponent<MonoBehaviour>(); 
+            if (moveScript != null) moveScript.enabled = false;
 
-        Debug.Log("Sheriff is now inside the building.");
-        
-        // Note: For Task 4, you can add SceneManager.LoadScene here to switch maps.
+            // Allow ghosting through teammate's wall colliders
+            var col = sheriff.GetComponent<Collider2D>();
+            if (col != null) col.isTrigger = true;
+
+            isEntering = true;
+            progress = 0f;
+        }
     }
 }
