@@ -11,7 +11,6 @@ public class InventoryManager : MonoBehaviour
     [Serializable]
     private class BulletOption
     {
-        public string label = "Bullet";
         public GameObject bulletPrefab;
     }
 
@@ -19,7 +18,7 @@ public class InventoryManager : MonoBehaviour
 
     // Shown in the inspector
     [Header("Inventory Toggle")]
-    [SerializeField] private KeyCode inventoryKey = KeyCode.I;
+    [SerializeField] private KeyCode inventoryKey = KeyCode.Tab;
 
     [Header("References")]
     [Tooltip("If empty, InventoryManager will try to find a Revolver in the scene.")]
@@ -95,9 +94,9 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < bulletOptions.Count; i++)
         {
             BulletOption option = bulletOptions[i];
-            string label = string.IsNullOrWhiteSpace(option.label)
-                ? $"Bullet {i + 1}"
-                : option.label;
+            string label = option.bulletPrefab != null
+                ? option.bulletPrefab.name
+                : $"Bullet {i + 1}";
 
             bool selected = i == _selectedIndex;
             bool clicked = GUILayout.Toggle(selected, label, "Button", GUILayout.Height(28f));
