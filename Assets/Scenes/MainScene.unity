@@ -34169,8 +34169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthManager
   maxHealth: 100
   currentHealth: 0
-  healthSlider: {fileID: 0}
-  healthText: {fileID: 0}
+  healthSlider: {fileID: 673543227}
+  healthText: {fileID: 286438698}
 --- !u!114 &711886456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34187,6 +34187,7 @@ MonoBehaviour:
   currentXP: 0
   XPToLevel: 10
   XPGrowthMultiplier: 1.2
+  healthIncreasePerLevel: 10
   XPSlider: {fileID: 1229207438}
   currentLevelText: {fileID: 312345285}
 --- !u!1 &727243924

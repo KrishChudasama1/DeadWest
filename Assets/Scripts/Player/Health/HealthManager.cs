@@ -34,6 +34,13 @@ public class HealthManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void IncreaseMaxHealth(int amount, bool fullHeal = true)
+    {
+        maxHealth = Mathf.Max(1, maxHealth + amount);
+        currentHealth = fullHeal ? maxHealth : Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateUI();
+    }
+
     private void Die()
     {
         Debug.Log("Player died!");
