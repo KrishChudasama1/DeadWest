@@ -33889,6 +33889,7 @@ MonoBehaviour:
   playerTransform: {fileID: 711886446}
   screenMargin: 24
   counterFontSize: 20
+  counterFont: {fileID: 12800000, guid: 8a2b9e2a607dd2143b58c44bc32410b4, type: 3}
   barWidth: 60
   barHeight: 8
   barOffsetY: 40

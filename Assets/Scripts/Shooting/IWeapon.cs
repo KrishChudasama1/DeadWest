@@ -1,7 +1,3 @@
-/// <summary>
-/// IWeapon.cs
-/// Interface all weapons must implement.
-/// </summary>
 public interface IWeapon
 {
     string WeaponName  { get; }

@@ -1,15 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// AmmoHUD.cs
-///
-/// Draws two things via OnGUI:
-///   1. Bottom-right: ammo counter  [bullet icon]  3 / 6
-///   2. Above the player: reload progress bar (only while reloading)
-///
-/// Attach to the Player GameObject.
-/// Assign the Revolver and PlayerTransform in the Inspector.
-/// </summary>
 public class AmmoHUD : MonoBehaviour
 {
     [Header("References")]
@@ -19,13 +9,12 @@ public class AmmoHUD : MonoBehaviour
     [Header("Ammo Counter")]
     [SerializeField] private float screenMargin    = 24f;
     [SerializeField] private int   counterFontSize = 20;
+    [SerializeField] private Font  counterFont;
 
     [Header("Reload Bar")]
     [SerializeField] private float barWidth   = 64f;
     [SerializeField] private float barHeight  = 8f;
     [SerializeField] private float barOffsetY = 48f;
-
-    // ─── Cached styles ────────────────────────────────────────────────────────
 
     private GUIStyle _counterStyle;
     private GUIStyle _hintStyle;
@@ -33,8 +22,6 @@ public class AmmoHUD : MonoBehaviour
     private GUIStyle _barBgStyle;
     private GUIStyle _barFillStyle;
     private bool     _ready;
-
-    // ─── Auto-find revolver if not assigned ───────────────────────────────────
 
     private void Awake()
     {
@@ -44,8 +31,6 @@ public class AmmoHUD : MonoBehaviour
         if (revolver == null)
             Debug.LogError("[AmmoHUD] No Revolver found.");
     }
-
-    // ─── OnGUI ────────────────────────────────────────────────────────────────
 
     private void OnGUI()
     {
@@ -57,8 +42,6 @@ public class AmmoHUD : MonoBehaviour
         if (revolver.IsReloading)
             DrawReloadBar();
     }
-
-    // ─── Ammo counter ─────────────────────────────────────────────────────────
 
     private void DrawAmmoCounter()
     {
@@ -78,14 +61,11 @@ public class AmmoHUD : MonoBehaviour
         float baseX = Screen.width  - screenMargin - totalWidth;
         float baseY = Screen.height - screenMargin - rowHeight;
 
-        // Draw bullet icon
         DrawAmmoSymbol(baseX, baseY + (rowHeight - 20f) / 2f, 14f, 20f);
 
-        // Draw counter text
         GUI.Label(new Rect(baseX + symbolWidth + 6f, baseY, textSize.x + 4f, rowHeight),
                   counterText, _counterStyle);
 
-        // Empty hint
         if (empty)
         {
             Vector2 hintSize = _hintStyle.CalcSize(new GUIContent("RELOAD  [R]"));
@@ -97,7 +77,6 @@ public class AmmoHUD : MonoBehaviour
         }
     }
 
-    /// Draws a minimal bullet silhouette using plain GUI boxes.
     private void DrawAmmoSymbol(float x, float y, float w, float h)
     {
         float bodyH = h * 0.70f;
@@ -109,8 +88,6 @@ public class AmmoHUD : MonoBehaviour
         GUI.Box(new Rect(x + (w - tipW) / 2f, y, tipW, tipH), GUIContent.none, _barFillStyle);
     }
 
-    // ─── Reload bar ───────────────────────────────────────────────────────────
-
     private void DrawReloadBar()
     {
         if (playerTransform == null) return;
@@ -119,10 +96,8 @@ public class AmmoHUD : MonoBehaviour
         float   guiX      = screenPos.x - barWidth / 2f;
         float   guiY      = Screen.height - screenPos.y - barOffsetY;
 
-        // Background
         GUI.Box(new Rect(guiX, guiY, barWidth, barHeight), GUIContent.none, _barBgStyle);
 
-        // Fill — shifts from green to yellow as it completes
         float t = revolver.ReloadProgress;
         _barFillStyle.normal.background = MakeTex(Color.Lerp(
             new Color(0.2f, 0.85f, 0.3f),
@@ -131,12 +106,9 @@ public class AmmoHUD : MonoBehaviour
         ));
         GUI.Box(new Rect(guiX, guiY, barWidth * t, barHeight), GUIContent.none, _barFillStyle);
 
-        // Label
         GUI.Label(new Rect(guiX - 8f, guiY - 18f, barWidth + 16f, 16f),
                   "Reloading...", _reloadLabelStyle);
     }
-
-    // ─── Style helpers ────────────────────────────────────────────────────────
 
     private void EnsureStyles()
     {
@@ -148,6 +120,7 @@ public class AmmoHUD : MonoBehaviour
             fontStyle = FontStyle.Bold,
             alignment = TextAnchor.MiddleLeft
         };
+        _counterStyle.font = counterFont;
         _counterStyle.normal.textColor = Color.white;
 
         _hintStyle = new GUIStyle(GUI.skin.label)

@@ -1,11 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// RevolverData.cs — ScriptableObject
-///
-/// One asset per gun. Create via:
-/// Right-click in Project → Create → Weapons → Revolver Data
-/// </summary>
 [CreateAssetMenu(fileName = "NewRevolver", menuName = "Weapons/Revolver Data")]
 public class RevolverData : ScriptableObject
 {
@@ -29,4 +23,3 @@ public class RevolverData : ScriptableObject
     [Tooltip("Swap to change bullet appearance for this gun.")]
     public GameObject bulletPrefab;
 }
-
