@@ -13,19 +13,20 @@ public class GhostEnemy : MonoBehaviour
     public float attackCooldown = 1.5f;
 
     [Header("Health")]
-    public int maxHealth = 50;
+    public int maxHealth = 2;
     private int currentHealth;
 
     private Transform player;
     private Animator animator;
+    private SpriteRenderer sr;
     private bool isAttacking = false;
     private bool canAttack = true;
-    private float distanceToPlayer;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
     }
 
@@ -33,25 +34,22 @@ public class GhostEnemy : MonoBehaviour
     {
         if (player == null) return;
 
-        distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= attackRange && canAttack)
+        if (distanceToPlayer <= attackRange)
         {
-            StartCoroutine(Attack());
+            // Stop moving and attack
+            if (canAttack && !isAttacking)
+                StartCoroutine(Attack());
         }
         else if (distanceToPlayer <= chaseRange && !isAttacking)
         {
             ChasePlayer();
         }
-        else if (!isAttacking)
-        {
-            animator.SetBool("IsMoving", false);
-        }
     }
 
     void ChasePlayer()
     {
-        animator.SetBool("IsMoving", true);
         animator.SetBool("IsAttacking", false);
 
         Vector2 direction = (player.position - transform.position).normalized;
@@ -61,9 +59,8 @@ public class GhostEnemy : MonoBehaviour
             moveSpeed * Time.deltaTime
         );
 
-        // Flip sprite to face player
         if (direction.x != 0)
-            GetComponent<SpriteRenderer>().flipX = direction.x > 0;
+            sr.flipX = direction.x < 0;
     }
 
     IEnumerator Attack()
@@ -71,10 +68,9 @@ public class GhostEnemy : MonoBehaviour
         isAttacking = true;
         canAttack = false;
 
-        animator.SetBool("IsMoving", false);
         animator.SetBool("IsAttacking", true);
 
-        // Wait for attack animation to play
+        // Wait for wind up
         yield return new WaitForSeconds(0.3f);
 
         // Deal damage if still in range
@@ -82,13 +78,19 @@ public class GhostEnemy : MonoBehaviour
         {
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (playerHealth != null)
+            {
                 playerHealth.TakeDamage(attackDamage);
+                Debug.Log("Ghost dealt " + attackDamage + " damage!");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth component not found on player!");
+            }
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         animator.SetBool("IsAttacking", false);
 
-        // Cooldown before next attack
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
         canAttack = true;
@@ -97,6 +99,7 @@ public class GhostEnemy : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        Debug.Log("Ghost took damage! Health remaining: " + currentHealth);
         StartCoroutine(FlashRed());
 
         if (currentHealth <= 0)
@@ -105,7 +108,6 @@ public class GhostEnemy : MonoBehaviour
 
     IEnumerator FlashRed()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.color = Color.red;
         yield return new WaitForSeconds(0.15f);
         sr.color = Color.white;
@@ -113,11 +115,9 @@ public class GhostEnemy : MonoBehaviour
 
     void Die()
     {
-        // Add death animation or effects here later
         Destroy(gameObject);
     }
 
-    // Visualize ranges in editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
