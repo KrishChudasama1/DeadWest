@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicRevolver
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
   weaponName: Basic Revolver
-  fireRate: 0.5
+  fireRate: 0.2
   chamberSize: 6
   reloadTime: 2
   damage: 10

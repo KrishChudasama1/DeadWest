@@ -1,10 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Smooth-follow camera for 2D top-down view.
-/// Attach to Main Camera. Assign the Player transform as target.
-/// Optional: define world bounds so the camera never shows outside the map.
-/// </summary>
+
 public class CameraFollow : MonoBehaviour
 {
     [Header("Target")]
@@ -16,10 +12,10 @@ public class CameraFollow : MonoBehaviour
 
     [Header("World Bounds (Optional)")]
     [SerializeField] private bool useBounds = false;
-    [SerializeField] private float minX = -50f;
-    [SerializeField] private float maxX =  50f;
-    [SerializeField] private float minY = -50f;
-    [SerializeField] private float maxY =  50f;
+    [SerializeField] private float minX = -200f;
+    [SerializeField] private float maxX =  200f;
+    [SerializeField] private float minY = -100f;
+    [SerializeField] private float maxY =  100f;
 
     [Header("Deadzone")]
     [Tooltip("Camera won't move until the player exceeds this distance from center.")]
@@ -50,16 +46,14 @@ public class CameraFollow : MonoBehaviour
         transform.position = smoothed;
     }
 
-    /// <summary>
-    /// Call this to set the target at runtime (e.g., after spawning the player).
-    /// </summary>
+    
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
     }
 
-    // Draw bounds in the editor for easy debugging
-    private void OnDrawGizmosSelected()
+  
+    void OnDrawGizmosSelected()
     {
         if (!useBounds) return;
         Gizmos.color = Color.yellow;
