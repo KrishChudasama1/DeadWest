@@ -19,10 +19,12 @@ public class XPManager : MonoBehaviour
     
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Return))
         {
             GainExperience(2);
         }
+        */
         UpdateUI();
     }
     

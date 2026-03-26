@@ -14,6 +14,7 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
         UpdateUI();
     }
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -21,7 +22,7 @@ public class HealthManager : MonoBehaviour
             TakeDamage(10);
         }
     }
-
+    */
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
