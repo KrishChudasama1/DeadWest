@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/// In-game inventory that can be toggled with a key.
-/// Lets the player customize which bullet prefab they are actively using.
 
 public class InventoryManager : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class InventoryManager : MonoBehaviour
 
     public static bool IsInventoryOpen { get; private set; }
 
-    // Shown in the inspector
+   
     [Header("Inventory Toggle")]
     [SerializeField] private KeyCode inventoryKey = KeyCode.Tab;
 
@@ -38,7 +36,7 @@ public class InventoryManager : MonoBehaviour
         if (revolver == null)
             revolver = FindFirstObjectByType<Revolver>();
 
-        // Default selection to whichever bullet the revolver is currently using.
+       
         SyncSelectionWithCurrentBullet();
     }
 
@@ -50,7 +48,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // Ensure game speed is restored if this component is disabled.
+        
         if (IsInventoryOpen)
             SetInventoryOpen(false);
     }
@@ -67,7 +65,7 @@ public class InventoryManager : MonoBehaviour
     {
         GUILayout.Space(8f);
 
-        // If no revolver in the scene, show a message and a close button
+        
         if (revolver == null)
         {
             GUILayout.Label("No Revolver found in scene.");
@@ -78,7 +76,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        // If theres no bullet options, show a message and a close button
+        
         if (bulletOptions.Count == 0)
         {
             GUILayout.Label("No bullet options configured.");
@@ -134,7 +132,7 @@ public class InventoryManager : MonoBehaviour
         Cursor.visible = open;
     }
 
-    // Applies the currently selected bullet option to the revolver and closes the inventory
+    
     private void ApplySelectedBullet()
     {
         if (revolver == null)
@@ -154,8 +152,7 @@ public class InventoryManager : MonoBehaviour
         SetInventoryOpen(false);
     }
 
-    // Syncs the currently selected inventory 
-    // option with the bullet prefab the revolver is currently using
+    
     private void SyncSelectionWithCurrentBullet()
     {
         if (revolver == null || bulletOptions.Count == 0)
