@@ -39194,15 +39194,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
   inventoryKey: 9
   revolver: {fileID: 711886453}
-  bulletOptions:
-  - bulletPrefab: {fileID: 4226655067213873264, guid: 261a3dd96b65143b0adfb99720486a1f, type: 3}
-  - bulletPrefab: {fileID: 4510673169719882859, guid: cdd1d317b67134d7e8e93efdec09bdeb, type: 3}
+  gunEntries:
+  - gunData: {fileID: 11400000, guid: 64052a5fd826346c8a7ff454e92d7140, type: 2}
+    unlockedAtStart: 1
+    goldCost: 0
+    requiredLevel: 0
+  - gunData: {fileID: 11400000, guid: 9638cfd36ae2643cdaafaa8f3cec284f, type: 2}
+    unlockedAtStart: 0
+    goldCost: 0
+    requiredLevel: 0
+  - gunData: {fileID: 11400000, guid: 2fc37544dc8d446f7aea2634b681573d, type: 2}
+    unlockedAtStart: 0
+    goldCost: 0
+    requiredLevel: 0
+  - gunData: {fileID: 11400000, guid: 18adbaab29fe049e4a8df885dbc49fb2, type: 2}
+    unlockedAtStart: 0
+    goldCost: 0
+    requiredLevel: 0
   windowRect:
     serializedVersion: 2
     x: 24
     y: 24
     width: 360
     height: 300
+  shopWindowRect:
+    serializedVersion: 2
+    x: 410
+    y: 24
+    width: 320
+    height: 220
 --- !u!4 &1294948225
 Transform:
   m_ObjectHideFlags: 0
