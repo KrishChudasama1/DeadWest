@@ -31,8 +31,10 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Window")]
     [SerializeField] private Rect windowRect = new Rect(24f, 24f, 360f, 300f);
+    [SerializeField] private Rect shopWindowRect = new Rect(410f, 24f, 320f, 220f);
 
     private int _selectedIndex;
+    private bool _isShopOpen;
 
     private void Awake()
     {
@@ -56,6 +58,8 @@ public class InventoryManager : MonoBehaviour
         
         if (IsInventoryOpen)
             SetInventoryOpen(false);
+
+        _isShopOpen = false;
     }
 
     private void OnGUI()
@@ -64,6 +68,9 @@ public class InventoryManager : MonoBehaviour
             return;
 
         windowRect = GUI.Window(GetInstanceID(), windowRect, DrawInventoryWindow, "Inventory");
+
+        if (_isShopOpen)
+            shopWindowRect = GUI.Window(GetInstanceID() + 1, shopWindowRect, DrawShopWindow, "Shop");
     }
 
     private void DrawInventoryWindow(int windowId)
@@ -130,6 +137,9 @@ public class InventoryManager : MonoBehaviour
                 ApplySelectedGun();
             GUI.enabled = true;
 
+            if (GUILayout.Button("Shop", GUILayout.Height(30f)))
+                _isShopOpen = true;
+
             if (GUILayout.Button("Close", GUILayout.Height(30f)))
                 SetInventoryOpen(false);
         }
@@ -149,8 +159,24 @@ public class InventoryManager : MonoBehaviour
     private void SetInventoryOpen(bool open)
     {
         IsInventoryOpen = open;
+        if (!open)
+            _isShopOpen = false;
+
         Time.timeScale = open ? 0f : 1f;
         Cursor.visible = open;
+    }
+
+    private void DrawShopWindow(int windowId)
+    {
+        GUILayout.Space(8f);
+        GUILayout.Label("Shop window (placeholder)");
+        GUILayout.Label("Adding purchasable items here next.");
+
+        GUILayout.Space(10f);
+        if (GUILayout.Button("Back", GUILayout.Height(30f)))
+            _isShopOpen = false;
+
+        GUI.DragWindow(new Rect(0f, 0f, 10000f, 24f));
     }
 
     
