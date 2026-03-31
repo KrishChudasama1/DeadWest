@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     {
         public RevolverData gunData;
         public bool unlockedAtStart = true;
+        public int goldCost = 0;
+        public int requiredLevel = 0;
 
         [NonSerialized] public bool isUnlocked;
     }
@@ -31,15 +33,18 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Window")]
     [SerializeField] private Rect windowRect = new Rect(24f, 24f, 360f, 300f);
-    [SerializeField] private Rect shopWindowRect = new Rect(410f, 24f, 320f, 220f);
+    [SerializeField] private Rect shopWindowRect = new Rect(410f, 24f, 360f, 360f);
 
     private int _selectedIndex;
     private bool _isShopOpen;
+    private XPManager _xpManager;
 
     private void Awake()
     {
         if (revolver == null)
             revolver = FindFirstObjectByType<Revolver>();
+
+        _xpManager = FindFirstObjectByType<XPManager>();
 
         InitializeUnlockState();
 
@@ -169,8 +174,51 @@ public class InventoryManager : MonoBehaviour
     private void DrawShopWindow(int windowId)
     {
         GUILayout.Space(8f);
-        GUILayout.Label("Shop window (placeholder)");
-        GUILayout.Label("Adding purchasable items here next.");
+        int currentGold = GetCurrentGold();
+        int currentLevel = GetCurrentLevel();
+
+        GUILayout.Label($"Gold: {currentGold}");
+        GUILayout.Label($"Level: {currentLevel}");
+        GUILayout.Space(8f);
+
+        if (gunEntries.Count == 0)
+        {
+            GUILayout.Label("No guns configured for shop.");
+        }
+        else
+        {
+            for (int i = 0; i < gunEntries.Count; i++)
+            {
+                GunEntry entry = gunEntries[i];
+
+                if (entry.gunData == null)
+                {
+                    GUILayout.Label($"Gun {i + 1}: Missing data");
+                    continue;
+                }
+
+                string gunName = entry.gunData.weaponName;
+                if (entry.isUnlocked)
+                {
+                    GUILayout.Label($"{gunName} - Owned");
+                    continue;
+                }
+
+                bool meetsLevel = currentLevel >= entry.requiredLevel;
+                bool canAfford = currentGold >= entry.goldCost;
+                string buyLabel = $"Buy {gunName} ({entry.goldCost}g, Lv {entry.requiredLevel})";
+
+                GUI.enabled = meetsLevel && canAfford;
+                if (GUILayout.Button(buyLabel, GUILayout.Height(28f)))
+                    TryPurchaseGun(i);
+                GUI.enabled = true;
+
+                if (!meetsLevel)
+                    GUILayout.Label("  Requires higher level");
+                else if (!canAfford)
+                    GUILayout.Label("  Not enough gold");
+            }
+        }
 
         GUILayout.Space(10f);
         if (GUILayout.Button("Back", GUILayout.Height(30f)))
@@ -212,14 +260,57 @@ public class InventoryManager : MonoBehaviour
                 return;
             }
         }
+    }
 
-        // If a gun is unlocked at runtime but was not preconfigured, add it automatically.
-        gunEntries.Add(new GunEntry
+    private void TryPurchaseGun(int index)
+    {
+        if (index < 0 || index >= gunEntries.Count)
+            return;
+
+        GunEntry entry = gunEntries[index];
+        if (entry.gunData == null || entry.isUnlocked)
+            return;
+
+        int currentLevel = GetCurrentLevel();
+        if (currentLevel < entry.requiredLevel)
         {
-            gunData = gunData,
-            unlockedAtStart = true,
-            isUnlocked = true
-        });
+            Debug.Log("[InventoryManager] Level too low to purchase this gun.");
+            return;
+        }
+
+        CoinManager coinManager = CoinManager.instance;
+        if (coinManager == null)
+        {
+            Debug.LogWarning("[InventoryManager] CoinManager instance not found.");
+            return;
+        }
+
+        if (!coinManager.SpendCoins(entry.goldCost))
+        {
+            Debug.Log("[InventoryManager] Not enough gold to purchase this gun.");
+            return;
+        }
+
+        entry.isUnlocked = true;
+
+        if (!HasValidSelectedGun())
+            _selectedIndex = index;
+
+        Debug.Log($"[InventoryManager] Purchased and unlocked {entry.gunData.weaponName}.");
+    }
+
+    private int GetCurrentGold()
+    {
+        CoinManager coinManager = CoinManager.instance;
+        return coinManager != null ? coinManager.coins : 0;
+    }
+
+    private int GetCurrentLevel()
+    {
+        if (_xpManager == null)
+            _xpManager = FindFirstObjectByType<XPManager>();
+
+        return _xpManager != null ? _xpManager.level : 0;
     }
 
     public bool IsGunUnlocked(RevolverData gunData)

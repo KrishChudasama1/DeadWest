@@ -17,4 +17,4 @@ MonoBehaviour:
   chamberSize: 6
   reloadTime: 2
   damage: 10
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 4478265653480145829, guid: be3564126f5be4bb28b0238e4875a03b, type: 3}
