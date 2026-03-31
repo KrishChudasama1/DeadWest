@@ -36,20 +36,21 @@ public class XPManager : MonoBehaviour
             LevelUp();
         }
     }
+    
     private void LevelUp()
     {
         level++;
         currentXP -= XPToLevel;
         XPToLevel = Mathf.RoundToInt(XPToLevel * XPGrowthMultiplier);
 
-        HealthManager healthManager = GetComponent<HealthManager>();
-        if (healthManager != null)
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>(); // changed this
+        if (playerHealth != null)
         {
-            healthManager.IncreaseMaxHealth(healthIncreasePerLevel, true);
+            playerHealth.IncreaseMaxHealth(healthIncreasePerLevel, true);
         }
-
         UpdateUI();
     }
+    
     public void UpdateUI()
     {
         XPSlider.maxValue = XPToLevel;

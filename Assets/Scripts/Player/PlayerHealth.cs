@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI")]
     public Image healthBar;
+    public TextMeshProUGUI healthText; // Add this line
+
 
     private bool isInvincible = false;
 
@@ -18,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthBar();
     }
+    
+    
 
     public void TakeDamage(int amount)
     {
@@ -37,6 +42,17 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthBar != null)
             healthBar.fillAmount = (float)currentHealth / maxHealth;
+
+        if (healthText != null)
+            healthText.text = currentHealth + " / " + maxHealth;
+    }
+    
+    public void IncreaseMaxHealth(int amount, bool refillHealth)
+    {
+        maxHealth += amount;
+        if (refillHealth)
+            currentHealth = maxHealth;
+        UpdateHealthBar();
     }
 
     System.Collections.IEnumerator InvincibilityFrames()
