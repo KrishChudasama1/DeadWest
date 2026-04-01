@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioSource))]
 public class CursedBrawler : MonoBehaviour
 {
     public enum BrawlerState
@@ -58,6 +59,21 @@ public class CursedBrawler : MonoBehaviour
     [Header("Collision")]
     public LayerMask obstacleMask;
 
+    [Header("Audio")]
+    public AudioClip lockOnSound;           // plays when he locks on
+    public AudioClip chargeLoopSound;       // loops during the charge
+    public AudioClip chargeImpactSound;     // plays when charge hits wall or player
+    public AudioClip meleeThudA;            // first melee hit sound
+    public AudioClip meleeThudB;            // second melee hit sound (randomly picked)
+    public AudioClip groundSlamSound;       // plays when attack hits the ground
+    public AudioClip deathSound;            // plays on death
+
+    [Header("Audio Volume")]
+    [Range(0f, 1f)] public float deathVolume = 0.7f;
+    
+    private AudioSource audioSource;
+    private AudioSource chargeAudioSource;  // separate source so charge loop doesn't cut other sounds
+
     private Transform player;
     private Rigidbody2D rb;
     private Collider2D col;
@@ -85,6 +101,12 @@ public class CursedBrawler : MonoBehaviour
         col = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+
+        // Second AudioSource for the charge loop so it doesn't interrupt other sounds
+        chargeAudioSource = gameObject.AddComponent<AudioSource>();
+        chargeAudioSource.loop = true;
+        chargeAudioSource.playOnAwake = false;
 
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
@@ -140,7 +162,43 @@ public class CursedBrawler : MonoBehaviour
         else if (currentState != BrawlerState.Locking)
             rb.linearVelocity = Vector2.zero;
     }
-    
+
+  
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip == null) return;
+        audioSource.PlayOneShot(clip);
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (clip == null) return;
+        audioSource.PlayOneShot(clip, volume);
+    }
+
+    private void StartChargeLoop()
+    {
+        if (chargeLoopSound == null) return;
+        chargeAudioSource.clip = chargeLoopSound;
+        chargeAudioSource.Play();
+    }
+
+    private void StopChargeLoop()
+    {
+        if (chargeAudioSource.isPlaying)
+            chargeAudioSource.Stop();
+    }
+
+    private void PlayRandomMeleeThud()
+    {
+        // Randomly pick between the two melee hit sounds
+        if (meleeThudA == null && meleeThudB == null) return;
+        if (meleeThudA == null) { PlaySound(meleeThudB); return; }
+        if (meleeThudB == null) { PlaySound(meleeThudA); return; }
+        PlaySound(Random.value > 0.5f ? meleeThudA : meleeThudB);
+    }
+
+   
     public void TakeDamage(int amount)
     {
         if (isDead) return;
@@ -166,11 +224,14 @@ public class CursedBrawler : MonoBehaviour
         isDead = true;
         rb.linearVelocity = Vector2.zero;
         col.enabled = false;
+        StopChargeLoop();
+        PlaySound(deathSound, deathVolume);
+        sr.enabled = false; 
         Debug.Log("CursedBrawler died!");
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, deathSound != null ? deathSound.length + 0.1f : 0.5f);
     }
 
-    
+   
     private void HandleMoving(float distanceToPlayer)
     {
         if (player == null) return;
@@ -195,12 +256,8 @@ public class CursedBrawler : MonoBehaviour
             return;
         }
 
-        
-        // slowly circle/press toward the player so he doesn't freeze
         if (distanceToPlayer <= meleeRange + meleeStopDistanceBuffer)
-        {
-            moveDirection = direction * 0.3f; // slow drift so he doesn't look frozen
-        }
+            moveDirection = direction * 0.3f;
     }
 
     private void HandleMovingPhysics()
@@ -214,7 +271,7 @@ public class CursedBrawler : MonoBehaviour
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
-  
+    
     private IEnumerator DoMeleeAttack()
     {
         if (isBusy || player == null)
@@ -228,10 +285,14 @@ public class CursedBrawler : MonoBehaviour
 
         animator.SetTrigger("Attack");
 
-        // Wait for the full animation clip to finish
         yield return new WaitForSeconds(meleeWindup);
 
-        // Damage fires as soon as the clip ends
+        // Play ground slam sound when the attack lands
+        PlaySound(groundSlamSound);
+
+        // Play randomly picked melee thud
+        PlayRandomMeleeThud();
+
         if (player != null)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -243,12 +304,12 @@ public class CursedBrawler : MonoBehaviour
             }
         }
 
-        // Brief pause before he can act again
         yield return new WaitForSeconds(meleeRecovery);
 
         ChangeState(BrawlerState.Moving);
         isBusy = false;
     }
+
     
     private IEnumerator LockAndCharge()
     {
@@ -266,15 +327,21 @@ public class CursedBrawler : MonoBehaviour
             lockedDirection = Vector2.right;
 
         UpdateFacing(lockedDirection);
+
+        // Play lock-on sound when he stops and targets
+        PlaySound(lockOnSound);
         animator.SetTrigger("StartCharge");
 
         yield return new WaitForSeconds(lockDuration);
 
-        // Disable enemy collisions for the duration of the charge
         Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
 
         chargeStartPosition = rb.position;
         isChargingActive = true;
+
+        // Start charge loop sound
+        StartChargeLoop();
+
         ChangeState(BrawlerState.Charging);
     }
 
@@ -300,13 +367,14 @@ public class CursedBrawler : MonoBehaviour
             if (hitCollider == null || hitCollider.isTrigger || IsSelfCollider(hitCollider))
                 continue;
 
-            // ← pass through anything tagged Enemy
             if (hitCollider.CompareTag("Enemy"))
                 continue;
 
             if (IsPlayerCollider(hitCollider))
             {
                 isChargingActive = false;
+                StopChargeLoop();
+                PlaySound(chargeImpactSound);
                 rb.linearVelocity = Vector2.zero;
                 rb.MovePosition(hits[i].point - lockedDirection * 0.1f);
                 StartCoroutine(HandleChargeHit(GetPlayerRoot(hitCollider.transform)));
@@ -316,6 +384,8 @@ public class CursedBrawler : MonoBehaviour
             if (IsObstacleCollider(hitCollider))
             {
                 isChargingActive = false;
+                StopChargeLoop();
+                PlaySound(chargeImpactSound);
                 StartCoroutine(DoStunned());
                 return;
             }
@@ -327,6 +397,7 @@ public class CursedBrawler : MonoBehaviour
         if (traveled >= maxChargeDistance)
         {
             isChargingActive = false;
+            StopChargeLoop();
             EndChargeAndResume();
         }
     }
@@ -338,17 +409,14 @@ public class CursedBrawler : MonoBehaviour
 
         if (playerTarget != null)
         {
-            // Damage
             PlayerHealth playerHealth = playerTarget.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
                 playerHealth.TakeDamage(chargeImpactDamage);
 
-            // Lock movement
             PlayerMovement playerMovement = playerTarget.GetComponentInParent<PlayerMovement>();
             if (playerMovement != null)
                 playerMovement.Stun(playerStunDuration);
 
-            // Lock shooting too
             PlayerShooting playerShooting = playerTarget.GetComponentInParent<PlayerShooting>();
             if (playerShooting != null)
                 playerShooting.Stun(playerStunDuration);
@@ -358,12 +426,12 @@ public class CursedBrawler : MonoBehaviour
 
         EndChargeAndResume();
     }
+
     
     private IEnumerator DoStunned()
     {
         ChangeState(BrawlerState.Stunned);
         rb.linearVelocity = Vector2.zero;
-        // Re-enable enemy collisions when stunned
         Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, false);
 
         yield return new WaitForSeconds(stunnedDuration);
@@ -375,12 +443,12 @@ public class CursedBrawler : MonoBehaviour
     private void EndChargeAndResume()
     {
         isChargingActive = false;
-        // Re-enable enemy collisions after charge ends
+        StopChargeLoop();
         Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, false);
         ChangeState(BrawlerState.Moving);
         isBusy = false;
     }
-    
+
     
     private void ChangeState(BrawlerState newState)
     {
@@ -413,9 +481,7 @@ public class CursedBrawler : MonoBehaviour
 
     private bool CanUseMelee(float distanceToPlayer)
     {
-        // Use same threshold as the stop buffer so he doesn't fall 
-        // just outside the attack range while standing still
-        return distanceToPlayer <= meleeRange + meleeStopDistanceBuffer 
+        return distanceToPlayer <= meleeRange + meleeStopDistanceBuffer
                && meleeCooldownTimer <= 0f;
     }
 

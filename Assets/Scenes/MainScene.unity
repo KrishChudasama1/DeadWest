@@ -54768,6 +54768,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d129c3e89726460b989d0dc33b02f84, type: 3}
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: meleeThudA
+      value: 
+      objectReference: {fileID: 8300000, guid: b0c3cfe6bff324014838ed3b68280502, type: 3}
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: meleeThudB
+      value: 
+      objectReference: {fileID: 8300000, guid: 44548903866694b9191ecda4873669bf, type: 3}
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: lockOnSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 23ff9bf9a193c448eb85f9a671b29386, type: 3}
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: chargeLoopSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 694211c688cdb4d46a23e509c8e2ff5c, type: 3}
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: groundSlamSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 44548903866694b9191ecda4873669bf, type: 3}
+    - target: {fileID: 1118045074391938907, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: chargeImpactSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 04a90bba3ad344c1689e71d7e0cd940a, type: 3}
     - target: {fileID: 2049710699601646031, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
       propertyPath: m_Name
       value: cursedBrawler
@@ -54775,6 +54803,18 @@ PrefabInstance:
     - target: {fileID: 2049710699601646031, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463094384714307778, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: m_Pitch
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463094384714307778, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: Priority
+      value: 151
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463094384714307778, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
+      propertyPath: m_Volume
+      value: 0.664
       objectReference: {fileID: 0}
     - target: {fileID: 6286654332238508982, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
       propertyPath: m_LocalPosition.x
