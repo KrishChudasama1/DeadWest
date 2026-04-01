@@ -33189,7 +33189,7 @@ Transform:
   m_GameObject: {fileID: 575282384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.33, y: 0.1, z: 0}
+  m_LocalPosition: {x: -13.26, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33213,6 +33213,8 @@ MonoBehaviour:
   typingSpeed: 0.04
   triggerDistance: 2
   interactKey: 121
+  audioMixer: {fileID: 0}
+  dialogueTransitionSpeed: 0.5
 --- !u!212 &575282387
 SpriteRenderer:
   serializedVersion: 2
@@ -43375,6 +43377,7 @@ MonoBehaviour:
   enemiesToSpawn: 6
   timeBetweenSpawns: 4
   spawnOffset: 1.5
+  dialogueTrigger: {fileID: 575282386}
 --- !u!4 &1623072932
 Transform:
   m_ObjectHideFlags: 0
@@ -54703,63 +54706,6 @@ PolygonCollider2D:
       - {x: 1.5859375, y: -0.75}
       - {x: 1.5078125, y: -0.6875}
   m_UseDelaunayMesh: 1
---- !u!1001 &1819726662874024727
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6022301192757816360, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_Name
-      value: GhostEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7124037764442645669, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
 --- !u!1001 &8009869324809861956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54818,11 +54764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6286654332238508982, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.46
+      value: 87.9
       objectReference: {fileID: 0}
     - target: {fileID: 6286654332238508982, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88448
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 6286654332238508982, guid: bb38c8a6282c242d9977187c5f7336fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -54942,7 +54888,6 @@ SceneRoots:
   - {fileID: 1480712531}
   - {fileID: 575282385}
   - {fileID: 1294948225}
-  - {fileID: 1819726662874024727}
   - {fileID: 529927510}
   - {fileID: 1937090902}
   - {fileID: 1623072932}

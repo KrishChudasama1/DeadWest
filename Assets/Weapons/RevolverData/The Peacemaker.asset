@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
   weaponName: The Peacemaker
   fireRate: 0.5
-  chamberSize: 6
+  chamberSize: 10
   reloadTime: 2
-  damage: 20
+  damage: 50
   bulletPrefab: {fileID: 8837764708854939722, guid: 2fdbfa5498e0e49b79973627e09de738, type: 3}

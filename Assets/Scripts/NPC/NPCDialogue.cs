@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -5,6 +6,8 @@ using TMPro;
 
 public class NPCDialogue : MonoBehaviour
 {
+    public event Action DialogueFinished;
+
     [Header("Dialogue")]
     private string[] lines = new string[]
     {
@@ -37,9 +40,12 @@ public class NPCDialogue : MonoBehaviour
     private int currentLine = 0;
     private bool isTyping = false;
     private bool isDialogueOpen = false;
+    private bool hasDialogueCompleted = false;
     private bool playerInRange = false;
     private Transform player;
     private Coroutine typingCoroutine;
+
+    public bool HasDialogueCompleted => hasDialogueCompleted;
 
     void Start()
     {
@@ -95,6 +101,9 @@ public class NPCDialogue : MonoBehaviour
         isTyping = false;
         dialogueBox.SetActive(false);
         currentLine = 0;
+        hasDialogueCompleted = true;
+
+        DialogueFinished?.Invoke();
 
         // Transition back to normal volume
         if (audioMixer != null)

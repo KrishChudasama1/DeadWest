@@ -8,11 +8,49 @@ public class EnemySpawner : MonoBehaviour
     public float timeBetweenSpawns = 2f;
     public float spawnOffset = 1.5f; // how far outside camera edge to spawn
 
+    [Header("Trigger")]
+    [SerializeField] private NPCDialogue dialogueTrigger;
+
     private Camera cam;
+    private bool hasStartedSpawning;
 
     void Start()
     {
         cam = Camera.main;
+
+        if (dialogueTrigger == null)
+            dialogueTrigger = FindFirstObjectByType<NPCDialogue>();
+
+        if (dialogueTrigger != null)
+        {
+            if (dialogueTrigger.HasDialogueCompleted)
+                BeginSpawning();
+            else
+                dialogueTrigger.DialogueFinished += BeginSpawning;
+        }
+        else
+        {
+            Debug.LogWarning("EnemySpawner could not find NPCDialogue. Spawning immediately.");
+            BeginSpawning();
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (dialogueTrigger != null)
+            dialogueTrigger.DialogueFinished -= BeginSpawning;
+    }
+
+    void BeginSpawning()
+    {
+        if (hasStartedSpawning)
+            return;
+
+        hasStartedSpawning = true;
+
+        if (dialogueTrigger != null)
+            dialogueTrigger.DialogueFinished -= BeginSpawning;
+
         StartCoroutine(SpawnEnemies());
     }
 
