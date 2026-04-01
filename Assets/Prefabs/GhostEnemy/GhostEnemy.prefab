@@ -198,3 +198,5 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 1.5
   maxHealth: 50
+  xpOnDeath: 2
+  xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}

@@ -16,6 +16,10 @@ public class GhostEnemy : MonoBehaviour
     public int maxHealth = 2;
     private int currentHealth;
 
+    [Header("XP")]
+    public int xpOnDeath = 2;
+    public GameObject xpPickupPrefab;
+
     private Transform player;
     private Animator animator;
     private SpriteRenderer sr;
@@ -115,7 +119,43 @@ public class GhostEnemy : MonoBehaviour
 
     void Die()
     {
+        DropOrGrantXP();
         Destroy(gameObject);
+    }
+
+    void DropOrGrantXP()
+    {
+        if (xpOnDeath <= 0)
+            return;
+
+        // If a pickup prefab is assigned, spawn it and set the XP value on it.
+        if (xpPickupPrefab != null)
+        {
+            GameObject drop = Instantiate(xpPickupPrefab, transform.position, Quaternion.identity);
+            XPPickup pickup = drop.GetComponent<XPPickup>();
+            if (pickup != null)
+            {
+                pickup.xpValue = xpOnDeath;
+            }
+            else
+            {
+                Debug.LogWarning("xpPickupPrefab is missing an XPPickup component.");
+            }
+            return;
+        }
+
+        // Fallback: grant XP directly if no pickup prefab is configured.
+        XPManager xpManager = null;
+        if (player != null)
+            xpManager = player.GetComponent<XPManager>();
+
+        if (xpManager == null)
+            xpManager = FindObjectOfType<XPManager>();
+
+        if (xpManager != null)
+            xpManager.GainExperience(xpOnDeath);
+        else
+            Debug.LogWarning("No XPManager found. Ghost XP could not be awarded.");
     }
 
     void OnDrawGizmosSelected()
