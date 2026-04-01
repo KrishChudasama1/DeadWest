@@ -196,6 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursedBrawler
   currentState: 0
   maxHealth: 100
+  xpOnDeath: 5
+  xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}
   chaseRange: 40
   meleeRange: 2.4
   moveSpeed: 3

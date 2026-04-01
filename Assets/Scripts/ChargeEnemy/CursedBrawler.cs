@@ -25,6 +25,10 @@ public class CursedBrawler : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
 
+    [Header("XP")]
+    public int xpOnDeath = 2;
+    public GameObject xpPickupPrefab;
+
     [Header("Detection")]
     public float chaseRange = 10f;
     public float meleeRange = 1.3f;
@@ -227,8 +231,44 @@ public class CursedBrawler : MonoBehaviour
         StopChargeLoop();
         PlaySound(deathSound, deathVolume);
         sr.enabled = false; 
+        DropOrGrantXP();
         Debug.Log("CursedBrawler died!");
         Destroy(gameObject, deathSound != null ? deathSound.length + 0.1f : 0.5f);
+    }
+
+    private void DropOrGrantXP()
+    {
+        if (xpOnDeath <= 0)
+            return;
+
+        // If a pickup prefab is assigned, spawn it and set the XP value on it.
+        if (xpPickupPrefab != null)
+        {
+            GameObject drop = Instantiate(xpPickupPrefab, transform.position, Quaternion.identity);
+            XPPickup pickup = drop.GetComponent<XPPickup>();
+            if (pickup != null)
+            {
+                pickup.xpValue = xpOnDeath;
+            }
+            else
+            {
+                Debug.LogWarning("xpPickupPrefab is missing an XPPickup component.");
+            }
+            return;
+        }
+
+        // grant XP directly if no pickup prefab is configured.
+        XPManager xpManager = null;
+        if (player != null)
+            xpManager = player.GetComponent<XPManager>();
+
+        if (xpManager == null)
+            xpManager = FindObjectOfType<XPManager>();
+
+        if (xpManager != null)
+            xpManager.GainExperience(xpOnDeath);
+        else
+            Debug.LogWarning("No XPManager found. Cursed Brawler XP could not be awarded.");
     }
 
    
