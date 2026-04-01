@@ -47,6 +47,7 @@ public class Revolver : MonoBehaviour, IWeapon
     private bool           _isDrawing;
     private float          _lastShotTime;
     private GameObject     _runtimeBulletPrefab;
+    private Coroutine      _reloadCoroutine;
 
     private static readonly int HashDraw       = Animator.StringToHash("Draw");
     private static readonly int HashDrawStill  = Animator.StringToHash("DrawStill");
@@ -73,7 +74,7 @@ public class Revolver : MonoBehaviour, IWeapon
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && !_isReloading && _currentAmmo < ChamberSize)
-            StartCoroutine(ReloadRoutine());
+            _reloadCoroutine = StartCoroutine(ReloadRoutine());
 
         if (_isDrawn && !_isDrawing && Time.time - _lastShotTime >= holsterDelay)
             Holster();
@@ -166,11 +167,16 @@ public class Revolver : MonoBehaviour, IWeapon
     {
         _isReloading    = true;
         _reloadProgress = 0f;
-        _playerMovement?.SetMovementLocked(true);
 
         float elapsed = 0f;
         while (elapsed < _data.reloadTime)
         {
+            if (HasMovementInput())
+            {
+                CancelReload(true);
+                yield break;
+            }
+
             elapsed         += Time.deltaTime;
             _reloadProgress  = Mathf.Clamp01(elapsed / _data.reloadTime);
             yield return null;
@@ -181,7 +187,6 @@ public class Revolver : MonoBehaviour, IWeapon
         _lastShotTime = Time.time;
 
         _playerMovement?.SetGunDrawn(true);
-        _playerMovement?.SetMovementLocked(false);
 
         ClearReloadState();
 
@@ -204,6 +209,7 @@ public class Revolver : MonoBehaviour, IWeapon
     private void Holster()
     {
         StopAllCoroutines();
+        _reloadCoroutine = null;
         ClearReloadState();
 
         _isDrawn      = false;
@@ -218,14 +224,52 @@ public class Revolver : MonoBehaviour, IWeapon
 
     private void OnPlayerStartedMoving()
     {
-        if (_isDrawn || _isReloading)
+        if (_isReloading)
+        {
+            CancelReload(true);
+            return;
+        }
+
+        if (_isDrawn)
             Holster();
+    }
+
+    public void CancelReload(bool holsterAfterCancel = false)
+    {
+        if (!_isReloading)
+            return;
+
+        if (_reloadCoroutine != null)
+        {
+            StopCoroutine(_reloadCoroutine);
+            _reloadCoroutine = null;
+        }
+
+        ClearReloadState();
+        _playerMovement?.SetMovementLocked(false);
+
+        if (holsterAfterCancel)
+        {
+            _isDrawn = false;
+            _playerMovement?.SetGunDrawn(false);
+            SetAnimTrigger(HashHolster);
+            return;
+        }
+
+        if (_isDrawn)
+            SetAnimTrigger(HashDrawStill);
     }
 
     private void ClearReloadState()
     {
         _isReloading    = false;
         _reloadProgress = 0f;
+        _reloadCoroutine = null;
+    }
+
+    private bool HasMovementInput()
+    {
+        return Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f;
     }
 
     private void SetAnimTrigger(int hash)

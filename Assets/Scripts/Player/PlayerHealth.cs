@@ -28,6 +28,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isInvincible) return;
 
+        Revolver revolver = GetComponentInChildren<Revolver>();
+        revolver?.CancelReload();
+
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
