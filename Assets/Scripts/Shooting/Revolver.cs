@@ -5,6 +5,9 @@ public class Revolver : MonoBehaviour, IWeapon
 {
     public string WeaponName   => _data != null ? _data.weaponName : "None";
     public bool   IsOnCooldown => _isOnCooldown || _isReloading || _isDrawing;
+	[Header("Audio")]
+	[SerializeField] private AudioClip gunshotSound;
+	private AudioSource _audioSource;
 
     [Header("References")]
     [SerializeField] private Animator playerAnimator;
@@ -56,6 +59,9 @@ public class Revolver : MonoBehaviour, IWeapon
 
     private void Start()
     {
+		_audioSource = gameObject.AddComponent<AudioSource>();
+    	_audioSource.playOnAwake = false;
+
         _playerMovement = GetComponent<PlayerMovement>();
         _playerMovement?.SetMovementStartedCallback(OnPlayerStartedMoving);
 
@@ -192,6 +198,9 @@ public class Revolver : MonoBehaviour, IWeapon
     {
         _currentAmmo--;
         _lastShotTime = Time.time;
+
+		if (gunshotSound != null)
+        	_audioSource.PlayOneShot(gunshotSound);
 
         SetAnimTrigger(GetShootTrigger(shootDirection));
         SpawnBullet(shootDirection);
