@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb8583b620d8495a91cbc3ddd597a70, type: 3}
-  m_Name: The Scorcher
+  m_Name: The Incinerator
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
-  weaponName: The Scorcher
+  weaponName: The Incinerator
   fireRate: 0.35
   chamberSize: 6
   reloadTime: 2
