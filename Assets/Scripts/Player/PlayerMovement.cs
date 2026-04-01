@@ -1,26 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed        = 5f;
+    public float moveSpeed = 5f;
     public float sprintMultiplier = 1.6f;
 
-    private Rigidbody2D    _rb;
-    private Animator       _animator;
+    private Rigidbody2D _rb;
+    private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    private Vector2        _movement;
+    private Vector2 _movement;
 
-    private bool           _gunDrawn;
-    private bool           _movementLocked;
-    private System.Action  _onMovementStarted;
+    private bool _gunDrawn;
+    private bool _movementLocked;
+    private System.Action _onMovementStarted;
 
-    
+    private Coroutine _stunCoroutine;
 
     private void Start()
     {
-        _rb             = GetComponent<Rigidbody2D>();
-        _animator       = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -68,19 +69,16 @@ public class PlayerMovement : MonoBehaviour
         _rb.MovePosition(_rb.position + _movement.normalized * speed * Time.fixedDeltaTime);
     }
 
-    
     public void SetGunDrawn(bool drawn)
     {
         _gunDrawn = drawn;
     }
 
-   
     public void SetFacingDirection(float xDirection)
     {
         _spriteRenderer.flipX = xDirection > 0;
     }
 
-    
     public void SetMovementLocked(bool locked)
     {
         _movementLocked = locked;
@@ -88,16 +86,30 @@ public class PlayerMovement : MonoBehaviour
             _rb.linearVelocity = Vector2.zero;
     }
 
-    
     public void SetGunDirection(Vector2 direction)
     {
         _animator.SetFloat("GunX", direction.x);
         _animator.SetFloat("GunY", direction.y);
     }
 
-   
     public void SetMovementStartedCallback(System.Action callback)
     {
         _onMovementStarted = callback;
+    }
+
+    public void Stun(float duration)
+    {
+        if (_stunCoroutine != null)
+            StopCoroutine(_stunCoroutine);
+
+        _stunCoroutine = StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        SetMovementLocked(true);
+        yield return new WaitForSeconds(duration);
+        SetMovementLocked(false);
+        _stunCoroutine = null;
     }
 }
