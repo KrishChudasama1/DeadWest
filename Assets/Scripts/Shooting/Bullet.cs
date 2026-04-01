@@ -43,14 +43,22 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player")) return;
 
-        // Deal damage to ghost if hit
         GhostEnemy ghost = other.GetComponent<GhostEnemy>();
         if (ghost != null)
         {
             ghost.TakeDamage(_damage);
+            Destroy(gameObject);
+            return;
+        }
+
+        CursedBrawler brawler = other.GetComponent<CursedBrawler>();
+        if (brawler != null)
+        {
+            brawler.TakeDamage(_damage);
+            Destroy(gameObject);
+            return;
         }
 
         Destroy(gameObject);
-
-}
+    }
 }

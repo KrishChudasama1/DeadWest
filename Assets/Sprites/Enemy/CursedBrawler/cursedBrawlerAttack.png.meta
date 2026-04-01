@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: b4532c0cd693345758415f3e0d5b3752
+guid: 8297fff697f034fbcb15450857b8929f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1856197955767552018
-    second: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_0
+      213: 1798189393875535674
+    second: cursedBrawlerAttack_0
   - first:
-      213: -3548134938768304476
-    second: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_1
+      213: -2424790367424825220
+    second: cursedBrawlerAttack_1
   - first:
-      213: 7632527020758854309
-    second: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_2
+      213: -3563234475132977457
+    second: cursedBrawlerAttack_2
   - first:
-      213: 4162094343138118242
-    second: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_3
+      213: -3705427876786214330
+    second: cursedBrawlerAttack_3
+  - first:
+      213: -333964033787187875
+    second: cursedBrawlerAttack_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 85
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,17 +108,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_0
+      name: cursedBrawlerAttack_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 56
-        width: 111
-        height: 235
+        x: 1
+        y: 119
+        width: 457
+        height: 407
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 218c45ac43a82c910800000000000000
-      internalID: 1856197955767552018
+      spriteID: a3783dcf9b374f810800000000000000
+      internalID: 1798189393875535674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_1
+      name: cursedBrawlerAttack_1
       rect:
         serializedVersion: 2
-        x: 196
-        y: 72
-        width: 110
-        height: 233
+        x: 479
+        y: 110
+        width: 405
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a6109f621e72cec0800000000000000
-      internalID: -3548134938768304476
+      spriteID: c78bad6020a695ed0800000000000000
+      internalID: -2424790367424825220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_2
+      name: cursedBrawlerAttack_2
       rect:
         serializedVersion: 2
-        x: 355
-        y: 100
-        width: 112
-        height: 217
+        x: 954
+        y: 102
+        width: 403
+        height: 542
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5aae6e2f2ee2ce960800000000000000
-      internalID: 7632527020758854309
+      spriteID: fcef54aaf19dc8ec0800000000000000
+      internalID: -3563234475132977457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_3
+      name: cursedBrawlerAttack_3
       rect:
         serializedVersion: 2
-        x: 520
-        y: 83
-        width: 112
-        height: 220
+        x: 1409
+        y: 112
+        width: 400
+        height: 533
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +206,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26a096cd0cab2c930800000000000000
-      internalID: 4162094343138118242
+      spriteID: 64ae35f6afca39cc0800000000000000
+      internalID: -3705427876786214330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cursedBrawlerAttack_4
+      rect:
+        serializedVersion: 2
+        x: 1853
+        y: 68
+        width: 424
+        height: 457
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5dab5e0b758d5bf0800000000000000
+      internalID: -333964033787187875
       vertices: []
       indices: 
       edges: []
@@ -210,10 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_0: 1856197955767552018
-      Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_1: -3548134938768304476
-      Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_2: 7632527020758854309
-      Gemini_Generated_Image_dh0xmidh0xmidh0x-removebg-preview_3: 4162094343138118242
+      cursedBrawlerAttack_0: 1798189393875535674
+      cursedBrawlerAttack_1: -2424790367424825220
+      cursedBrawlerAttack_2: -3563234475132977457
+      cursedBrawlerAttack_3: -3705427876786214330
+      cursedBrawlerAttack_4: -333964033787187875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

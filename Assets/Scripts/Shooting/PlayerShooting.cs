@@ -16,6 +16,7 @@ public class PlayerShooting : MonoBehaviour
     private IWeapon _weapon;
     private Camera  _cam;
     private float   _currentCrosshairSize;
+    private bool    _isStunned = false; // ← new
 
     private void Start()
     {
@@ -35,8 +36,8 @@ public class PlayerShooting : MonoBehaviour
 
         Cursor.visible = InventoryManager.IsInventoryOpen;
 
-        if (InventoryManager.IsInventoryOpen)
-            return;
+        if (InventoryManager.IsInventoryOpen) return;
+        if (_isStunned) return; // ← block shooting while stunned
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -44,6 +45,19 @@ public class PlayerShooting : MonoBehaviour
             _weapon.Shoot(shootDir);
             StartCoroutine(PulseCrosshair());
         }
+    }
+
+    // ← called by CursedBrawler when charge hits player
+    public void Stun(float duration)
+    {
+        StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        _isStunned = true;
+        yield return new WaitForSeconds(duration);
+        _isStunned = false;
     }
 
     private IEnumerator PulseCrosshair()
