@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using TMPro;
 
 public class NPCDialogue : MonoBehaviour
@@ -7,14 +8,14 @@ public class NPCDialogue : MonoBehaviour
     [Header("Dialogue")]
     private string[] lines = new string[]
     {
-        "Well, looky here... the Law’s back. A bit late for a patrol, wouldn't ya say, Sheriff? Look around.",
-        "This dirt don’t grow corn no more—it only grows shadows.",
+        "Well, looky here... the Law's back. A bit late for a patrol, wouldn't ya say, Sheriff? Look around.",
+        "This dirt don't grow corn no more—it only grows shadows.",
         "That rogue bunch... the cult... they reached for godhood and pulled down hell instead.",
-        "Now, the folks you used to protect? They’re just fuel for the fire that’s burnin' this town 'til kingdom come.",
+        "Now, the folks you used to protect? They're just fuel for the fire that's burnin' this town 'til kingdom come.",
         "But you... you got that look in your eye. If you want to put these poor souls to rest, you gotta find 'em. Five relics, Sheriff.",
-        " Hidden in the dark corners where the sun don’t dare shine. They’re the keys to the ritual.",
+        "Hidden in the dark corners where the sun don't dare shine. They're the keys to the ritual.",
         "Scour the wasteland. Pry 'em from the cold, dead hands of the things guardin' 'em.",
-        "Once you got all five, get yourself to the Church. Bring 'em together, and maybe—just maybe—we’ll see a sunrise again.",
+        "Once you got all five, get yourself to the Church. Bring 'em together, and maybe—just maybe—we'll see a sunrise again.",
         "Better check your cylinder, son. The dead don't take kindly to trespassers."
     };
 
@@ -27,6 +28,11 @@ public class NPCDialogue : MonoBehaviour
     public float typingSpeed = 0.04f;
     public float triggerDistance = 2f;
     public KeyCode interactKey = KeyCode.Y;
+
+    [Header("Audio")]
+    public AudioMixer audioMixer;
+    [Range(0f, 1f)]
+    public float dialogueTransitionSpeed = 0.5f; // how fast it fades in/out
 
     private int currentLine = 0;
     private bool isTyping = false;
@@ -50,9 +56,7 @@ public class NPCDialogue : MonoBehaviour
         promptText.gameObject.SetActive(playerInRange && !isDialogueOpen);
 
         if (playerInRange && Input.GetKeyDown(interactKey) && !isDialogueOpen)
-        {
             StartDialogue();
-        }
 
         if (isDialogueOpen && Input.GetKeyDown(interactKey))
         {
@@ -79,6 +83,10 @@ public class NPCDialogue : MonoBehaviour
         isDialogueOpen = true;
         dialogueBox.SetActive(true);
         typingCoroutine = StartCoroutine(TypeLine(lines[currentLine]));
+
+        // Transition to the quiet Dialogue snapshot
+        if (audioMixer != null)
+            audioMixer.FindSnapshot("Dialogue").TransitionTo(dialogueTransitionSpeed);
     }
 
     void EndDialogue()
@@ -87,6 +95,10 @@ public class NPCDialogue : MonoBehaviour
         isTyping = false;
         dialogueBox.SetActive(false);
         currentLine = 0;
+
+        // Transition back to normal volume
+        if (audioMixer != null)
+            audioMixer.FindSnapshot("Normal").TransitionTo(dialogueTransitionSpeed);
     }
 
     IEnumerator TypeLine(string line)
