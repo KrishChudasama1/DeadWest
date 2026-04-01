@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6944247394109678147}
   - component: {fileID: 1588710022398638205}
   - component: {fileID: 1118045074391938907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cursedBrawler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
