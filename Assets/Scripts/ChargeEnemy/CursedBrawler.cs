@@ -140,10 +140,7 @@ public class CursedBrawler : MonoBehaviour
         else if (currentState != BrawlerState.Locking)
             rb.linearVelocity = Vector2.zero;
     }
-
-    // ─────────────────────────────────────────
-    //  HEALTH
-    // ─────────────────────────────────────────
+    
     public void TakeDamage(int amount)
     {
         if (isDead) return;
@@ -173,9 +170,7 @@ public class CursedBrawler : MonoBehaviour
         Destroy(gameObject, 0.5f);
     }
 
-    // ─────────────────────────────────────────
-    //  MOVEMENT
-    // ─────────────────────────────────────────
+    
     private void HandleMoving(float distanceToPlayer)
     {
         if (player == null) return;
@@ -200,7 +195,7 @@ public class CursedBrawler : MonoBehaviour
             return;
         }
 
-        // ← NEW: if he's in melee range but cooldown isn't ready,
+        
         // slowly circle/press toward the player so he doesn't freeze
         if (distanceToPlayer <= meleeRange + meleeStopDistanceBuffer)
         {
@@ -219,9 +214,7 @@ public class CursedBrawler : MonoBehaviour
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
-    // ─────────────────────────────────────────
-    //  MELEE ATTACK
-    // ─────────────────────────────────────────
+  
     private IEnumerator DoMeleeAttack()
     {
         if (isBusy || player == null)
@@ -256,10 +249,7 @@ public class CursedBrawler : MonoBehaviour
         ChangeState(BrawlerState.Moving);
         isBusy = false;
     }
-
-    // ─────────────────────────────────────────
-    //  CHARGE
-    // ─────────────────────────────────────────
+    
     private IEnumerator LockAndCharge()
     {
         if (isBusy || player == null)
@@ -276,10 +266,12 @@ public class CursedBrawler : MonoBehaviour
             lockedDirection = Vector2.right;
 
         UpdateFacing(lockedDirection);
-
         animator.SetTrigger("StartCharge");
 
         yield return new WaitForSeconds(lockDuration);
+
+        // Disable enemy collisions for the duration of the charge
+        Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
 
         chargeStartPosition = rb.position;
         isChargingActive = true;
@@ -306,6 +298,10 @@ public class CursedBrawler : MonoBehaviour
         {
             Collider2D hitCollider = hits[i].collider;
             if (hitCollider == null || hitCollider.isTrigger || IsSelfCollider(hitCollider))
+                continue;
+
+            // ← pass through anything tagged Enemy
+            if (hitCollider.CompareTag("Enemy"))
                 continue;
 
             if (IsPlayerCollider(hitCollider))
@@ -362,13 +358,13 @@ public class CursedBrawler : MonoBehaviour
 
         EndChargeAndResume();
     }
-    // ─────────────────────────────────────────
-    //  STUNNED
-    // ─────────────────────────────────────────
+    
     private IEnumerator DoStunned()
     {
         ChangeState(BrawlerState.Stunned);
         rb.linearVelocity = Vector2.zero;
+        // Re-enable enemy collisions when stunned
+        Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, false);
 
         yield return new WaitForSeconds(stunnedDuration);
 
@@ -379,13 +375,13 @@ public class CursedBrawler : MonoBehaviour
     private void EndChargeAndResume()
     {
         isChargingActive = false;
+        // Re-enable enemy collisions after charge ends
+        Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, false);
         ChangeState(BrawlerState.Moving);
         isBusy = false;
     }
-
-    // ─────────────────────────────────────────
-    //  HELPERS
-    // ─────────────────────────────────────────
+    
+    
     private void ChangeState(BrawlerState newState)
     {
         currentState = newState;
