@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private Collider2D _collider;
     private Vector2 _movement;
 
     private bool _gunDrawn;
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -111,5 +113,16 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);
         SetMovementLocked(false);
         _stunCoroutine = null;
+    }
+    
+    private void LateUpdate()
+    {
+        if (_spriteRenderer != null)
+        {
+            float feetY = _collider != null
+                ? _collider.bounds.min.y
+                : transform.position.y - _spriteRenderer.bounds.extents.y;
+            _spriteRenderer.sortingOrder = Mathf.RoundToInt(-feetY * 100);
+        }
     }
 }
