@@ -44,20 +44,14 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Player")) return;
 
         GhostEnemy ghost = other.GetComponent<GhostEnemy>();
-        if (ghost != null)
-        {
-            ghost.TakeDamage(_damage);
-            Destroy(gameObject);
-            return;
-        }
+        if (ghost != null) { ghost.TakeDamage(_damage); Destroy(gameObject); return; }
 
         CursedBrawler brawler = other.GetComponent<CursedBrawler>();
-        if (brawler != null)
-        {
-            brawler.TakeDamage(_damage);
-            Destroy(gameObject);
-            return;
-        }
+        if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        // ← new
+        BreakableObject breakable = other.GetComponent<BreakableObject>();
+        if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
 
         RanchHandEnemy ranchHand = other.GetComponent<RanchHandEnemy>();
         if (ranchHand != null)

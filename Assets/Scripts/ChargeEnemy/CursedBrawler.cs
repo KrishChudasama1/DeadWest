@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(AudioSource))]
+
 public class CursedBrawler : MonoBehaviour
 {
     public enum BrawlerState
@@ -74,6 +75,7 @@ public class CursedBrawler : MonoBehaviour
 
     [Header("Audio Volume")]
     [Range(0f, 1f)] public float deathVolume = 0.7f;
+    [Range(0f, 1f)] public float chargeImpactVolume = 1f;
     
     private AudioSource audioSource;
     private AudioSource chargeAudioSource;  // separate source so charge loop doesn't cut other sounds
@@ -425,7 +427,13 @@ public class CursedBrawler : MonoBehaviour
             {
                 isChargingActive = false;
                 StopChargeLoop();
-                PlaySound(chargeImpactSound);
+                PlaySound(chargeImpactSound, chargeImpactVolume);
+
+                // Damage the object he slammed into if it's breakable
+                BreakableObject breakable = hitCollider.GetComponent<BreakableObject>();
+                if (breakable != null)
+                    breakable.TakeDamage(chargeImpactDamage);
+
                 StartCoroutine(DoStunned());
                 return;
             }
