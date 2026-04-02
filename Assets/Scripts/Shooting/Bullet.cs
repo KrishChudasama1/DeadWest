@@ -59,6 +59,14 @@ public class Bullet : MonoBehaviour
             return;
         }
 
+        RanchHandEnemy ranchHand = other.GetComponent<RanchHandEnemy>();
+        if (ranchHand != null)
+        {
+            ranchHand.TakeDamage(_damage);
+            Destroy(gameObject);
+            return;
+        }
+
         Destroy(gameObject);
     }
 }
