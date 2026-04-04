@@ -1,16 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Bullet.cs
-///
-/// Travels in a straight line until it hits a collider or exceeds maxRange.
-/// Receives damage from the weapon that spawned it.
-///
-/// Prefab requirements:
-///   - Rigidbody2D        (Gravity Scale = 0, Collision Detection = Continuous)
-///   - CircleCollider2D   (Is Trigger = true)
-///   - This script
-/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
@@ -23,8 +12,6 @@ public class Bullet : MonoBehaviour
     private int        _damage;
     private bool       _initialized;
 
-    // ─── Init (called by Revolver after spawn) ────────────────────────────────
-
     public void Init(Vector2 direction, int damage)
     {
         _direction     = direction.normalized;
@@ -35,8 +22,6 @@ public class Bullet : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
-
-    // ─── Unity lifecycle ──────────────────────────────────────────────────────
 
     private void Awake()
     {
@@ -58,7 +43,15 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player")) return;
 
-        // TODO: other.GetComponent<Health>()?.TakeDamage(_damage);
+        GhostEnemy ghost = other.GetComponent<GhostEnemy>();
+        if (ghost != null) { ghost.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        CursedBrawler brawler = other.GetComponent<CursedBrawler>();
+        if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        // ← new
+        BreakableObject breakable = other.GetComponent<BreakableObject>();
+        if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
 
         Destroy(gameObject);
     }

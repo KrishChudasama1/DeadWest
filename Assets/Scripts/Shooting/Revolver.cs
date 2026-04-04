@@ -1,37 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Revolver.cs
-///
-/// Manages all revolver behaviour: drawing, shooting, reloading, holstering,
-/// directional animation, and sprite flipping.
-///
-/// Animation flow:
-///   First shot       → Draw → DrawStill → Shoot → DrawStill (loops)
-///   Subsequent shots → Shoot → DrawStill (loops)
-///   Reload           → ReloadRoutine → DrawStill (cancelled if player moves)
-///   Move while drawn → Holster immediately → back to idle/walk
-///   Move mid-reload  → Cancel reload, reset ammo bar, holster
-///   Inactivity       → Holster after holsterDelay → back to idle/walk
-///
-/// Direction system:
-///   Only Left/Up/Down clips exist. Right reuses Left with flipX.
-///   GunX/GunY drive the blend trees independently of movement params.
-///   Direction updates every shot — no re-draw needed when changing direction.
-///
-/// Bullet spawn:
-///   Spawn position is offset from the player center based on shoot direction
-///   so bullets always appear in front of the character regardless of facing.
-/// </summary>
 public class Revolver : MonoBehaviour, IWeapon
 {
-    // ─── IWeapon ──────────────────────────────────────────────────────────────
-
     public string WeaponName   => _data != null ? _data.weaponName : "None";
     public bool   IsOnCooldown => _isOnCooldown || _isReloading || _isDrawing;
-
-    // ─── Inspector ────────────────────────────────────────────────────────────
+	[Header("Audio")]
+	[SerializeField] private AudioClip gunshotSound;
+	private AudioSource _audioSource;
 
     [Header("References")]
     [SerializeField] private Animator playerAnimator;
@@ -54,16 +30,12 @@ public class Revolver : MonoBehaviour, IWeapon
              "Nudge to align spawn point with the gun barrel visually.")]
     [SerializeField] private Vector2 muzzleBaseOffset = new Vector2(0f, 0.1f);
 
-    // ─── Public state (read by AmmoHUD) ───────────────────────────────────────
-
     public int          CurrentAmmo    => _currentAmmo;
     public int          ChamberSize    => _data != null ? _data.chamberSize : 0;
     public bool         IsReloading    => _isReloading;
     public float        ReloadProgress => _reloadProgress;
     public RevolverData CurrentData    => _data;
     public GameObject   CurrentBulletPrefab => _runtimeBulletPrefab;
-
-    // ─── Private state ────────────────────────────────────────────────────────
 
     private RevolverData   _data;
     private PlayerMovement _playerMovement;
@@ -75,8 +47,7 @@ public class Revolver : MonoBehaviour, IWeapon
     private bool           _isDrawing;
     private float          _lastShotTime;
     private GameObject     _runtimeBulletPrefab;
-
-    // ─── Animator parameter hashes ────────────────────────────────────────────
+    private Coroutine      _reloadCoroutine;
 
     private static readonly int HashDraw       = Animator.StringToHash("Draw");
     private static readonly int HashDrawStill  = Animator.StringToHash("DrawStill");
@@ -86,10 +57,11 @@ public class Revolver : MonoBehaviour, IWeapon
     private static readonly int HashShootLeft  = Animator.StringToHash("ShootLeft");
     private static readonly int HashShootRight = Animator.StringToHash("ShootRight");
 
-    // ─── Unity lifecycle ──────────────────────────────────────────────────────
-
     private void Start()
     {
+		_audioSource = gameObject.AddComponent<AudioSource>();
+    	_audioSource.playOnAwake = false;
+
         _playerMovement = GetComponent<PlayerMovement>();
         _playerMovement?.SetMovementStartedCallback(OnPlayerStartedMoving);
 
@@ -102,18 +74,12 @@ public class Revolver : MonoBehaviour, IWeapon
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && !_isReloading && _currentAmmo < ChamberSize)
-            StartCoroutine(ReloadRoutine());
+            _reloadCoroutine = StartCoroutine(ReloadRoutine());
 
         if (_isDrawn && !_isDrawing && Time.time - _lastShotTime >= holsterDelay)
             Holster();
     }
 
-    // ─── Public API ───────────────────────────────────────────────────────────
-
-    /// <summary>
-    /// Equip a new gun at runtime. Resets all state immediately.
-    /// e.g. revolver.Equip(magnumData);
-    /// </summary>
     public void Equip(RevolverData data)
     {
         StopAllCoroutines();
@@ -132,10 +98,6 @@ public class Revolver : MonoBehaviour, IWeapon
         Debug.Log($"[Revolver] Equipped: {data.weaponName}");
     }
 
-    /// <summary>
-    /// Swaps the bullet prefab used by this revolver instance at runtime.
-    /// Does not modify the underlying RevolverData asset.
-    /// </summary>
     public void SetBulletPrefab(GameObject bulletPrefab)
     {
         if (bulletPrefab == null)
@@ -146,8 +108,6 @@ public class Revolver : MonoBehaviour, IWeapon
 
         _runtimeBulletPrefab = bulletPrefab;
     }
-
-    // ─── IWeapon ──────────────────────────────────────────────────────────────
 
     public void Shoot(Vector2 shootDirection)
     {
@@ -167,9 +127,6 @@ public class Revolver : MonoBehaviour, IWeapon
             StartCoroutine(ShootAndUnlock(shootDirection));
     }
 
-    // ─── Coroutines ───────────────────────────────────────────────────────────
-
-    /// First shot — plays Draw animation then fires.
     private IEnumerator DrawThenShoot(Vector2 shootDirection)
     {
         _isDrawing    = true;
@@ -193,7 +150,6 @@ public class Revolver : MonoBehaviour, IWeapon
         _playerMovement?.SetMovementLocked(false);
     }
 
-    /// Subsequent shots — fires immediately, no draw.
     private IEnumerator ShootAndUnlock(Vector2 shootDirection)
     {
         _isOnCooldown = true;
@@ -207,54 +163,53 @@ public class Revolver : MonoBehaviour, IWeapon
         _playerMovement?.SetMovementLocked(false);
     }
 
-    /// Reload — locks movement for the full reload duration.
-    /// Cancelled immediately if the player moves (OnPlayerStartedMoving).
     private IEnumerator ReloadRoutine()
     {
         _isReloading    = true;
         _reloadProgress = 0f;
-        _playerMovement?.SetMovementLocked(true);
 
         float elapsed = 0f;
         while (elapsed < _data.reloadTime)
         {
+            if (HasMovementInput())
+            {
+                CancelReload(true);
+                yield break;
+            }
+
             elapsed         += Time.deltaTime;
             _reloadProgress  = Mathf.Clamp01(elapsed / _data.reloadTime);
             yield return null;
         }
 
-        // Reload completed fully
         _currentAmmo  = _data.chamberSize;
         _isDrawn      = true;
         _lastShotTime = Time.time;
 
         _playerMovement?.SetGunDrawn(true);
-        _playerMovement?.SetMovementLocked(false);
 
         ClearReloadState();
 
-        // One frame pause so the Animator settles before pushing DrawStill
         yield return null;
         SetAnimTrigger(HashDrawStill);
     }
 
-    // ─── Private helpers ──────────────────────────────────────────────────────
-
-    /// Fires one shot — decrements ammo, triggers animation, spawns bullet.
     private void FireShot(Vector2 shootDirection)
     {
         _currentAmmo--;
         _lastShotTime = Time.time;
 
+		if (gunshotSound != null)
+        	_audioSource.PlayOneShot(gunshotSound);
+
         SetAnimTrigger(GetShootTrigger(shootDirection));
         SpawnBullet(shootDirection);
     }
 
-    /// Holsters the gun and returns Animator to idle/walk immediately.
-    /// Always safe to call — clears all coroutines and resets all state.
     private void Holster()
     {
         StopAllCoroutines();
+        _reloadCoroutine = null;
         ClearReloadState();
 
         _isDrawn      = false;
@@ -267,27 +222,56 @@ public class Revolver : MonoBehaviour, IWeapon
         SetAnimTrigger(HashHolster);
     }
 
-    /// Called by PlayerMovement the moment WASD is pressed while gun is drawn.
-    /// Cancels reload (resetting progress) and holsters immediately.
     private void OnPlayerStartedMoving()
     {
-        // Cancel regardless of whether reloading or just drawn
-        // Reload progress is discarded — player must reload again from scratch
-        if (_isDrawn || _isReloading)
+        if (_isReloading)
+        {
+            CancelReload(true);
+            return;
+        }
+
+        if (_isDrawn)
             Holster();
     }
 
-    /// Forces reload state to a clean resting value.
-    /// Called on holster, equip, and reload completion so the
-    /// reload bar never gets stuck regardless of how the state ended.
+    public void CancelReload(bool holsterAfterCancel = false)
+    {
+        if (!_isReloading)
+            return;
+
+        if (_reloadCoroutine != null)
+        {
+            StopCoroutine(_reloadCoroutine);
+            _reloadCoroutine = null;
+        }
+
+        ClearReloadState();
+        _playerMovement?.SetMovementLocked(false);
+
+        if (holsterAfterCancel)
+        {
+            _isDrawn = false;
+            _playerMovement?.SetGunDrawn(false);
+            SetAnimTrigger(HashHolster);
+            return;
+        }
+
+        if (_isDrawn)
+            SetAnimTrigger(HashDrawStill);
+    }
+
     private void ClearReloadState()
     {
         _isReloading    = false;
         _reloadProgress = 0f;
+        _reloadCoroutine = null;
     }
 
-    /// Resets ALL pending Animator triggers before setting a new one.
-    /// Prevents stale queued triggers from firing at the wrong time.
+    private bool HasMovementInput()
+    {
+        return Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f;
+    }
+
     private void SetAnimTrigger(int hash)
     {
         if (playerAnimator == null) return;
@@ -303,9 +287,6 @@ public class Revolver : MonoBehaviour, IWeapon
         playerAnimator.SetTrigger(hash);
     }
 
-    /// Snaps direction to a cardinal, sets sprite flip, and updates
-    /// GunX/GunY so blend trees always show the correct directional sprite.
-    /// Right reuses the Left clip with flipX — no separate Right clip needed.
     private void ApplyDirection(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -332,7 +313,6 @@ public class Revolver : MonoBehaviour, IWeapon
         }
     }
 
-    /// Maps a shoot direction to the correct Animator trigger hash.
     private int GetShootTrigger(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -343,15 +323,12 @@ public class Revolver : MonoBehaviour, IWeapon
         return HashShootLeft;
     }
 
-    /// Calculates bullet spawn position offset from player center
-    /// in the shoot direction so bullets always emerge from the muzzle.
     private Vector2 GetMuzzlePosition(Vector2 direction)
     {
         Vector2 center = (Vector2)transform.position + muzzleBaseOffset;
         return center + direction.normalized * muzzleDistance;
     }
 
-    /// Instantiates a bullet at the directional muzzle position.
     private void SpawnBullet(Vector2 direction)
     {
         if (_runtimeBulletPrefab == null)

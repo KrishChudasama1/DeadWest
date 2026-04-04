@@ -14,15 +14,7 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
         UpdateUI();
     }
-    /*
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            TakeDamage(10);
-        }
-    }
-    */
+    
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -39,6 +31,13 @@ public class HealthManager : MonoBehaviour
     {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateUI();
+    }
+
+    public void IncreaseMaxHealth(int amount, bool fullHeal = true)
+    {
+        maxHealth = Mathf.Max(1, maxHealth + amount);
+        currentHealth = fullHeal ? maxHealth : Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateUI();
     }
 

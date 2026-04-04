@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/// In-game inventory that can be toggled with a key.
-/// Lets the player customize which bullet prefab they are actively using.
 
 public class InventoryManager : MonoBehaviour
 {
     [Serializable]
-    private class BulletOption
+    private class GunEntry
     {
-        public GameObject bulletPrefab;
+        public RevolverData gunData;
+        public bool unlockedAtStart = true;
+        public int goldCost = 0;
+        public int requiredLevel = 0;
+
+        [NonSerialized] public bool isUnlocked;
     }
 
     public static bool IsInventoryOpen { get; private set; }
 
-    // Shown in the inspector
+   
     [Header("Inventory Toggle")]
     [SerializeField] private KeyCode inventoryKey = KeyCode.Tab;
 
@@ -24,22 +27,29 @@ public class InventoryManager : MonoBehaviour
     [Tooltip("If empty, InventoryManager will try to find a Revolver in the scene.")]
     [SerializeField] private Revolver revolver;
 
-    [Header("Bullet Options")]
-    [Tooltip("Configure all bullet prefabs the player can swap to.")]
-    [SerializeField] private List<BulletOption> bulletOptions = new List<BulletOption>();
+    [Header("Gun Options")]
+    [Tooltip("Configure all gun assets that can appear in the inventory.")]
+    [SerializeField] private List<GunEntry> gunEntries = new List<GunEntry>();
 
     [Header("Window")]
     [SerializeField] private Rect windowRect = new Rect(24f, 24f, 360f, 300f);
+    [SerializeField] private Rect shopWindowRect = new Rect(410f, 24f, 360f, 360f);
 
     private int _selectedIndex;
+    private bool _isShopOpen;
+    private XPManager _xpManager;
 
     private void Awake()
     {
         if (revolver == null)
             revolver = FindFirstObjectByType<Revolver>();
 
-        // Default selection to whichever bullet the revolver is currently using.
-        SyncSelectionWithCurrentBullet();
+        _xpManager = FindFirstObjectByType<XPManager>();
+
+        InitializeUnlockState();
+
+       
+        SyncSelectionWithCurrentGun();
     }
 
     private void Update()
@@ -50,9 +60,11 @@ public class InventoryManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // Ensure game speed is restored if this component is disabled.
+        
         if (IsInventoryOpen)
             SetInventoryOpen(false);
+
+        _isShopOpen = false;
     }
 
     private void OnGUI()
@@ -61,13 +73,16 @@ public class InventoryManager : MonoBehaviour
             return;
 
         windowRect = GUI.Window(GetInstanceID(), windowRect, DrawInventoryWindow, "Inventory");
+
+        if (_isShopOpen)
+            shopWindowRect = GUI.Window(GetInstanceID() + 1, shopWindowRect, DrawShopWindow, "Shop");
     }
 
     private void DrawInventoryWindow(int windowId)
     {
         GUILayout.Space(8f);
 
-        // If no revolver in the scene, show a message and a close button
+        
         if (revolver == null)
         {
             GUILayout.Label("No Revolver found in scene.");
@@ -78,10 +93,10 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        // If theres no bullet options, show a message and a close button
-        if (bulletOptions.Count == 0)
+        
+        if (gunEntries.Count == 0)
         {
-            GUILayout.Label("No bullet options configured.");
+            GUILayout.Label("No gun assets configured.");
             if (GUILayout.Button("Close"))
                 SetInventoryOpen(false);
 
@@ -89,27 +104,46 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        GUILayout.Label("Select Bullet Type:");
+        GUILayout.Label("Select Gun:");
 
-        for (int i = 0; i < bulletOptions.Count; i++)
+        bool hasUnlockedGuns = false;
+
+        for (int i = 0; i < gunEntries.Count; i++)
         {
-            BulletOption option = bulletOptions[i];
-            string label = option.bulletPrefab != null
-                ? option.bulletPrefab.name
-                : $"Bullet {i + 1}";
+            GunEntry entry = gunEntries[i];
+            string label = entry.gunData != null
+                ? entry.gunData.weaponName
+                : $"Gun {i + 1}";
+
+            if (!entry.isUnlocked)
+                label += " (Locked)";
+
+            if (entry.isUnlocked)
+                hasUnlockedGuns = true;
 
             bool selected = i == _selectedIndex;
+            GUI.enabled = entry.isUnlocked;
             bool clicked = GUILayout.Toggle(selected, label, "Button", GUILayout.Height(28f));
-            if (clicked)
+            GUI.enabled = true;
+
+            if (clicked && entry.isUnlocked)
                 _selectedIndex = i;
         }
+
+        if (!hasUnlockedGuns)
+            GUILayout.Label("No unlocked guns yet.");
 
         GUILayout.Space(10f);
 
         using (new GUILayout.HorizontalScope())
         {
-            if (GUILayout.Button("Apply", GUILayout.Height(30f)))
-                ApplySelectedBullet();
+            GUI.enabled = HasValidSelectedGun();
+            if (GUILayout.Button("Equip", GUILayout.Height(30f)))
+                ApplySelectedGun();
+            GUI.enabled = true;
+
+            if (GUILayout.Button("Shop", GUILayout.Height(30f)))
+                _isShopOpen = true;
 
             if (GUILayout.Button("Close", GUILayout.Height(30f)))
                 SetInventoryOpen(false);
@@ -122,7 +156,7 @@ public class InventoryManager : MonoBehaviour
     {
         bool open = !IsInventoryOpen;
         if (open)
-            SyncSelectionWithCurrentBullet();
+            SyncSelectionWithCurrentGun();
 
         SetInventoryOpen(open);
     }
@@ -130,48 +164,211 @@ public class InventoryManager : MonoBehaviour
     private void SetInventoryOpen(bool open)
     {
         IsInventoryOpen = open;
+        if (!open)
+            _isShopOpen = false;
+
         Time.timeScale = open ? 0f : 1f;
         Cursor.visible = open;
     }
 
-    // Applies the currently selected bullet option to the revolver and closes the inventory
-    private void ApplySelectedBullet()
+    private void DrawShopWindow(int windowId)
+    {
+        GUILayout.Space(8f);
+        int currentGold = GetCurrentGold();
+        int currentLevel = GetCurrentLevel();
+
+        GUILayout.Label($"Gold: {currentGold}");
+        GUILayout.Label($"Level: {currentLevel}");
+        GUILayout.Space(8f);
+
+        if (gunEntries.Count == 0)
+        {
+            GUILayout.Label("No guns configured for shop.");
+        }
+        else
+        {
+            for (int i = 0; i < gunEntries.Count; i++)
+            {
+                GunEntry entry = gunEntries[i];
+
+                if (entry.gunData == null)
+                {
+                    GUILayout.Label($"Gun {i + 1}: Missing data");
+                    continue;
+                }
+
+                string gunName = entry.gunData.weaponName;
+                if (entry.isUnlocked)
+                {
+                    GUILayout.Label($"{gunName} - Owned");
+                    continue;
+                }
+
+                bool meetsLevel = currentLevel >= entry.requiredLevel;
+                bool canAfford = currentGold >= entry.goldCost;
+                string buyLabel = $"Buy {gunName} ({entry.goldCost}g, Lv {entry.requiredLevel})";
+
+                GUI.enabled = meetsLevel && canAfford;
+                if (GUILayout.Button(buyLabel, GUILayout.Height(28f)))
+                    TryPurchaseGun(i);
+                GUI.enabled = true;
+
+                if (!meetsLevel)
+                    GUILayout.Label("  Requires higher level");
+                else if (!canAfford)
+                    GUILayout.Label("  Not enough gold");
+            }
+        }
+
+        GUILayout.Space(10f);
+        if (GUILayout.Button("Back", GUILayout.Height(30f)))
+            _isShopOpen = false;
+
+        GUI.DragWindow(new Rect(0f, 0f, 10000f, 24f));
+    }
+
+    
+    private void ApplySelectedGun()
     {
         if (revolver == null)
             return;
 
-        if (_selectedIndex < 0 || _selectedIndex >= bulletOptions.Count)
+        if (_selectedIndex < 0 || _selectedIndex >= gunEntries.Count)
             return;
 
-        GameObject selectedPrefab = bulletOptions[_selectedIndex].bulletPrefab;
-        if (selectedPrefab == null)
+        GunEntry selectedEntry = gunEntries[_selectedIndex];
+        if (!selectedEntry.isUnlocked || selectedEntry.gunData == null)
         {
-            Debug.LogWarning("[InventoryManager] Selected bullet option has no prefab assigned.");
+            Debug.LogWarning("[InventoryManager] Selected gun is locked or missing data.");
             return;
         }
 
-        revolver.SetBulletPrefab(selectedPrefab);
+        revolver.Equip(selectedEntry.gunData);
         SetInventoryOpen(false);
     }
 
-    // Syncs the currently selected inventory 
-    // option with the bullet prefab the revolver is currently using
-    private void SyncSelectionWithCurrentBullet()
+    public void UnlockGun(RevolverData gunData)
     {
-        if (revolver == null || bulletOptions.Count == 0)
+        if (gunData == null)
             return;
 
-        GameObject currentPrefab = revolver.CurrentBulletPrefab;
-        if (currentPrefab == null)
-            return;
-
-        for (int i = 0; i < bulletOptions.Count; i++)
+        for (int i = 0; i < gunEntries.Count; i++)
         {
-            if (bulletOptions[i].bulletPrefab == currentPrefab)
+            if (gunEntries[i].gunData == gunData)
+            {
+                gunEntries[i].isUnlocked = true;
+                return;
+            }
+        }
+    }
+
+    private void TryPurchaseGun(int index)
+    {
+        if (index < 0 || index >= gunEntries.Count)
+            return;
+
+        GunEntry entry = gunEntries[index];
+        if (entry.gunData == null || entry.isUnlocked)
+            return;
+
+        int currentLevel = GetCurrentLevel();
+        if (currentLevel < entry.requiredLevel)
+        {
+            Debug.Log("[InventoryManager] Level too low to purchase this gun.");
+            return;
+        }
+
+        CoinManager coinManager = CoinManager.instance;
+        if (coinManager == null)
+        {
+            Debug.LogWarning("[InventoryManager] CoinManager instance not found.");
+            return;
+        }
+
+        if (!coinManager.SpendCoins(entry.goldCost))
+        {
+            Debug.Log("[InventoryManager] Not enough gold to purchase this gun.");
+            return;
+        }
+
+        entry.isUnlocked = true;
+
+        if (!HasValidSelectedGun())
+            _selectedIndex = index;
+
+        Debug.Log($"[InventoryManager] Purchased and unlocked {entry.gunData.weaponName}.");
+    }
+
+    private int GetCurrentGold()
+    {
+        CoinManager coinManager = CoinManager.instance;
+        return coinManager != null ? coinManager.coins : 0;
+    }
+
+    private int GetCurrentLevel()
+    {
+        if (_xpManager == null)
+            _xpManager = FindFirstObjectByType<XPManager>();
+
+        return _xpManager != null ? _xpManager.level : 0;
+    }
+
+    public bool IsGunUnlocked(RevolverData gunData)
+    {
+        if (gunData == null)
+            return false;
+
+        for (int i = 0; i < gunEntries.Count; i++)
+        {
+            if (gunEntries[i].gunData == gunData)
+                return gunEntries[i].isUnlocked;
+        }
+
+        return false;
+    }
+
+    private void InitializeUnlockState()
+    {
+        for (int i = 0; i < gunEntries.Count; i++)
+            gunEntries[i].isUnlocked = gunEntries[i].unlockedAtStart;
+    }
+
+    private bool HasValidSelectedGun()
+    {
+        if (_selectedIndex < 0 || _selectedIndex >= gunEntries.Count)
+            return false;
+
+        GunEntry selectedEntry = gunEntries[_selectedIndex];
+        return selectedEntry.isUnlocked && selectedEntry.gunData != null;
+    }
+
+    private void SyncSelectionWithCurrentGun()
+    {
+        if (revolver == null || gunEntries.Count == 0)
+            return;
+
+        RevolverData currentData = revolver.CurrentData;
+        if (currentData == null)
+            return;
+
+        for (int i = 0; i < gunEntries.Count; i++)
+        {
+            if (gunEntries[i].gunData == currentData)
             {
                 _selectedIndex = i;
                 return;
             }
         }
+
+        for (int i = 0; i < gunEntries.Count; i++)
+        {
+            if (gunEntries[i].isUnlocked && gunEntries[i].gunData != null)
+            {
+                _selectedIndex = i;
+                return;
+            }
+        }
+
+        _selectedIndex = 0;
     }
 }

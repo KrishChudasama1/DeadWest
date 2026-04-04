@@ -1,14 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// PlayerShooting.cs
-///
-/// Detects left mouse click, converts cursor position to a world-space
-/// shoot direction, and delegates to whatever IWeapon is equipped.
-/// Also handles the crosshair — hides the default cursor and draws
-/// a custom one via OnGUI with a pulse animation on fire.
-/// </summary>
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Weapon")]
@@ -24,8 +16,7 @@ public class PlayerShooting : MonoBehaviour
     private IWeapon _weapon;
     private Camera  _cam;
     private float   _currentCrosshairSize;
-
-    // ─── Unity lifecycle ──────────────────────────────────────────────────────
+    private bool    _isStunned = false; // ← new
 
     private void Start()
     {
@@ -45,8 +36,8 @@ public class PlayerShooting : MonoBehaviour
 
         Cursor.visible = InventoryManager.IsInventoryOpen;
 
-        if (InventoryManager.IsInventoryOpen)
-            return;
+        if (InventoryManager.IsInventoryOpen) return;
+        if (_isStunned) return; // ← block shooting while stunned
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -56,11 +47,21 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    // ─── Crosshair ────────────────────────────────────────────────────────────
+    // ← called by CursedBrawler when charge hits player
+    public void Stun(float duration)
+    {
+        StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        _isStunned = true;
+        yield return new WaitForSeconds(duration);
+        _isStunned = false;
+    }
 
     private IEnumerator PulseCrosshair()
     {
-        // Expand
         float elapsed = 0f;
         while (elapsed < pulseDuration)
         {
@@ -69,7 +70,6 @@ public class PlayerShooting : MonoBehaviour
             yield return null;
         }
 
-        // Shrink back
         elapsed = 0f;
         while (elapsed < pulseDuration)
         {
@@ -94,8 +94,6 @@ public class PlayerShooting : MonoBehaviour
             crosshairTexture
         );
     }
-
-    // ─── Helpers ──────────────────────────────────────────────────────────────
 
     private Vector2 GetShootDirection()
     {

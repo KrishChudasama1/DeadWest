@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 3
   tags:
   - Coin
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - object
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 

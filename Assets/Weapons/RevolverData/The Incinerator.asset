@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb8583b620d8495a91cbc3ddd597a70, type: 3}
+  m_Name: The Incinerator
+  m_EditorClassIdentifier: Assembly-CSharp::RevolverData
+  weaponName: The Incinerator
+  fireRate: 0.35
+  chamberSize: 6
+  reloadTime: 2
+  damage: 15
+  bulletPrefab: {fileID: 4510673169719882859, guid: cdd1d317b67134d7e8e93efdec09bdeb, type: 3}

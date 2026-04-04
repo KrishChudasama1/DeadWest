@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using NUnit.Framework.Internal;
 using UnityEngine.UI;
 
 public class XPManager : MonoBehaviour
@@ -9,6 +8,7 @@ public class XPManager : MonoBehaviour
     public int currentXP;
     public int XPToLevel = 10;
     public float XPGrowthMultiplier = 1.2f;
+    public int healthIncreasePerLevel = 10;
     public Slider XPSlider;
     public TMP_Text currentLevelText;
 
@@ -31,25 +31,26 @@ public class XPManager : MonoBehaviour
     public void GainExperience(int amount)
     {
         currentXP += amount;
-        if(currentXP >= XPToLevel)
+        while (currentXP >= XPToLevel)
         {
             LevelUp();
         }
     }
+    
     private void LevelUp()
     {
         level++;
         currentXP -= XPToLevel;
         XPToLevel = Mathf.RoundToInt(XPToLevel * XPGrowthMultiplier);
 
-        HealthManager healthManager = GetComponent<HealthManager>();
-        if (healthManager != null)
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>(); // changed this
+        if (playerHealth != null)
         {
-            healthManager.maxHealth += 20;
-            healthManager.currentHealth += 20;
-            healthManager.UpdateUI();
+            playerHealth.IncreaseMaxHealth(healthIncreasePerLevel, true);
         }
+        UpdateUI();
     }
+    
     public void UpdateUI()
     {
         XPSlider.maxValue = XPToLevel;

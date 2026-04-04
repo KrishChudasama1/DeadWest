@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb8583b620d8495a91cbc3ddd597a70, type: 3}
-  m_Name: The Scorcher
+  m_Name: Electro-Blaster
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
-  weaponName: Revolver
-  fireRate: 0.5
+  weaponName: Electro-Blaster
+  fireRate: 0.35
   chamberSize: 6
   reloadTime: 2
-  damage: 25
-  bulletPrefab: {fileID: 4510673169719882859, guid: cdd1d317b67134d7e8e93efdec09bdeb, type: 3}
+  damage: 10
+  bulletPrefab: {fileID: 4478265653480145829, guid: be3564126f5be4bb28b0238e4875a03b, type: 3}
