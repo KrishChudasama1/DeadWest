@@ -13,10 +13,12 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float crosshairPulseSize = 48f;
     [SerializeField] private float pulseDuration      = 0.1f;
 
+    public static bool IsInteracting = false; // ← set true by bartender/NPC
+
     private IWeapon _weapon;
     private Camera  _cam;
     private float   _currentCrosshairSize;
-    private bool    _isStunned = false; // ← new
+    private bool    _isStunned = false;
 
     private void Start()
     {
@@ -34,10 +36,12 @@ public class PlayerShooting : MonoBehaviour
     {
         if (_weapon == null) return;
 
-        Cursor.visible = InventoryManager.IsInventoryOpen;
+        // Cursor visible if inventory open OR interacting with NPC
+        Cursor.visible = InventoryManager.IsInventoryOpen || IsInteracting;
 
         if (InventoryManager.IsInventoryOpen) return;
-        if (_isStunned) return; // ← block shooting while stunned
+        if (_isStunned) return;
+        if (IsInteracting) return; // ← block shooting during NPC interaction
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -47,7 +51,6 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    // ← called by CursedBrawler when charge hits player
     public void Stun(float duration)
     {
         StartCoroutine(StunRoutine(duration));
@@ -85,6 +88,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (crosshairTexture == null) return;
         if (InventoryManager.IsInventoryOpen) return;
+        if (IsInteracting) return; // ← hide crosshair during NPC interaction
 
         Vector2 mousePos = Event.current.mousePosition;
         float   half     = _currentCrosshairSize / 2f;

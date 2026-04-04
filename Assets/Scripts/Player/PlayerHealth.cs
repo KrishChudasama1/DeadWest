@@ -50,6 +50,12 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = currentHealth + " / " + maxHealth;
     }
     
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UpdateHealthBar();
+    }
+    
     public void IncreaseMaxHealth(int amount, bool refillHealth)
     {
         maxHealth += amount;
