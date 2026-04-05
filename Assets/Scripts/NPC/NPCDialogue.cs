@@ -6,21 +6,17 @@ using TMPro;
 
 public class NPCDialogue : MonoBehaviour
 {
+    [Serializable]
+    public class DialogueLine
+    {
+        [TextArea(2, 4)]
+        public string text;
+    }
+
     public event Action DialogueFinished;
 
     [Header("Dialogue")]
-    private string[] lines = new string[]
-    {
-        "Well, looky here... the Law's back. A bit late for a patrol, wouldn't ya say, Sheriff? Look around.",
-        "This dirt don't grow corn no more—it only grows shadows.",
-        "That rogue bunch... the cult... they reached for godhood and pulled down hell instead.",
-        "Now, the folks you used to protect? They're just fuel for the fire that's burnin' this town 'til kingdom come.",
-        "But you... you got that look in your eye. If you want to put these poor souls to rest, you gotta find 'em. Five relics, Sheriff.",
-        "Hidden in the dark corners where the sun don't dare shine. They're the keys to the ritual.",
-        "Scour the wasteland. Pry 'em from the cold, dead hands of the things guardin' 'em.",
-        "Once you got all five, get yourself to the Church. Bring 'em together, and maybe—just maybe—we'll see a sunrise again.",
-        "Better check your cylinder, son. The dead don't take kindly to trespassers."
-    };
+    [SerializeField] private DialogueLine[] lines;
 
     [Header("UI")]
     public GameObject dialogueBox;
@@ -69,14 +65,14 @@ public class NPCDialogue : MonoBehaviour
             if (isTyping)
             {
                 StopCoroutine(typingCoroutine);
-                dialogueText.text = lines[currentLine];
+                dialogueText.text = lines[currentLine].text;
                 isTyping = false;
             }
             else
             {
                 currentLine++;
                 if (currentLine < lines.Length)
-                    typingCoroutine = StartCoroutine(TypeLine(lines[currentLine]));
+                    typingCoroutine = StartCoroutine(TypeLine(lines[currentLine].text));
                 else
                     EndDialogue();
             }
@@ -88,7 +84,10 @@ public class NPCDialogue : MonoBehaviour
         currentLine = 0;
         isDialogueOpen = true;
         dialogueBox.SetActive(true);
-        typingCoroutine = StartCoroutine(TypeLine(lines[currentLine]));
+        if (lines != null && lines.Length > 0)
+            typingCoroutine = StartCoroutine(TypeLine(lines[currentLine].text));
+        else
+            EndDialogue();
 
         // Transition to the quiet Dialogue snapshot
         if (audioMixer != null)
