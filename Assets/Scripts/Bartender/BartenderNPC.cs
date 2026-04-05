@@ -297,6 +297,8 @@ public class BartenderNPC : MonoBehaviour
 
         if (xpManager != null)
             xpManager.GainExperience(xpManager.XPToLevel);
+        else
+            XPManager.AddExperience(0); // fallback (no-op) to ensure singleton exists; explicit level-up is handled through GainExperience
 
         if (!hasBoughtDrink)
         {

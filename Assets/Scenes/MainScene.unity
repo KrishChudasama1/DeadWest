@@ -38498,7 +38498,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 556314913}
   m_FillRect: {fileID: 556314912}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
@@ -38574,6 +38574,8 @@ MonoBehaviour:
     y: 24
     width: 320
     height: 220
+  hasLasso: 0
+  lassoProjectilePrefab: {fileID: 0}
 --- !u!4 &1294948225
 Transform:
   m_ObjectHideFlags: 0
@@ -54228,6 +54230,22 @@ PrefabInstance:
       propertyPath: currentLevelText
       value: 
       objectReference: {fileID: 312345285}
+    - target: {fileID: 3959915487523690728, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959915487523690728, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28002638
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959915487523690728, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.04408002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959915487523690728, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.888947
+      objectReference: {fileID: 0}
     - target: {fileID: 4172260421715386572, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
       propertyPath: m_Name
       value: Player

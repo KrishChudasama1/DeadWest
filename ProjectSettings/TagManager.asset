@@ -10,11 +10,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - object
+  - Background
   - Water
   - UI
   - Enemy
-  - 
+  - Lasso
   - 
   - 
   - 
