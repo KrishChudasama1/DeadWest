@@ -34,6 +34,9 @@ public class WaveManager : MonoBehaviour
 
     [Header("Spawn Points")]
     public List<Transform> spawnPoints = new List<Transform>();
+
+    [Header("Spawn Spread")]
+    public float spawnJitterRadius = 0.5f;
     
     
     [Header("Settings")]
@@ -71,19 +74,14 @@ public class WaveManager : MonoBehaviour
     }
     
 
-    // ─────────────────────────────────────────
-    //  CALLED BY NPC ON FIRST INTERACTION
-    // ─────────────────────────────────────────
-    public void StartWaves()
+        public void StartWaves()
     {
         if (wavesStarted) return;
         wavesStarted = true;
         StartCoroutine(WaveSequence());
     }
 
-    // ─────────────────────────────────────────
-    //  WAVE LOOP
-    // ─────────────────────────────────────────
+    
     private IEnumerator WaveSequence()
     {
     
@@ -101,7 +99,7 @@ public class WaveManager : MonoBehaviour
             Debug.Log($"Wave {i + 1} cleared!");
         }
 
-        // ← switch back to normal music when all waves done
+        //switch back to normal music when all waves done
         PlayMusic(normalMusic);
 
         Debug.Log("All waves complete!");
@@ -113,19 +111,47 @@ public class WaveManager : MonoBehaviour
     {
         activeEnemies.Clear();
 
+        if (spawnPoints.Count == 0)
+        {
+            Debug.LogWarning("WaveManager has no spawn points assigned.");
+            return;
+        }
+
+        List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+        ShuffleSpawnPoints(availableSpawnPoints);
+        int spawnPointIndex = 0;
+
         foreach (SpawnEntry entry in wave.enemies)
         {
             for (int i = 0; i < entry.count; i++)
             {
-                // Pick a random spawn point
-                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+                if (spawnPointIndex >= availableSpawnPoints.Count)
+                {
+                    ShuffleSpawnPoints(availableSpawnPoints);
+                    spawnPointIndex = 0;
+                }
 
-                GameObject enemy = Instantiate(entry.prefab, spawnPoint.position, Quaternion.identity);
+                Transform spawnPoint = availableSpawnPoints[spawnPointIndex++];
+                Vector2 spawnPosition = spawnPoint.position;
+
+                if (spawnJitterRadius > 0f)
+                    spawnPosition += Random.insideUnitCircle * spawnJitterRadius;
+
+                GameObject enemy = Instantiate(entry.prefab, spawnPosition, Quaternion.identity);
                 activeEnemies.Add(enemy);
             }
         }
 
         Debug.Log($"Wave {currentWave + 1} spawned with {activeEnemies.Count} enemies.");
+    }
+
+    private void ShuffleSpawnPoints(List<Transform> points)
+    {
+        for (int i = 0; i < points.Count; i++)
+        {
+            int swapIndex = Random.Range(i, points.Count);
+            (points[i], points[swapIndex]) = (points[swapIndex], points[i]);
+        }
     }
 
     private IEnumerator WaitForWaveClear()
@@ -195,9 +221,6 @@ public class WaveManager : MonoBehaviour
         Debug.Log("All waves defeated — trigger your end event here.");
     }
 
-    // ─────────────────────────────────────────
-    //  PUBLIC HELPERS
-    // ─────────────────────────────────────────
     public int  CurrentWave     => currentWave + 1;
     public bool WavesStarted    => wavesStarted;
     public bool WaveInProgress  => waveInProgress;
