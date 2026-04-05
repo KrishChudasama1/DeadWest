@@ -65,20 +65,20 @@ public class CursedBrawler : MonoBehaviour
     public LayerMask obstacleMask;
 
     [Header("Audio")]
-    public AudioClip lockOnSound;           // plays when he locks on
-    public AudioClip chargeLoopSound;       // loops during the charge
-    public AudioClip chargeImpactSound;     // plays when charge hits wall or player
-    public AudioClip meleeThudA;            // first melee hit sound
-    public AudioClip meleeThudB;            // second melee hit sound (randomly picked)
-    public AudioClip groundSlamSound;       // plays when attack hits the ground
-    public AudioClip deathSound;            // plays on death
+    public AudioClip lockOnSound;
+    public AudioClip chargeLoopSound;
+    public AudioClip chargeImpactSound;
+    public AudioClip meleeThudA;
+    public AudioClip meleeThudB;
+    public AudioClip groundSlamSound;
+    public AudioClip deathSound;
 
     [Header("Audio Volume")]
     [Range(0f, 1f)] public float deathVolume = 0.7f;
     [Range(0f, 1f)] public float chargeImpactVolume = 1f;
     
     private AudioSource audioSource;
-    private AudioSource chargeAudioSource;  // separate source so charge loop doesn't cut other sounds
+    private AudioSource chargeAudioSource;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -109,7 +109,6 @@ public class CursedBrawler : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
 
-        // Second AudioSource for the charge loop so it doesn't interrupt other sounds
         chargeAudioSource = gameObject.AddComponent<AudioSource>();
         chargeAudioSource.loop = true;
         chargeAudioSource.playOnAwake = false;
@@ -197,7 +196,6 @@ public class CursedBrawler : MonoBehaviour
 
     private void PlayRandomMeleeThud()
     {
-        // Randomly pick between the two melee hit sounds
         if (meleeThudA == null && meleeThudB == null) return;
         if (meleeThudA == null) { PlaySound(meleeThudB); return; }
         if (meleeThudB == null) { PlaySound(meleeThudA); return; }
@@ -243,7 +241,6 @@ public class CursedBrawler : MonoBehaviour
         if (xpOnDeath <= 0)
             return;
 
-        // If a pickup prefab is assigned, spawn it and set the XP value on it.
         if (xpPickupPrefab != null)
         {
             GameObject drop = Instantiate(xpPickupPrefab, transform.position, Quaternion.identity);
@@ -259,7 +256,6 @@ public class CursedBrawler : MonoBehaviour
             return;
         }
 
-        // grant XP directly if no pickup prefab is configured.
         XPManager xpManager = null;
         if (player != null)
             xpManager = player.GetComponent<XPManager>();
@@ -329,10 +325,8 @@ public class CursedBrawler : MonoBehaviour
 
         yield return new WaitForSeconds(meleeWindup);
 
-        // Play ground slam sound when the attack lands
         PlaySound(groundSlamSound);
 
-        // Play randomly picked melee thud
         PlayRandomMeleeThud();
 
         if (player != null)
@@ -370,7 +364,6 @@ public class CursedBrawler : MonoBehaviour
 
         UpdateFacing(lockedDirection);
 
-        // Play lock-on sound when he stops and targets
         PlaySound(lockOnSound);
         animator.SetTrigger("StartCharge");
 
@@ -381,7 +374,6 @@ public class CursedBrawler : MonoBehaviour
         chargeStartPosition = rb.position;
         isChargingActive = true;
 
-        // Start charge loop sound
         StartChargeLoop();
 
         ChangeState(BrawlerState.Charging);
@@ -429,7 +421,6 @@ public class CursedBrawler : MonoBehaviour
                 StopChargeLoop();
                 PlaySound(chargeImpactSound, chargeImpactVolume);
 
-                // Damage the object he slammed into if it's breakable
                 BreakableObject breakable = hitCollider.GetComponent<BreakableObject>();
                 if (breakable != null)
                     breakable.TakeDamage(chargeImpactDamage);
