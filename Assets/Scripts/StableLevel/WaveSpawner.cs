@@ -69,6 +69,7 @@ namespace StableLevel
                 if (wave.delayBeforeWave > 0f)
                     yield return new WaitForSeconds(wave.delayBeforeWave);
 
+                // Spawn the wave
                 for (int i = 0; i < Mathf.Max(0, wave.count); i++)
                 {
                     Transform spawnPoint = (spawnPoints != null && spawnPoints.Length > 0)
@@ -83,6 +84,15 @@ namespace StableLevel
                         yield return new WaitForSeconds(wave.timeBetweenSpawns);
                     else
                         yield return null;
+                }
+
+                // Wait until all enemies from this wave are dead before starting the next wave
+                while (true)
+                {
+                    livingEnemies.RemoveAll(e => e == null);
+                    if (livingEnemies.Count == 0)
+                        break;
+                    yield return new WaitForSeconds(0.25f);
                 }
             }
 

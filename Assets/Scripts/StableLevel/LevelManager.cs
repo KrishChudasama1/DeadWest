@@ -17,25 +17,46 @@ namespace StableLevel
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
+        // Subscribe to lasso pickup so we can start spawning after the player picks it up
+        LassoPickup.OnLassoPickedUp += OnLassoPickedUp;
         }
 
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
+        LassoPickup.OnLassoPickedUp -= OnLassoPickedUp;
         }
 
         private void Start()
         {
             // In case this object exists already in the target scene
-            if (SceneManager.GetActiveScene().name == targetSceneName)
-                TryStartSpawner();
+                if (string.Equals(SceneManager.GetActiveScene().name, targetSceneName, System.StringComparison.OrdinalIgnoreCase))
+                    // Don't auto-start here; wait for lasso pickup. Keep TryStartSpawner as a fallback.
+                    Debug.Log("LevelManager: loaded target scene; waiting for lasso pickup to start waves.");
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name != targetSceneName) return;
-            TryStartSpawner();
+            if (!string.Equals(scene.name, targetSceneName, System.StringComparison.OrdinalIgnoreCase)) return;
+                // Don't immediately start waves when the scene loads; wait for lasso pickup event.
+                Debug.Log("LevelManager: target scene loaded; waiting for lasso pickup to start waves.");
         }
+
+            private void OnLassoPickedUp()
+            {
+                // Only respond if we're in the target scene (case-insensitive)
+                if (!string.Equals(SceneManager.GetActiveScene().name, targetSceneName, System.StringComparison.OrdinalIgnoreCase)) return;
+                if (hasStarted) return;
+
+                Debug.Log("LevelManager: Lasso picked up — starting waves in 10 seconds...");
+                StartCoroutine(StartSpawnerAfterDelay(10f));
+            }
+
+            private System.Collections.IEnumerator StartSpawnerAfterDelay(float delay)
+            {
+                yield return new WaitForSeconds(delay);
+                TryStartSpawner();
+            }
 
         private void TryStartSpawner()
         {
