@@ -32777,6 +32777,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a8dbf2e2fcc4dc89614d93c71eec49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  lines:
+  - text: "Well, looky here... the Law's back. A bit late for a patrol, wouldn't
+      ya say, Sheriff? Look around.\nThis dirt don't grow corn no more\u2014it only
+      grows shadows."
+  - text: 'That rogue bunch... the cult... they reached for godhood and pulled down
+      hell instead.
+
+      Now, the folks you used to protect? They''re just fuel
+      for the fire that''s burnin'' this town ''til kingdom come.'
+  - text: 'But you... you got that look in your eye. If you want to put these poor
+      souls to rest, you gotta find ''em. Five relics, Sheriff.
+
+      Hidden in
+      the dark corners where the sun don''t dare shine. They''re the keys to the
+      ritual.'
+  - text: "Scour the wasteland. Pry 'em from the cold, dead hands of the things guardin'
+      'em.\nOnce you got all five, get yourself to the Church. Bring 'em together,
+      and maybe\u2014just maybe\u2014we'll see a sunrise again."
+  - text: Better check your cylinder, son. The dead don't take kindly to trespassers.
   dialogueBox: {fileID: 1151365961}
   dialogueText: {fileID: 727243927}
   promptText: {fileID: 2075234294}

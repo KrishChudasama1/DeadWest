@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
-
-
 {
     public static WaveManager instance;
 
@@ -19,13 +17,13 @@ public class WaveManager : MonoBehaviour
     public class Wave
     {
         public List<SpawnEntry> enemies;
-        public float            delayBeforeWave = 3f;
+        public float            delayBeforeWave = 3f; // seconds before this wave spawns
     }
 
     [Header("Music")]
     public AudioClip normalMusic;
     public AudioClip waveMusic;
-    public float fadeDuration = 1.5f;
+    public float fadeDuration = 1.5f; // how long the crossfade takes
 
     private AudioSource musicSource;
     private Coroutine fadeCoroutine;
@@ -36,10 +34,17 @@ public class WaveManager : MonoBehaviour
 
     [Header("Spawn Points")]
     public List<Transform> spawnPoints = new List<Transform>();
+
+    [Header("Spawn Spread")]
+    public float spawnJitterRadius = 0.5f;
     
     
     [Header("Settings")]
-    public float checkInterval = 1f;
+    public float checkInterval = 1f; // how often to check if wave is cleared
+
+    [Header("Auto Start")]
+    public bool autoStartOnLevelLoad = false;
+    public float autoStartDelay = 2f;
 
     private int          currentWave      = -1;
     private bool         wavesStarted     = false;
@@ -50,24 +55,41 @@ public class WaveManager : MonoBehaviour
     {
         instance = this;
 
+        // Grab the AudioSource from the Main Camera
         musicSource = Camera.main.GetComponent<AudioSource>();
     }
 
-    public void StartWaves()
+    private void Start()
+    {
+        if (autoStartOnLevelLoad)
+            StartCoroutine(AutoStartWaves());
+    }
+
+    private IEnumerator AutoStartWaves()
+    {
+        if (autoStartDelay > 0f)
+            yield return new WaitForSeconds(autoStartDelay);
+
+        StartWaves();
+    }
+    
+
+        public void StartWaves()
     {
         if (wavesStarted) return;
         wavesStarted = true;
         StartCoroutine(WaveSequence());
     }
 
+    
     private IEnumerator WaveSequence()
     {
+    
         for (int i = 0; i < waves.Count; i++)
         {
-            currentWave = i;
-
             yield return new WaitForSeconds(waves[i].delayBeforeWave);
 
+            // ← switch to wave music when wave starts
             PlayMusic(waveMusic);
 
             SpawnWave(waves[i]);
@@ -77,28 +99,59 @@ public class WaveManager : MonoBehaviour
             Debug.Log($"Wave {i + 1} cleared!");
         }
 
+        //switch back to normal music when all waves done
         PlayMusic(normalMusic);
 
         Debug.Log("All waves complete!");
         OnAllWavesComplete();
+    
     }
 
     private void SpawnWave(Wave wave)
     {
         activeEnemies.Clear();
 
+        if (spawnPoints.Count == 0)
+        {
+            Debug.LogWarning("WaveManager has no spawn points assigned.");
+            return;
+        }
+
+        List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+        ShuffleSpawnPoints(availableSpawnPoints);
+        int spawnPointIndex = 0;
+
         foreach (SpawnEntry entry in wave.enemies)
         {
             for (int i = 0; i < entry.count; i++)
             {
-                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+                if (spawnPointIndex >= availableSpawnPoints.Count)
+                {
+                    ShuffleSpawnPoints(availableSpawnPoints);
+                    spawnPointIndex = 0;
+                }
 
-                GameObject enemy = Instantiate(entry.prefab, spawnPoint.position, Quaternion.identity);
+                Transform spawnPoint = availableSpawnPoints[spawnPointIndex++];
+                Vector2 spawnPosition = spawnPoint.position;
+
+                if (spawnJitterRadius > 0f)
+                    spawnPosition += Random.insideUnitCircle * spawnJitterRadius;
+
+                GameObject enemy = Instantiate(entry.prefab, spawnPosition, Quaternion.identity);
                 activeEnemies.Add(enemy);
             }
         }
 
         Debug.Log($"Wave {currentWave + 1} spawned with {activeEnemies.Count} enemies.");
+    }
+
+    private void ShuffleSpawnPoints(List<Transform> points)
+    {
+        for (int i = 0; i < points.Count; i++)
+        {
+            int swapIndex = Random.Range(i, points.Count);
+            (points[i], points[swapIndex]) = (points[swapIndex], points[i]);
+        }
     }
 
     private IEnumerator WaitForWaveClear()
@@ -109,6 +162,7 @@ public class WaveManager : MonoBehaviour
         {
             yield return new WaitForSeconds(checkInterval);
 
+            // Remove any destroyed enemies from the list
             activeEnemies.RemoveAll(e => e == null);
 
             if (activeEnemies.Count == 0)
@@ -134,6 +188,7 @@ public class WaveManager : MonoBehaviour
     {
         float startVolume = musicSource.volume;
 
+        // Fade out current track
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {
@@ -161,7 +216,9 @@ public class WaveManager : MonoBehaviour
 
     private void OnAllWavesComplete()
     {
-        Debug.Log("All waves defeated - trigger your end event here.");
+        // Hook in whatever happens when all waves are done
+        // e.g. unlock a door, spawn a reward, trigger dialogue
+        Debug.Log("All waves defeated — trigger your end event here.");
     }
 
     public int  CurrentWave     => currentWave + 1;

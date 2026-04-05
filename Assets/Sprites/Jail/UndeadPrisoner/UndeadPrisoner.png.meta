@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: a5b3812e86d7243a8bd06c0bde07209e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6181878544583792082
+    second: UndeadPrisoner_0
+  - first:
+      213: 5727955164209465571
+    second: UndeadPrisoner_1
+  - first:
+      213: -1619782518453247767
+    second: UndeadPrisoner_2
+  - first:
+      213: -1060323845813213622
+    second: UndeadPrisoner_3
+  - first:
+      213: -8137670144549634968
+    second: UndeadPrisoner_4
+  - first:
+      213: 4004191962484263254
+    second: UndeadPrisoner_5
+  - first:
+      213: 7215816622548186107
+    second: UndeadPrisoner_6
+  - first:
+      213: -1310483770914687010
+    second: UndeadPrisoner_7
+  - first:
+      213: 4014810871683345154
+    second: UndeadPrisoner_8
+  - first:
+      213: -5220283058528831372
+    second: UndeadPrisoner_9
+  - first:
+      213: -9071120277681894607
+    second: UndeadPrisoner_10
+  - first:
+      213: 5463122932224389864
+    second: UndeadPrisoner_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UndeadPrisoner_0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 258
+        width: 66
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2a6979773e853aa0800000000000000
+      internalID: -6181878544583792082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_1
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 258
+        width: 64
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8c114bfd8cd7f40800000000000000
+      internalID: 5727955164209465571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_2
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 257
+        width: 38
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0e436a1606589e0800000000000000
+      internalID: -1619782518453247767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_3
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 258
+        width: 63
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a466d6f7419f841f0800000000000000
+      internalID: -1060323845813213622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_4
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 130
+        width: 65
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c31d66e10311f80800000000000000
+      internalID: -8137670144549634968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_5
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 130
+        width: 43
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6594950ff5fb19730800000000000000
+      internalID: 4004191962484263254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 130
+        width: 40
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf3f757bcfab32460800000000000000
+      internalID: 7215816622548186107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_7
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 129
+        width: 41
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed737be14f930dde0800000000000000
+      internalID: -1310483770914687010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 10
+        width: 60
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20bef07673977b730800000000000000
+      internalID: 4014810871683345154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_9
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 10
+        width: 60
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478366d6734dd87b0800000000000000
+      internalID: -5220283058528831372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_10
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 11
+        width: 60
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13b8de51b28ec1280800000000000000
+      internalID: -9071120277681894607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndeadPrisoner_11
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 12
+        width: 60
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e2768bac59e0db40800000000000000
+      internalID: 5463122932224389864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UndeadPrisoner_0: -6181878544583792082
+      UndeadPrisoner_1: 5727955164209465571
+      UndeadPrisoner_10: -9071120277681894607
+      UndeadPrisoner_11: 5463122932224389864
+      UndeadPrisoner_2: -1619782518453247767
+      UndeadPrisoner_3: -1060323845813213622
+      UndeadPrisoner_4: -8137670144549634968
+      UndeadPrisoner_5: 4004191962484263254
+      UndeadPrisoner_6: 7215816622548186107
+      UndeadPrisoner_7: -1310483770914687010
+      UndeadPrisoner_8: 4014810871683345154
+      UndeadPrisoner_9: -5220283058528831372
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
