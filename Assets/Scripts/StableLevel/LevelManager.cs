@@ -9,6 +9,9 @@ namespace StableLevel
         [Tooltip("Optional: assign the WaveSpawner in the scene. If left empty the manager will find the first WaveSpawner.")]
         public WaveSpawner waveSpawner;
 
+        [Tooltip("Optional: assign the RaceTrackGate in the scene. If left empty the manager will find one.")]
+        public RaceTrackGate raceTrackGate;
+
         [Tooltip("Scene name that triggers spawning (exact match).")]
         public string targetSceneName = "horseStable";
 
@@ -81,8 +84,23 @@ namespace StableLevel
 
         private void HandleAllWavesCleared()
         {
-            Debug.Log("LevelManager: All waves cleared.");
-            // TODO: add level-complete behavior here 
+            Debug.Log("LevelManager: All waves cleared — unlocking race track gate.");
+            UnlockGate();
+        }
+
+        private void UnlockGate()
+        {
+            if (raceTrackGate == null)
+                raceTrackGate = FindObjectOfType<RaceTrackGate>(true);
+
+            if (raceTrackGate == null)
+            {
+                Debug.LogWarning("LevelManager: no RaceTrackGate found in scene. Cannot open gate.");
+                return;
+            }
+
+            raceTrackGate.Unlock();
+            Debug.Log("LevelManager: Race track gate unlocked — player can walk through to fight the Phantom Rider.");
         }
     }
 }

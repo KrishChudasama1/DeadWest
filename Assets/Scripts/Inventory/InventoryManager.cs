@@ -39,6 +39,9 @@ public class InventoryManager : MonoBehaviour
     private bool _isShopOpen;
     private XPManager _xpManager;
 
+    [Header("Items")]
+    [SerializeField] private bool hasLasso = false;
+
     private void Awake()
     {
         if (revolver == null)
@@ -52,20 +55,33 @@ public class InventoryManager : MonoBehaviour
         SyncSelectionWithCurrentGun();
     }
 
+    private void HandleLassoPickedUp()
+    {
+        hasLasso = true;
+        Debug.Log("[InventoryManager] Lasso added to inventory.");
+    }
+
+    private void OnEnable()
+    {
+        LassoPickup.OnLassoPickedUp += HandleLassoPickedUp;
+    }
+
+    private void OnDisable()
+    {
+        LassoPickup.OnLassoPickedUp -= HandleLassoPickedUp;
+
+        if (IsInventoryOpen)
+            SetInventoryOpen(false);
+
+        _isShopOpen = false;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(inventoryKey))
             ToggleInventory();
     }
 
-    private void OnDisable()
-    {
-        
-        if (IsInventoryOpen)
-            SetInventoryOpen(false);
-
-        _isShopOpen = false;
-    }
 
     private void OnGUI()
     {
@@ -82,7 +98,24 @@ public class InventoryManager : MonoBehaviour
     {
         GUILayout.Space(8f);
 
-        
+        // Items section
+        GUILayout.Label("Items:");
+        if (hasLasso)
+        {
+            using (new GUILayout.HorizontalScope())
+            {
+                GUILayout.Label("Lasso", GUILayout.Width(200f));
+                if (GUILayout.Button("Use", GUILayout.Height(24f)))
+                {
+                    Debug.Log("[Inventory] Use Lasso pressed (no runtime equip behavior implemented).");
+                }
+            }
+        }
+        else
+        {
+            GUILayout.Label("(no items)");
+        }
+
         if (revolver == null)
         {
             GUILayout.Label("No Revolver found in scene.");

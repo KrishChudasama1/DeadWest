@@ -45,7 +45,6 @@ public class LassoPickup : MonoBehaviour
             interactPrompt.SetActive(false);
     }
 
-    // Diagnostic overlap polling: useful when OnTriggerEnter2D isn't firing due to collider/layer setup.
     private void Update()
     {
         if (_pickedUp) return;
@@ -57,7 +56,6 @@ public class LassoPickup : MonoBehaviour
             if (hit.CompareTag("Player") || hit.GetComponentInParent<PlayerLasso>() != null)
             {
                 Debug.Log($"LassoPickup: Overlap detected with '{hit.name}' (tag='{hit.tag}'). This indicates the player is physically overlapping the pickup. Triggers may be misconfigured.");
-                // we don't auto-pickup here; just diagnostic log
                 return;
             }
         }
