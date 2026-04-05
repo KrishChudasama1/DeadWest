@@ -49,7 +49,6 @@ public class Bullet : MonoBehaviour
         CursedBrawler brawler = other.GetComponent<CursedBrawler>();
         if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
 
-        // ← new
         BreakableObject breakable = other.GetComponent<BreakableObject>();
         if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
 

@@ -61,9 +61,6 @@ public class BartenderNPC : MonoBehaviour
     private bool justInteracted  = false;
     private Coroutine typingCoroutine;
 
-    // ─────────────────────────────────────────
-    //  DIALOGUE STRINGS
-    // ─────────────────────────────────────────
     private string bartenderIntro =
         "Set your spurs down, traveler. You look like you've been chased by something that doesn't have a heartbeat. " +
         "What brings a living soul into a graveyard like this?";
@@ -94,9 +91,6 @@ public class BartenderNPC : MonoBehaviour
     private string notEnoughCoinsLine =
         "You're a little short, friend. Come back when your pockets aren't so empty.";
 
-    // ─────────────────────────────────────────
-    //  START
-    // ─────────────────────────────────────────
     private void Start()
     {
         sr             = GetComponent<SpriteRenderer>();
@@ -116,14 +110,10 @@ public class BartenderNPC : MonoBehaviour
         if (levelUpCostText != null) levelUpCostText.text = levelUpCost + " coins";
     }
 
-    // ─────────────────────────────────────────
-    //  UPDATE
-    // ─────────────────────────────────────────
     private void Update()
     {
         if (player == null) return;
 
-        // Tick cooldown
         if (onCooldown)
         {
             cooldownTimer -= Time.deltaTime;
@@ -146,7 +136,6 @@ public class BartenderNPC : MonoBehaviour
         if (promptText != null)
             promptText.gameObject.SetActive(playerInRange && !isInteracting);
 
-        // Open interaction
         if (playerInRange && !isInteracting && Input.GetKeyDown(interactKey))
         {
             justInteracted = true;
@@ -154,14 +143,12 @@ public class BartenderNPC : MonoBehaviour
             return;
         }
 
-        // Skip typing mid-line
         if (isInteracting && isTyping && canSkip && Input.GetKeyDown(interactKey))
         {
             skipTyping = true;
             return;
         }
 
-        // Cancel service panel with Y — but not same frame as another action
         if (!justInteracted && !isTyping && servicePanel != null
             && servicePanel.activeSelf && Input.GetKeyDown(interactKey))
         {
@@ -170,14 +157,10 @@ public class BartenderNPC : MonoBehaviour
             return;
         }
 
-        // Clear same-frame guard
         if (justInteracted)
             justInteracted = false;
     }
 
-    // ─────────────────────────────────────────
-    //  START INTERACTION
-    // ─────────────────────────────────────────
     private void StartInteraction()
     {
         isInteracting = true;
@@ -210,9 +193,6 @@ public class BartenderNPC : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeLine(line, onComplete));
     }
 
-    // ─────────────────────────────────────────
-    //  INTRO FLOW
-    // ─────────────────────────────────────────
     private void ShowIntroChoices()
     {
         canSkip          = false;
@@ -242,7 +222,6 @@ public class BartenderNPC : MonoBehaviour
         canSkip            = false;
         dialogueText.text += "\n\n<color=#aaaaaa>[Press Y to continue]</color>";
 
-        // Wait two frames then listen for Y
         yield return null;
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(interactKey));
@@ -258,9 +237,6 @@ public class BartenderNPC : MonoBehaviour
         ShowCursor();
     }
 
-    // ─────────────────────────────────────────
-    //  SERVICE PANEL
-    // ─────────────────────────────────────────
     private void OnHeal()
     {
         if (CoinManager.instance == null || !CoinManager.instance.HasCoins(healCost))
@@ -335,19 +311,14 @@ public class BartenderNPC : MonoBehaviour
         }
     }
 
-    // ─────────────────────────────────────────
-    //  CLOSE
-    // ─────────────────────────────────────────
     private void CloseAll()
     {
         isInteracting = false;
         canSkip       = false;
 
-        // Start waves only after the very first interaction completes
         if (hasMetBartender && WaveManager.instance != null)
             WaveManager.instance.StartWaves();
 
-        // Start cooldown only after full close
         onCooldown    = true;
         cooldownTimer = interactCooldown;
 
@@ -366,9 +337,6 @@ public class BartenderNPC : MonoBehaviour
         if (servicePanel != null) servicePanel.SetActive(false);
     }
 
-    // ─────────────────────────────────────────
-    //  CURSOR
-    // ─────────────────────────────────────────
     private void ShowCursor()
     {
         PlayerShooting.IsInteracting = true;
@@ -383,9 +351,6 @@ public class BartenderNPC : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    // ─────────────────────────────────────────
-    //  TYPING
-    // ─────────────────────────────────────────
     private IEnumerator TypeLine(string line, System.Action onComplete = null)
     {
         isTyping          = true;
@@ -410,9 +375,6 @@ public class BartenderNPC : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    // ─────────────────────────────────────────
-    //  UTILITY
-    // ─────────────────────────────────────────
     private IEnumerator DelayThen(float delay, System.Action action)
     {
         yield return new WaitForSeconds(delay);
