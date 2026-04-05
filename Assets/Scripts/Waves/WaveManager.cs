@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
-
-
 {
     public static WaveManager instance;
 
@@ -88,10 +86,9 @@ public class WaveManager : MonoBehaviour
     // ─────────────────────────────────────────
     private IEnumerator WaveSequence()
     {
+    
         for (int i = 0; i < waves.Count; i++)
         {
-            currentWave = i;
-
             yield return new WaitForSeconds(waves[i].delayBeforeWave);
 
             // ← switch to wave music when wave starts
@@ -109,6 +106,7 @@ public class WaveManager : MonoBehaviour
 
         Debug.Log("All waves complete!");
         OnAllWavesComplete();
+    
     }
 
     private void SpawnWave(Wave wave)
@@ -178,7 +176,6 @@ public class WaveManager : MonoBehaviour
         musicSource.loop   = true;
         musicSource.Play();
 
-        // Fade in new track
         elapsed = 0f;
         while (elapsed < fadeDuration)
         {

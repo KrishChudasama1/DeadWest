@@ -31,7 +31,7 @@ public class NPCDialogue : MonoBehaviour
     [Header("Audio")]
     public AudioMixer audioMixer;
     [Range(0f, 1f)]
-    public float dialogueTransitionSpeed = 0.5f; // how fast it fades in/out
+    public float dialogueTransitionSpeed = 0.5f;
 
     private int currentLine = 0;
     private bool isTyping = false;
@@ -89,7 +89,6 @@ public class NPCDialogue : MonoBehaviour
         else
             EndDialogue();
 
-        // Transition to the quiet Dialogue snapshot
         if (audioMixer != null)
             audioMixer.FindSnapshot("Dialogue").TransitionTo(dialogueTransitionSpeed);
     }
@@ -104,7 +103,6 @@ public class NPCDialogue : MonoBehaviour
 
         DialogueFinished?.Invoke();
 
-        // Transition back to normal volume
         if (audioMixer != null)
             audioMixer.FindSnapshot("Normal").TransitionTo(dialogueTransitionSpeed);
     }

@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour
         EnemyChase sheriff = other.GetComponentInParent<EnemyChase>();
         if (sheriff != null) { sheriff.TakeDamage(_damage); Destroy(gameObject); return; }
 
-        // ← new
+        // new
         BreakableObject breakable = other.GetComponentInParent<BreakableObject>();
         if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
 

@@ -38,13 +38,9 @@ public class BreakableObject : MonoBehaviour
         currentHealth = maxHealth;
         UpdateSprite();
 
-        // Make sure the collider is NOT a trigger so it blocks movement
         GetComponent<Collider2D>().isTrigger = false;
     }
 
-    // ─────────────────────────────────────────
-    //  PUBLIC — called by bullets, enemies, anything
-    // ─────────────────────────────────────────
     public void TakeDamage(int amount)
     {
         if (isDead) return;
@@ -60,15 +56,10 @@ public class BreakableObject : MonoBehaviour
             Break();
     }
 
-    // ─────────────────────────────────────────
-    //  SPRITE STAGES
-    // ─────────────────────────────────────────
     private void UpdateSprite()
     {
         if (damageStages == null || damageStages.Length == 0) return;
 
-        // Map current health to a sprite index
-        // Full health = index 0, zero health = last index
         float healthPercent = (float)currentHealth / maxHealth;
         int stageCount      = damageStages.Length;
         int index           = Mathf.FloorToInt((1f - healthPercent) * stageCount);
@@ -78,14 +69,10 @@ public class BreakableObject : MonoBehaviour
             sr.sprite = damageStages[index];
     }
 
-    // ─────────────────────────────────────────
-    //  BREAK
-    // ─────────────────────────────────────────
     private void Break()
     {
         isDead = true;
 
-        // Disable collider immediately so nothing gets stuck
         GetComponent<Collider2D>().enabled = false;
 
         audioSource.PlayOneShot(breakSound, breakVolume);
@@ -94,12 +81,9 @@ public class BreakableObject : MonoBehaviour
         Destroy(gameObject, breakSound != null ? breakSound.length + 0.1f : 0.1f);
     }
 
-    // ─────────────────────────────────────────
-    //  FLASH
-    // ─────────────────────────────────────────
     private IEnumerator FlashWhite()
     {
-        sr.color = Color.white * 2f; // brief bright flash
+        sr.color = Color.white * 2f;
         yield return new WaitForSeconds(flashDuration);
         sr.color = Color.white;
     }
