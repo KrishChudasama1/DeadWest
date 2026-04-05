@@ -392,10 +392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LassoPickup
   interactPrompt: {fileID: 271518758}
-  debugOverlapRadius: 0.5
-  debugOverlapMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!212 &271518761
 SpriteRenderer:
   serializedVersion: 2
@@ -698,37 +694,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &290105401
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 290105402}
-  m_Layer: 0
-  m_Name: RaceTrack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &290105402
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290105401}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.65226, y: 0.1352, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &337401691
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StableLevel.LevelManager
   waveSpawner: {fileID: 805756554}
-  raceTrackGate: {fileID: 0}
+  raceTrackGate: {fileID: 1980840477}
   targetSceneName: HorseStable
 --- !u!4 &351392327
 Transform:
@@ -1780,26 +1745,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.3363356, y: 10.434952}
   m_EdgeRadius: 0
---- !u!1 &907310546 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3067450159591817842, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-  m_PrefabInstance: {fileID: 5878056188354465214}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &907310550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907310546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9edd527a685e47ebb50c95c85c40375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StableLevel.PhantomRider
-  waypoints: []
-  moveSpeed: 6
-  maxHits: 3
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,10 +2423,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1317314011}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b933da4e6645d4fee84f88d239521c24, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerLasso
-  hasLasso: 0
+  m_EditorClassIdentifier: 
 --- !u!1 &1328955957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,7 +2883,8 @@ MonoBehaviour:
     y: 24
     width: 320
     height: 220
-  hasLasso: 0
+  hasLasso: 1
+  lassoProjectilePrefab: {fileID: 8008204981843478324, guid: 3bef31dc381644e1fb893b718a137291, type: 3}
 --- !u!4 &1779977204
 Transform:
   m_ObjectHideFlags: 0
@@ -3249,6 +3194,100 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2974121, y: 2.0681086}
   m_EdgeRadius: 0
+--- !u!1 &1980840476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980840479}
+  - component: {fileID: 1980840478}
+  - component: {fileID: 1980840477}
+  m_Layer: 0
+  m_Name: RaceTrackGate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1980840477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980840476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fe99b0d8456400f9e98749507c6bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StableLevel.RaceTrackGate
+  raceTrackSceneName: RaceTrack
+  fadeDuration: 1
+  promptUI: {fileID: 0}
+--- !u!61 &1980840478
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980840476}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.16492558, y: 1.3975334}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.607624, y: 0.4618206}
+  m_EdgeRadius: 0
+--- !u!4 &1980840479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980840476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.52, y: 9.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052385010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,78 +3561,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1001 &5878056188354465214
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3067450159591817842, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_Name
-      value: PhantomRider
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067450159591817842, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.68756
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725071188913585351, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7928126541147566332, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_Radius
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7928126541147566332, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3067450159591817842, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 907310550}
-  m_SourcePrefab: {fileID: 100100000, guid: 428e009b16aa4497ca2ea5e6e890b4a8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3608,5 +3575,4 @@ SceneRoots:
   - {fileID: 271518762}
   - {fileID: 805756555}
   - {fileID: 351392327}
-  - {fileID: 5878056188354465214}
-  - {fileID: 290105402}
+  - {fileID: 1980840479}

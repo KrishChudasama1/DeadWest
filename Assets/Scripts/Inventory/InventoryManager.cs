@@ -19,6 +19,9 @@ public class InventoryManager : MonoBehaviour
 
     public static bool IsInventoryOpen { get; private set; }
 
+    /// <summary>Singleton instance that persists across scenes.</summary>
+    public static InventoryManager Instance { get; private set; }
+
    
     [Header("Inventory Toggle")]
     [SerializeField] private KeyCode inventoryKey = KeyCode.Tab;
@@ -41,9 +44,21 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Items")]
     [SerializeField] private bool hasLasso = false;
+    [Tooltip("Assign the LassoProjectile prefab here so it can be given to LassoThrow at runtime.")]
+    [SerializeField] private GameObject lassoProjectilePrefab;
+    private bool _lassoEquipped = false;
 
     private void Awake()
     {
+        // ── Singleton: persist across scenes, destroy duplicates ──
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         if (revolver == null)
             revolver = FindFirstObjectByType<Revolver>();
 
@@ -64,16 +79,32 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable()
     {
         LassoPickup.OnLassoPickedUp += HandleLassoPickedUp;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         LassoPickup.OnLassoPickedUp -= HandleLassoPickedUp;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
 
         if (IsInventoryOpen)
             SetInventoryOpen(false);
 
         _isShopOpen = false;
+    }
+
+    /// <summary>Re-find scene-specific references when a new scene loads.</summary>
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        revolver = FindFirstObjectByType<Revolver>();
+        _xpManager = FindFirstObjectByType<XPManager>();
+
+        // The old Player (and its LassoThrow) was destroyed with the previous scene,
+        // so reset equipped state — user must re-equip from inventory in the new scene.
+        _lassoEquipped = false;
+
+        SyncSelectionWithCurrentGun();
+        Debug.Log($"[InventoryManager] Scene '{scene.name}' loaded — re-linked references. hasLasso={hasLasso}");
     }
 
     private void Update()
@@ -104,10 +135,13 @@ public class InventoryManager : MonoBehaviour
         {
             using (new GUILayout.HorizontalScope())
             {
-                GUILayout.Label("Lasso", GUILayout.Width(200f));
-                if (GUILayout.Button("Use", GUILayout.Height(24f)))
+                string lassoLabel = _lassoEquipped ? "Lasso  [EQUIPPED]" : "Lasso";
+                GUILayout.Label(lassoLabel, GUILayout.Width(200f));
+
+                string btnText = _lassoEquipped ? "Unequip" : "Equip";
+                if (GUILayout.Button(btnText, GUILayout.Height(24f)))
                 {
-                    Debug.Log("[Inventory] Use Lasso pressed (no runtime equip behavior implemented).");
+                    ToggleLassoEquip();
                 }
             }
         }
@@ -277,6 +311,49 @@ public class InventoryManager : MonoBehaviour
         }
 
         revolver.Equip(selectedEntry.gunData);
+
+        // Unequip lasso when a gun is equipped
+        if (_lassoEquipped)
+        {
+            _lassoEquipped = false;
+            var lassoThrow = StableLevel.LassoThrow.Instance;
+            if (lassoThrow != null) lassoThrow.Unequip();
+        }
+
+        SetInventoryOpen(false);
+    }
+
+    private void ToggleLassoEquip()
+    {
+        _lassoEquipped = !_lassoEquipped;
+
+        // Ensure LassoThrow exists on the Player (adds it at runtime if missing)
+        var lassoThrow = StableLevel.LassoThrow.Instance;
+        if (lassoThrow == null)
+            lassoThrow = StableLevel.LassoThrow.EnsureOnPlayer();
+
+        if (lassoThrow == null)
+        {
+            Debug.LogWarning("[InventoryManager] Could not find or create LassoThrow on player.");
+            _lassoEquipped = false;
+            return;
+        }
+
+        // Make sure it has the projectile prefab
+        if (lassoThrow.lassoProjectilePrefab == null && lassoProjectilePrefab != null)
+            lassoThrow.lassoProjectilePrefab = lassoProjectilePrefab;
+
+        if (_lassoEquipped)
+        {
+            lassoThrow.Equip();
+            Debug.Log("[InventoryManager] Lasso equipped — press L to throw.");
+        }
+        else
+        {
+            lassoThrow.Unequip();
+            Debug.Log("[InventoryManager] Lasso unequipped.");
+        }
+
         SetInventoryOpen(false);
     }
 

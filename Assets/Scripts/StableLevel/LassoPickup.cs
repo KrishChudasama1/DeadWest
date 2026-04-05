@@ -7,12 +7,6 @@ public class LassoPickup : MonoBehaviour
     [Tooltip("Optional prompt shown near the pickup (leave null to skip).")]
     [SerializeField] private GameObject interactPrompt;
 
-    [Header("Debug / Diagnostics")]
-    [Tooltip("Radius used for overlap checks to detect the player if triggers aren't firing.")]
-    [SerializeField] private float debugOverlapRadius = 0.5f;
-    [Tooltip("Layer mask to use for the overlap check (set to player layer for faster checks).")]
-    [SerializeField] private LayerMask debugOverlapMask = ~0;
-
     private bool _pickedUp = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,16 +14,33 @@ public class LassoPickup : MonoBehaviour
         if (_pickedUp) return;
         if (!other.CompareTag("Player")) return;
 
-        PlayerLasso lasso = other.GetComponent<PlayerLasso>();
-        if (lasso == null)
-        {
-            Debug.LogWarning("[LassoPickup] Player is missing a PlayerLasso component.");
-            return;
-        }
+        Debug.Log("[LassoPickup] Player entered trigger — picking up lasso.");
+        PickUp();
+    }
 
+    /// <summary>Fallback: if OnTriggerEnter2D never fires, we detect overlap manually.</summary>
+    private void Update()
+    {
+        if (_pickedUp) return;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+        foreach (var hit in hits)
+        {
+            if (hit == null) continue;
+            if (hit.CompareTag("Player"))
+            {
+                Debug.Log("[LassoPickup] Overlap fallback — picking up lasso.");
+                PickUp();
+                return;
+            }
+        }
+    }
+
+    private void PickUp()
+    {
         _pickedUp = true;
-        lasso.UnlockLasso();
-    OnLassoPickedUp?.Invoke();
+        OnLassoPickedUp?.Invoke();
+        Debug.Log("[LassoPickup] Lasso picked up, event fired.");
         Destroy(gameObject);
     }
 
@@ -43,21 +54,5 @@ public class LassoPickup : MonoBehaviour
     {
         if (interactPrompt != null && other.CompareTag("Player"))
             interactPrompt.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (_pickedUp) return;
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, debugOverlapRadius, debugOverlapMask);
-        foreach (var hit in hits)
-        {
-            if (hit == null) continue;
-            if (hit.CompareTag("Player") || hit.GetComponentInParent<PlayerLasso>() != null)
-            {
-                Debug.Log($"LassoPickup: Overlap detected with '{hit.name}' (tag='{hit.tag}'). This indicates the player is physically overlapping the pickup. Triggers may be misconfigured.");
-                return;
-            }
-        }
     }
 }
