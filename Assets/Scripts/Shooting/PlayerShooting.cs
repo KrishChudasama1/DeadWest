@@ -100,7 +100,21 @@ public class PlayerShooting : MonoBehaviour
 
     private Vector2 GetShootDirection()
     {
+        // Ensure the cached camera is valid (it can be destroyed during scene loads)
+        if (_cam == null)
+        {
+            _cam = Camera.main;
+        }
+
+        if (_cam == null)
+        {
+            // No camera available (editor or scene transition); return a default direction to avoid exceptions
+            Debug.LogWarning("PlayerShooting: no Camera available when calculating shoot direction.");
+            return Vector2.right;
+        }
+
         Vector3 mouseScreen  = Input.mousePosition;
+        // Use camera's Z so ScreenToWorldPoint maps correctly
         mouseScreen.z        = Mathf.Abs(_cam.transform.position.z);
         Vector2 mouseWorld   = _cam.ScreenToWorldPoint(mouseScreen);
         Vector2 playerPos    = transform.position;

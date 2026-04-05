@@ -156,17 +156,8 @@ public class RanchHandEnemy : MonoBehaviour
             return;
         }
 
-        XPManager xpManager = null;
-        if (player != null)
-            xpManager = player.GetComponent<XPManager>();
-
-        if (xpManager == null)
-            xpManager = FindObjectOfType<XPManager>();
-
-        if (xpManager != null)
-            xpManager.GainExperience(xpOnDeath);
-        else
-            Debug.LogWarning("No XPManager found. RanchHand XP could not be awarded.");
+    // Use the singleton helper to award XP (will fallback to finding an XPManager if needed)
+    XPManager.AddExperience(xpOnDeath);
     }
 
     void OnDrawGizmosSelected()
