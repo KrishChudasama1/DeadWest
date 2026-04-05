@@ -76,12 +76,10 @@ public class GraveInteraction : MonoBehaviour
         if (dugSprite != null)
             spriteRenderer.sprite = dugSprite;
 
+        if (enemyPrefab != null)
+            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+
         if (hasRelic)
             Debug.Log("You found the relic!");
-        else
-        {
-            if (enemyPrefab != null)
-                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        }
     }
 }
