@@ -41,7 +41,7 @@ namespace StableLevel
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (!string.Equals(scene.name, targetSceneName, System.StringComparison.OrdinalIgnoreCase)) return;
-                // Don't immediately start waves when the scene loads; wait for lasso pickup event.
+                // Don't immediately start waves when the scene loads, wait for lasso pickup event.
                 Debug.Log("LevelManager: target scene loaded; waiting for lasso pickup to start waves.");
         }
 

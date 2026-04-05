@@ -13,9 +13,7 @@ namespace StableLevel
         private Rigidbody2D _rb;
         private bool _initialized;
 
-        /// <summary>
-        /// Initialize direction and record spawn position.
-        /// </summary>
+       
         public void Init(Vector2 direction)
         {
             _direction = direction.normalized;
@@ -44,7 +42,7 @@ namespace StableLevel
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            // Only interact with PhantomRider — pass through everything else
+            // Only interact with PhantomRider, pass through everything else
             PhantomRider rider = other.GetComponent<PhantomRider>();
             if (rider != null)
             {

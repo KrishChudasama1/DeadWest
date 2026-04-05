@@ -3,17 +3,6 @@ using UnityEngine;
 
 namespace StableLevel
 {
-    /// <summary>
-    /// Place this MonoBehaviour in the RaceTrack scene.
-    /// It finds the PhantomRider in the scene, activates it after a short delay,
-    /// and listens for the rider's defeat to advance to the next phase (duel).
-    ///
-    /// Setup:
-    ///   1. In your RaceTrack scene, create an empty "RaceTrackManager" GameObject.
-    ///   2. Attach this script.
-    ///   3. Place the PhantomRider prefab in the scene (it deactivates itself in Awake).
-    ///   4. Optionally assign playerSpawnPoint — the spot the player appears at.
-    /// </summary>
     public class RaceTrackManager : MonoBehaviour
     {
         [Header("References")]
@@ -27,10 +16,9 @@ namespace StableLevel
         [Tooltip("Seconds after scene load before the rider activates.")]
         [SerializeField] private float riderActivateDelay = 3f;
 
-        // ── Private ─────────────────────────────────────────────
+      
         private bool riderDefeated = false;
 
-        // ────────────────────────────────────────────────────────
 
         private void Start()
         {
@@ -57,9 +45,7 @@ namespace StableLevel
                 phantomRider.OnRiderDefeated -= HandleRiderDefeated;
         }
 
-        // ────────────────────────────────────────────────────────
-        // Player positioning
-        // ────────────────────────────────────────────────────────
+       
 
         private void PositionPlayer()
         {
@@ -82,10 +68,7 @@ namespace StableLevel
                 pm.SetMovementLocked(false);
         }
 
-        // ────────────────────────────────────────────────────────
-        // Rider activation
-        // ────────────────────────────────────────────────────────
-
+        
         private IEnumerator ActivateRiderAfterDelay()
         {
             Debug.Log($"RaceTrackManager: Rider activating in {riderActivateDelay}s...");
@@ -98,9 +81,7 @@ namespace StableLevel
             }
         }
 
-        // ────────────────────────────────────────────────────────
-        // Rider defeated
-        // ────────────────────────────────────────────────────────
+       
 
         private void HandleRiderDefeated()
         {
@@ -109,7 +90,7 @@ namespace StableLevel
 
             Debug.Log("RaceTrackManager: Phantom Rider defeated — advancing to duel phase.");
             // TODO: transition to duel phase or load next scene
-            // e.g. StartCoroutine(LoadDuelScene());
+            
         }
     }
 }
