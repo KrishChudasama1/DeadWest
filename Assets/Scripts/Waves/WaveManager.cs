@@ -41,6 +41,10 @@ public class WaveManager : MonoBehaviour
     [Header("Settings")]
     public float checkInterval = 1f; // how often to check if wave is cleared
 
+    [Header("Auto Start")]
+    public bool autoStartOnLevelLoad = false;
+    public float autoStartDelay = 2f;
+
     private int          currentWave      = -1;
     private bool         wavesStarted     = false;
     private bool         waveInProgress   = false;
@@ -52,6 +56,20 @@ public class WaveManager : MonoBehaviour
 
         // Grab the AudioSource from the Main Camera
         musicSource = Camera.main.GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        if (autoStartOnLevelLoad)
+            StartCoroutine(AutoStartWaves());
+    }
+
+    private IEnumerator AutoStartWaves()
+    {
+        if (autoStartDelay > 0f)
+            yield return new WaitForSeconds(autoStartDelay);
+
+        StartWaves();
     }
     
 
