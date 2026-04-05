@@ -2785,7 +2785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 114, y: 44}
+  m_AnchoredPosition: {x: 114, y: 44.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1055397025
@@ -4251,6 +4251,10 @@ PrefabInstance:
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 160832802}
+    - target: {fileID: 4553684584881932161, guid: 2e863b297130a4c9ca3a8f1c856db197, type: 3}
+      propertyPath: triggerDistance
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4553684584881932161, guid: 2e863b297130a4c9ca3a8f1c856db197, type: 3}
       propertyPath: lines.Array.size
       value: 2
