@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2552997607622652552}
   - component: {fileID: 1949278781946703561}
   - component: {fileID: 2670689214073538280}
+  - component: {fileID: -7827105573612384680}
   m_Layer: 6
   m_Name: GhostEnemySaloonVersion
   m_TagString: Enemy
@@ -179,7 +180,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.382353
+  m_Radius: 0.5
 --- !u!114 &2670689214073538280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +201,16 @@ MonoBehaviour:
   maxHealth: 50
   xpOnDeath: 2
   xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}
+--- !u!114 &-7827105573612384680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022301192757816360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2ab2ded6b884c9a9577280271c77b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DepthSorter
+  sortingOffset: 0

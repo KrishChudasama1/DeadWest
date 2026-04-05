@@ -343,6 +343,10 @@ public class BartenderNPC : MonoBehaviour
         isInteracting = false;
         canSkip       = false;
 
+        // Start waves only after the very first interaction completes
+        if (hasMetBartender && WaveManager.instance != null)
+            WaveManager.instance.StartWaves();
+
         // Start cooldown only after full close
         onCooldown    = true;
         cooldownTimer = interactCooldown;
