@@ -19,12 +19,6 @@ public class XPManager : MonoBehaviour
     
     private void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            GainExperience(2);
-        }
-        */
         UpdateUI();
     }
     
@@ -43,7 +37,7 @@ public class XPManager : MonoBehaviour
         currentXP -= XPToLevel;
         XPToLevel = Mathf.RoundToInt(XPToLevel * XPGrowthMultiplier);
 
-        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>(); // changed this
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null)
         {
             playerHealth.IncreaseMaxHealth(healthIncreasePerLevel, true);
