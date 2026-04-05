@@ -50,9 +50,14 @@ public class Bullet : MonoBehaviour
         if (_owner != null && (other.transform == _owner || other.transform.IsChildOf(_owner)))
             return;
 
+        PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
+
+        // Player-fired bullets should pass through the player.
+        if (!_hitPlayer && playerHealth != null)
+            return;
+
         if (_hitPlayer)
         {
-            PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(_damage);
@@ -67,14 +72,17 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        GhostEnemy ghost = other.GetComponent<GhostEnemy>();
+        GhostEnemy ghost = other.GetComponentInParent<GhostEnemy>();
         if (ghost != null) { ghost.TakeDamage(_damage); Destroy(gameObject); return; }
 
-        CursedBrawler brawler = other.GetComponent<CursedBrawler>();
+        CursedBrawler brawler = other.GetComponentInParent<CursedBrawler>();
         if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
 
+        EnemyChase sheriff = other.GetComponentInParent<EnemyChase>();
+        if (sheriff != null) { sheriff.TakeDamage(_damage); Destroy(gameObject); return; }
+
         // ← new
-        BreakableObject breakable = other.GetComponent<BreakableObject>();
+        BreakableObject breakable = other.GetComponentInParent<BreakableObject>();
         if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
 
         Destroy(gameObject);

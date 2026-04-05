@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyChase : MonoBehaviour
 {
@@ -16,17 +17,38 @@ public class EnemyChase : MonoBehaviour
     public float fireCooldown = 1f;
     public int bulletDamage = 8;
 
+    [Header("Health")]
+    public int maxHealth = 6;
+    public float hitFlashDuration = 0.12f;
+    public Color hitFlashColor = Color.red;
+
+    [Header("Shooting Animation")]
+    public float shootingAnimTime = 0.2f;
+    public bool stopWhileShooting = true;
+    [Tooltip("Safety window so Animator has enough time to enter a shoot state.")]
+    public float minShootingStateTime = 0.35f;
+
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private Vector2 movement;
     private Vector2 facingDirection = Vector2.down;
     private float nextShotTime;
+    private float shootingAnimEndTime;
+    private int currentHealth;
+    private bool isDead;
+    private Color originalColor = Color.white;
+    private Coroutine flashCoroutine;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
+        currentHealth = maxHealth;
 
         if (player == null)
         {
@@ -38,10 +60,14 @@ public class EnemyChase : MonoBehaviour
 
     void Update()
     {
+        if (isDead)
+            return;
+
         if (player == null)
         {
             movement = Vector2.zero;
             animator.SetBool("IsMoving", false);
+            animator.SetBool("IsShooting", false);
             animator.SetFloat("MoveX", facingDirection.x);
             animator.SetFloat("MoveY", facingDirection.y);
             return;
@@ -84,11 +110,70 @@ public class EnemyChase : MonoBehaviour
 
         if (distanceToPlayer <= shootRange)
             TryShoot(toPlayer.normalized);
+
+        bool isShooting = Time.time < shootingAnimEndTime;
+        animator.SetBool("IsShooting", isShooting);
+
+        if (stopWhileShooting && isShooting)
+        {
+            movement = Vector2.zero;
+            animator.SetBool("IsMoving", false);
+        }
     }
 
     void FixedUpdate()
     {
+        if (isDead)
+            return;
+
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (isDead)
+            return;
+
+        currentHealth -= amount;
+        TriggerHitFlash();
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        movement = Vector2.zero;
+        animator.SetBool("IsMoving", false);
+        animator.SetBool("IsShooting", false);
+
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        if (spriteRenderer != null)
+            spriteRenderer.color = originalColor;
+
+        Destroy(gameObject);
+    }
+
+    private void TriggerHitFlash()
+    {
+        if (spriteRenderer == null)
+            return;
+
+        if (flashCoroutine != null)
+            StopCoroutine(flashCoroutine);
+
+        flashCoroutine = StartCoroutine(HitFlashRoutine());
+    }
+
+    private IEnumerator HitFlashRoutine()
+    {
+        spriteRenderer.color = hitFlashColor;
+        yield return new WaitForSeconds(hitFlashDuration);
+        spriteRenderer.color = originalColor;
+        flashCoroutine = null;
     }
 
     private void TryShoot(Vector2 shootDirection)
@@ -100,6 +185,7 @@ public class EnemyChase : MonoBehaviour
             return;
 
         nextShotTime = Time.time + fireCooldown;
+        shootingAnimEndTime = Time.time + Mathf.Max(shootingAnimTime, minShootingStateTime);
         UpdateFacingFromDirection(shootDirection);
 
         FireFromMuzzle(leftMuzzle, shootDirection);
