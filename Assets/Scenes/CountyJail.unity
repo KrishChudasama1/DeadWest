@@ -4116,6 +4116,15 @@ MonoBehaviour:
   shootRange: 6
   fireCooldown: 1
   bulletDamage: 10
+  maxHealth: 200
+  hitFlashDuration: 0.12
+  hitFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  shootingAnimTime: 0.2
+  stopWhileShooting: 1
+  minShootingStateTime: 0.35
+  levelMusicSource: {fileID: 1055397027}
+  sheriffDefeatedMusic: {fileID: 8300000, guid: c5d8c9f21ad354b68afc0607e9bbc811, type: 3}
+  loopDefeatedMusic: 1
 --- !u!50 &2110668439
 Rigidbody2D:
   serializedVersion: 5

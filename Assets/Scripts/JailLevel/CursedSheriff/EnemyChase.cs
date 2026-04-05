@@ -28,6 +28,11 @@ public class EnemyChase : MonoBehaviour
     [Tooltip("Safety window so Animator has enough time to enter a shoot state.")]
     public float minShootingStateTime = 0.35f;
 
+    [Header("Music On Death")]
+    public AudioSource levelMusicSource;
+    public AudioClip sheriffDefeatedMusic;
+    public bool loopDefeatedMusic = true;
+
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -148,6 +153,8 @@ public class EnemyChase : MonoBehaviour
         animator.SetBool("IsMoving", false);
         animator.SetBool("IsShooting", false);
 
+        SwapMusicOnDeath();
+
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
 
@@ -155,6 +162,17 @@ public class EnemyChase : MonoBehaviour
             spriteRenderer.color = originalColor;
 
         Destroy(gameObject);
+    }
+
+    private void SwapMusicOnDeath()
+    {
+        if (levelMusicSource == null || sheriffDefeatedMusic == null)
+            return;
+
+        levelMusicSource.Stop();
+        levelMusicSource.clip = sheriffDefeatedMusic;
+        levelMusicSource.loop = loopDefeatedMusic;
+        levelMusicSource.Play();
     }
 
     private void TriggerHitFlash()
