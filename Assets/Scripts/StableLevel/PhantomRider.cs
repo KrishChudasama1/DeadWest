@@ -24,9 +24,11 @@ namespace StableLevel
         private int currentHits = 0;
         private bool isDefeated = false;
         private bool isInvincible = false;
+        private bool isCharging = false;       // true when charging at the player after timeout
         private int currentWaypointIndex = 0;
         private Rigidbody2D rb;
         private SpriteRenderer sr;
+        private Transform _chargeTarget;       // cached player transform for charge
 
         // ────────────────────────────────────────────────────────
         // Unity callbacks
@@ -54,26 +56,99 @@ namespace StableLevel
         private void FixedUpdate()
         {
             if (isDefeated) return;
+
+            // ── Charging at the player (timer expired) ──
+            if (isCharging)
+            {
+                if (_chargeTarget == null) return;
+
+                Vector2 targetPos = _chargeTarget.position;
+                float chargeSpeed = moveSpeed * 3f; // much faster than normal patrol
+                Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, chargeSpeed * Time.fixedDeltaTime);
+
+                float dirX = targetPos.x - rb.position.x;
+                if (Mathf.Abs(dirX) > 0.01f)
+                    sr.flipX = dirX < 0f;
+
+                rb.MovePosition(newPos);
+
+                // If close enough to the player, deal lethal damage directly
+                if (Vector2.Distance(rb.position, targetPos) < 0.5f)
+                {
+                    DealLethalDamage();
+                }
+                return;
+            }
+
+            // ── Normal waypoint patrol ──
             if (waypoints == null || waypoints.Length == 0) return;
 
             Transform target = waypoints[currentWaypointIndex];
             if (target == null) return;
 
-            Vector2 targetPos = target.position;
-            Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, moveSpeed * Time.fixedDeltaTime);
+            Vector2 wpPos = target.position;
+            Vector2 wpNewPos = Vector2.MoveTowards(rb.position, wpPos, moveSpeed * Time.fixedDeltaTime);
 
-            // Flip sprite based on horizontal movement direction
-            float dirX = targetPos.x - rb.position.x;
-            if (Mathf.Abs(dirX) > 0.01f)
-                sr.flipX = dirX < 0f;
+            float wpDirX = wpPos.x - rb.position.x;
+            if (Mathf.Abs(wpDirX) > 0.01f)
+                sr.flipX = wpDirX < 0f;
 
-            rb.MovePosition(newPos);
+            rb.MovePosition(wpNewPos);
 
-            // Advance to next waypoint when close enough
-            if (Vector2.Distance(rb.position, targetPos) < 0.15f)
+            if (Vector2.Distance(rb.position, wpPos) < 0.15f)
             {
                 currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             }
+        }
+
+        // ────────────────────────────────────────────────────────
+        // Charge attack (called when the duel timer expires)
+        // ────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Stops waypoint patrol and charges directly at the player.
+        /// On arrival, deals lethal damage (kills the player).
+        /// </summary>
+        public void ChargeAndKillPlayer()
+        {
+            if (isDefeated) return;
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogWarning("PhantomRider: ChargeAndKillPlayer — no Player found.");
+                return;
+            }
+
+            _chargeTarget = player.transform;
+            isCharging = true;
+            isInvincible = true; // can't be lassoed while charging
+
+            // Visual feedback — tint red to signal danger
+            if (sr != null)
+                sr.color = Color.red;
+
+            Debug.Log("PhantomRider: CHARGING at the player!");
+        }
+
+        private void DealLethalDamage()
+        {
+            if (_chargeTarget == null) return;
+
+            PlayerHealth ph = _chargeTarget.GetComponent<PlayerHealth>();
+            if (ph != null)
+            {
+                // Deal damage equal to full max health to guarantee a kill
+                ph.TakeDamage(ph.maxHealth);
+                Debug.Log("PhantomRider: dealt lethal damage to the player.");
+            }
+            else
+            {
+                Debug.LogWarning("PhantomRider: PlayerHealth not found on target.");
+            }
+
+            // Stop charging
+            isCharging = false;
         }
 
         // ────────────────────────────────────────────────────────
@@ -114,9 +189,19 @@ namespace StableLevel
         {
             if (sr == null) yield break;
 
-            sr.color = Color.white;
-            yield return new WaitForSeconds(0.15f);
-            sr.color = Color.white; // reset to default tint
+            Color original = sr.color;
+            int flashes = 3;
+            float flashDuration = 0.08f;
+
+            for (int i = 0; i < flashes; i++)
+            {
+                sr.color = Color.red;
+                yield return new WaitForSeconds(flashDuration);
+                sr.color = original;
+                yield return new WaitForSeconds(flashDuration);
+            }
+
+            sr.color = original; // ensure reset
         }
 
         private IEnumerator InvincibilityWindow(float duration)

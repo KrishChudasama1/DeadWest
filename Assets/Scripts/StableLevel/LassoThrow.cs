@@ -23,6 +23,11 @@ namespace StableLevel
         public bool IsEquipped => _isEquipped;
 
         public static LassoThrow Instance { get; private set; }
+    [Header("Audio")]
+    [SerializeField] private AudioClip lassoThrowSfx;
+    [SerializeField, Range(0f, 1f)] private float sfxVolume = 1f;
+
+    private AudioSource _audioSource;
 
         // ────────────────────────────────────────────────────────
         // Bootstrap: auto-attach to the Player if not already there
@@ -55,12 +60,29 @@ namespace StableLevel
         private void Awake()
         {
             Instance = this;
+            // Try to cache an AudioSource if present on the same GameObject
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                // don't auto-create here; we'll add one on-demand in Start so it exists on the Player object
+            }
         }
 
         private void Start()
         {
             _cam = Camera.main;
             LassoPickup.OnLassoPickedUp += OnLassoAcquired;
+            // Ensure AudioSource exists on the player GameObject so PlayOneShot will work reliably
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.GetComponent<AudioSource>();
+                if (_audioSource == null)
+                {
+                    _audioSource = gameObject.AddComponent<AudioSource>();
+                    _audioSource.playOnAwake = false;
+                    _audioSource.spatialBlend = 0f; // 2D sound by default
+                }
+            }
         }
 
         private void OnDestroy()
@@ -138,6 +160,15 @@ namespace StableLevel
             LassoProjectile lasso = proj.GetComponent<LassoProjectile>();
             if (lasso != null)
                 lasso.Init(direction, transform, distance);
+
+            // Play throw sound
+            if (lassoThrowSfx != null)
+            {
+                if (_audioSource != null)
+                    _audioSource.PlayOneShot(lassoThrowSfx, sfxVolume);
+                else
+                    AudioSource.PlayClipAtPoint(lassoThrowSfx, transform.position, sfxVolume);
+            }
 
             _lastThrowTime = Time.time;
             Debug.Log($"LassoThrow: threw lasso toward cursor, distance={distance:F1}");

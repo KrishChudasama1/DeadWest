@@ -509,7 +509,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4832258203156073925, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1764528935}
   m_SourcePrefab: {fileID: 100100000, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
 --- !u!1 &203844586
 GameObject:
@@ -4491,6 +4494,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0684967, y: 3.1094742}
   m_EdgeRadius: 0
+--- !u!1 &1374973292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4832258203156073925, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+  m_PrefabInstance: {fileID: 85505523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446541090
 GameObject:
   m_ObjectHideFlags: 0
@@ -5242,7 +5250,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5595415061617521013, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
   m_PrefabInstance: {fileID: 85505523}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1374973292}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5f9a066fbaba4aa082dfa740ae84205, type: 3}
@@ -5253,6 +5261,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1615594280738069221, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
   m_PrefabInstance: {fileID: 85505523}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1764528935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374973292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84320d4a1af944858eedd6dae808e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StableLevel.LassoThrow
+  lassoProjectilePrefab: {fileID: 0}
+  throwCooldown: 0.8
+  muzzleDistance: 0.5
+  throwKey: 108
+  lassoThrowSfx: {fileID: 8300000, guid: 5e8cbeb14f8a447b48f029c33047b524, type: 3}
+  sfxVolume: 1
 --- !u!1 &1779024299
 GameObject:
   m_ObjectHideFlags: 0
