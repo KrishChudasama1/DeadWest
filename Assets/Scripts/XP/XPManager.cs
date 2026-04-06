@@ -7,8 +7,24 @@ public class XPManager : MonoBehaviour
 {
     public static XPManager Instance { get; private set; }
 
+    private static bool hasSavedXpState;
+    private static int savedLevel;
+    private static int savedCurrentXP;
+    private static int savedXPToLevel;
+
+    [Header("Persistence")]
+    [Tooltip("Enable only if XPManager lives on a dedicated manager object, not on Player.")]
+    [SerializeField] private bool persistAcrossScenes = false;
+
     private void Awake()
     {
+        if (!persistAcrossScenes)
+        {
+            Instance = this;
+            RestoreXpState();
+            return;
+        }
+
         if (Instance != null && Instance != this)
         {
             Debug.LogWarning("Multiple XPManager instances detected — destroying duplicate.");
@@ -18,6 +34,14 @@ public class XPManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        RestoreXpState();
+    }
+
+    private void OnDestroy()
+    {
+        SaveXpState();
+        if (Instance == this)
+            Instance = null;
     }
     public int level;
     public int currentXP;
@@ -34,6 +58,7 @@ public class XPManager : MonoBehaviour
 
     private void OnDisable()
     {
+        SaveXpState();
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -46,6 +71,7 @@ public class XPManager : MonoBehaviour
     public void GainExperience(int amount)
     {
         currentXP += amount;
+        SaveXpState();
         UpdateUI();
         while (currentXP >= XPToLevel)
         {
@@ -78,6 +104,7 @@ public class XPManager : MonoBehaviour
         level++;
         currentXP -= XPToLevel;
         XPToLevel = Mathf.RoundToInt(XPToLevel * XPGrowthMultiplier);
+        SaveXpState();
 
         PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
         if (playerHealth != null)
@@ -112,7 +139,25 @@ public class XPManager : MonoBehaviour
         UpdateUI();
     }
 
-        private void EnsureUIReferences()
+    private void SaveXpState()
+    {
+        hasSavedXpState = true;
+        savedLevel = level;
+        savedCurrentXP = currentXP;
+        savedXPToLevel = XPToLevel;
+    }
+
+    private void RestoreXpState()
+    {
+        if (!hasSavedXpState)
+            return;
+
+        level = savedLevel;
+        currentXP = savedCurrentXP;
+        XPToLevel = Mathf.Max(1, savedXPToLevel);
+    }
+
+    private void EnsureUIReferences()
     {
         if (XPSlider == null)
         {
