@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: 5029e289d433b4a3580f025f04642577
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6356262575966426221
+    second: huntedAssets_0
+  - first:
+      213: 4491578444299129341
+    second: huntedAssets_1
+  - first:
+      213: 3575460889900257240
+    second: huntedAssets_2
+  - first:
+      213: 1434582971923480961
+    second: huntedAssets_3
+  - first:
+      213: -7586955512606625417
+    second: huntedAssets_4
+  - first:
+      213: -2600483833413516834
+    second: huntedAssets_5
+  - first:
+      213: 779999712560364720
+    second: huntedAssets_6
+  - first:
+      213: 3981265504107150906
+    second: huntedAssets_7
+  - first:
+      213: -1447166278914523690
+    second: huntedAssets_8
+  - first:
+      213: 4867282391267819712
+    second: huntedAssets_9
+  - first:
+      213: 9099853076236187068
+    second: huntedAssets_10
+  - first:
+      213: 6138045169573802191
+    second: huntedAssets_11
+  - first:
+      213: -4115274415732392155
+    second: huntedAssets_12
+  - first:
+      213: 6410571769938113024
+    second: huntedAssets_13
+  - first:
+      213: 6738877768297553483
+    second: huntedAssets_14
+  - first:
+      213: 7383116940538238652
+    second: huntedAssets_15
+  - first:
+      213: -5191919792598770473
+    second: huntedAssets_16
+  - first:
+      213: -54200791308362881
+    second: huntedAssets_17
+  - first:
+      213: -658257438451806268
+    second: huntedAssets_18
+  - first:
+      213: 6573200457346190915
+    second: huntedAssets_19
+  - first:
+      213: -4573208990993949557
+    second: huntedAssets_20
+  - first:
+      213: 7232537919605025943
+    second: huntedAssets_21
+  - first:
+      213: 2904380617590989025
+    second: huntedAssets_22
+  - first:
+      213: -2970783645840992231
+    second: huntedAssets_23
+  - first:
+      213: -6585650591719896833
+    second: huntedAssets_24
+  - first:
+      213: 2974162665849824528
+    second: huntedAssets_25
+  - first:
+      213: 6490322330848679245
+    second: huntedAssets_26
+  - first:
+      213: 1788068396072368083
+    second: huntedAssets_27
+  - first:
+      213: 4310700454532081792
+    second: huntedAssets_28
+  - first:
+      213: 1341143603278370357
+    second: huntedAssets_29
+  - first:
+      213: 5833644615834448113
+    second: huntedAssets_30
+  - first:
+      213: -2273108175050003370
+    second: huntedAssets_31
+  - first:
+      213: -4811407944900433985
+    second: huntedAssets_32
+  - first:
+      213: 7172679414199347853
+    second: huntedAssets_33
+  - first:
+      213: -4376850084258696041
+    second: huntedAssets_34
+  - first:
+      213: 7138775484286309069
+    second: huntedAssets_35
+  - first:
+      213: -7692233389564375297
+    second: huntedAssets_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: huntedAssets_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 159
+        width: 217
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d64969bc22bf53850800000000000000
+      internalID: 6356262575966426221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_1
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 256
+        width: 199
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df150453cca455e30800000000000000
+      internalID: 4491578444299129341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_2
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 264
+        width: 34
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8df8eca5cb69e9130800000000000000
+      internalID: 3575460889900257240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_3
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 264
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181c25abc99a8e310800000000000000
+      internalID: 1434582971923480961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_4
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 141
+        width: 120
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771f360a828b5b690800000000000000
+      internalID: -7586955512606625417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 215
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed1cd314bb939ebd0800000000000000
+      internalID: -2600483833413516834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_6
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 190
+        width: 44
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc31102b9d13da00800000000000000
+      internalID: 779999712560364720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_7
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 228
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3eb2d0e1eb404730800000000000000
+      internalID: 3981265504107150906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_8
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 214
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd306ecfe1aaebe0800000000000000
+      internalID: -1447166278914523690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_9
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 220
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c048010c8f0c8340800000000000000
+      internalID: 4867282391267819712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_10
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 220
+        width: 35
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb5bd45e82c294e70800000000000000
+      internalID: 9099853076236187068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_11
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 203
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc0bfbb9f87be2550800000000000000
+      internalID: 6138045169573802191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_12
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 188
+        width: 54
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52f7409f8bb93e6c0800000000000000
+      internalID: -4115274415732392155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_13
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 198
+        width: 43
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 002fe426f0de6f850800000000000000
+      internalID: 6410571769938113024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_14
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 190
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4e172c40ad458d50800000000000000
+      internalID: 6738877768297553483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_15
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 184
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb653ff6db9167660800000000000000
+      internalID: 7383116940538238652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_16
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 182
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc94d3e47892f7b0800000000000000
+      internalID: -5191919792598770473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_17
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 182
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b158fdaa07f3ff0800000000000000
+      internalID: -54200791308362881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_18
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 140
+        width: 51
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cf425ae8566dd6f0800000000000000
+      internalID: -658257438451806268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_19
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 13
+        width: 214
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34e0e895df2b83b50800000000000000
+      internalID: 6573200457346190915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_20
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 141
+        width: 33
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8cde2017a2b880c0800000000000000
+      internalID: -4573208990993949557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_21
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 141
+        width: 33
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ca9921be22f5460800000000000000
+      internalID: 7232537919605025943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_22
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 139
+        width: 38
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e06a0c98ce6e4820800000000000000
+      internalID: 2904380617590989025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_23
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 140
+        width: 25
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9189b159308a5c6d0800000000000000
+      internalID: -2970783645840992231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_24
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 140
+        width: 38
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8c1b9dda11b94a0800000000000000
+      internalID: -6585650591719896833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_25
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 140
+        width: 31
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0152532df29564920800000000000000
+      internalID: 2974162665849824528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_26
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 80
+        width: 179
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d455500d5c1421a50800000000000000
+      internalID: 6490322330848679245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_27
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 84
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d7fefd8bbe70d810800000000000000
+      internalID: 1788068396072368083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_28
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 84
+        width: 51
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 088ef7d693fa2db30800000000000000
+      internalID: 4310700454532081792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_29
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 100
+        width: 29
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 536d1326003bc9210800000000000000
+      internalID: 1341143603278370357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_30
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 82
+        width: 47
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f0bea0ced445f050800000000000000
+      internalID: 5833644615834448113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_31
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 80
+        width: 66
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65cab12882c4470e0800000000000000
+      internalID: -2273108175050003370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_32
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 14
+        width: 44
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb7a7be47f17a3db0800000000000000
+      internalID: -4811407944900433985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_33
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 13
+        width: 41
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8aeb1bbce97a8360800000000000000
+      internalID: 7172679414199347853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_34
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 15
+        width: 71
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7943f94b90e4243c0800000000000000
+      internalID: -4376850084258696041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_35
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 15
+        width: 71
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc21728ea76021360800000000000000
+      internalID: 7138775484286309069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: huntedAssets_36
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 13
+        width: 72
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffecd95cc72bf3590800000000000000
+      internalID: -7692233389564375297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      huntedAssets_0: 6356262575966426221
+      huntedAssets_1: 4491578444299129341
+      huntedAssets_10: 9099853076236187068
+      huntedAssets_11: 6138045169573802191
+      huntedAssets_12: -4115274415732392155
+      huntedAssets_13: 6410571769938113024
+      huntedAssets_14: 6738877768297553483
+      huntedAssets_15: 7383116940538238652
+      huntedAssets_16: -5191919792598770473
+      huntedAssets_17: -54200791308362881
+      huntedAssets_18: -658257438451806268
+      huntedAssets_19: 6573200457346190915
+      huntedAssets_2: 3575460889900257240
+      huntedAssets_20: -4573208990993949557
+      huntedAssets_21: 7232537919605025943
+      huntedAssets_22: 2904380617590989025
+      huntedAssets_23: -2970783645840992231
+      huntedAssets_24: -6585650591719896833
+      huntedAssets_25: 2974162665849824528
+      huntedAssets_26: 6490322330848679245
+      huntedAssets_27: 1788068396072368083
+      huntedAssets_28: 4310700454532081792
+      huntedAssets_29: 1341143603278370357
+      huntedAssets_3: 1434582971923480961
+      huntedAssets_30: 5833644615834448113
+      huntedAssets_31: -2273108175050003370
+      huntedAssets_32: -4811407944900433985
+      huntedAssets_33: 7172679414199347853
+      huntedAssets_34: -4376850084258696041
+      huntedAssets_35: 7138775484286309069
+      huntedAssets_36: -7692233389564375297
+      huntedAssets_4: -7586955512606625417
+      huntedAssets_5: -2600483833413516834
+      huntedAssets_6: 779999712560364720
+      huntedAssets_7: 3981265504107150906
+      huntedAssets_8: -1447166278914523690
+      huntedAssets_9: 4867282391267819712
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
