@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
     private bool       _hitPlayer;
     private bool       _hitEnemies;
     private Transform  _owner;
+    private bool _ignoreWalls = true;
+    private float _ignoreWallsTimer = 0.1f;
 
     public void Init(Vector2 direction, int damage, bool hitPlayer = false, bool hitEnemies = true, Transform owner = null)
     {
@@ -43,6 +45,14 @@ public class Bullet : MonoBehaviour
 
         if (Vector2.Distance(_spawnPosition, _rb.position) >= maxRange)
             Destroy(gameObject);
+
+        // Stop ignoring walls after the timer expires
+        if (_ignoreWalls)
+        {
+            _ignoreWallsTimer -= Time.fixedDeltaTime;
+            if (_ignoreWallsTimer <= 0f)
+                _ignoreWalls = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -70,6 +80,11 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
+        if (other.CompareTag("Player")) return;
+
+        // Ignore walls briefly after spawn so corner bullets don't die instantly
+        if (_ignoreWalls && other.CompareTag("Wall")) return;
 
         GhostEnemy ghost = other.GetComponentInParent<GhostEnemy>();
         if (ghost != null) { ghost.TakeDamage(_damage); Destroy(gameObject); return; }
@@ -95,3 +110,4 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
