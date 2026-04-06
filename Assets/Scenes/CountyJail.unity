@@ -711,8 +711,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -926,8 +926,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '[Y] talk'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1326,8 +1326,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '[Y] talk'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1676,8 +1676,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Inventory [tab]'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2047,8 +2047,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2389,8 +2389,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Coins: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2605,6 +2605,8 @@ MonoBehaviour:
     y: 24
     width: 320
     height: 220
+  hasLasso: 0
+  lassoProjectilePrefab: {fileID: 0}
 --- !u!4 &951805231
 Transform:
   m_ObjectHideFlags: 0
@@ -2691,8 +2693,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '[Y] talk'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3408,6 +3410,7 @@ MonoBehaviour:
   - {fileID: 1005959758}
   - {fileID: 234193758}
   - {fileID: 1895802884}
+  spawnJitterRadius: 0.5
   checkInterval: 1
   autoStartOnLevelLoad: 1
   autoStartDelay: 2
@@ -3853,8 +3856,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Level: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
+  m_sharedMaterial: {fileID: -5353023204621776476, guid: 0e795bf6ebe804f91a6fc98e7a38975b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
