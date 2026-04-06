@@ -140,17 +140,7 @@ public class GhostEnemy : MonoBehaviour
             return;
         }
 
-        XPManager xpManager = null;
-        if (player != null)
-            xpManager = player.GetComponent<XPManager>();
-
-        if (xpManager == null)
-            xpManager = FindObjectOfType<XPManager>();
-
-        if (xpManager != null)
-            xpManager.GainExperience(xpOnDeath);
-        else
-            Debug.LogWarning("No XPManager found. Ghost XP could not be awarded.");
+    XPManager.AddExperience(xpOnDeath);
     }
 
     void OnDrawGizmosSelected()

@@ -11,11 +11,22 @@ public class XPPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             XPManager xpManager = other.GetComponent<XPManager>();
+            if (xpManager == null)
+            {
+                xpManager = FindObjectOfType<XPManager>();
+            }
+
             if (xpManager != null)
             {
                 xpManager.GainExperience(xpValue);
-                Destroy(gameObject);
             }
+            else
+            {
+                // Use singleton helper as a fallback
+                XPManager.AddExperience(xpValue);
+            }
+
+            Destroy(gameObject);
         }
     }
 
