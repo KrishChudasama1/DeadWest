@@ -1047,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7feca0177f1024fdf89b5f7589b96c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPManager
+  persistAcrossScenes: 0
   level: 0
   currentXP: 0
   XPToLevel: 10
@@ -2274,6 +2275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 473829776}
+  playerTag: Player
   smoothSpeed: 8
   offset: {x: 0, y: 0, z: -10}
   useBounds: 0
@@ -3116,6 +3118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetPlayerPosition
   spawnOffset: {x: 0, y: 3, z: 0}
+  newSortingLayer: player
 --- !u!114 &1333186708
 MonoBehaviour:
   m_ObjectHideFlags: 0

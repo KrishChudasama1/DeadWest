@@ -25206,7 +25206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinManager
   coins: 0
-  coinText: {fileID: 0}
+  coinText: {fileID: 906565694}
 --- !u!4 &143929583
 Transform:
   m_ObjectHideFlags: 0

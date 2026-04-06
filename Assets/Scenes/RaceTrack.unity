@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetPlayerPosition
   spawnOffset: {x: 0, y: 1.5, z: 0}
+  newSortingLayer: player
 --- !u!1 &852324327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 0}
+  playerTag: Player
   smoothSpeed: 8
   offset: {x: 0, y: 0, z: -10}
   useBounds: 0
