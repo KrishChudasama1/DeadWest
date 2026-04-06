@@ -1,9 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private static bool hasPersistentState = false;
+    private static int persistedMaxHealth;
+    private static int persistedCurrentHealth;
+    private static bool skipPersistOnNextDisable;
+
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
@@ -26,10 +32,42 @@ public class PlayerHealth : MonoBehaviour
 
         maxHealth = Mathf.Max(1, maxHealth);
         currentHealth = maxHealth;
+
+        if (hasPersistentState)
+        {
+            maxHealth = Mathf.Max(1, persistedMaxHealth);
+            currentHealth = Mathf.Clamp(persistedCurrentHealth, 0, maxHealth);
+            return;
+        }
+
+        maxHealth = Mathf.Max(1, maxHealth);
+        if (currentHealth <= 0 || currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        SavePersistentState();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (skipPersistOnNextDisable)
+        {
+            skipPersistOnNextDisable = false;
+            return;
+        }
+
+        SavePersistentState();
     }
 
     void Start()
     {
+        EnsureUIReferences();
         UpdateHealthBar();
     }
     
@@ -44,6 +82,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        SavePersistentState();
         UpdateHealthBar();
 
         if (currentHealth <= 0)
@@ -54,6 +93,8 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealthBar()
     {
+        EnsureUIReferences();
+
         if (healthBar != null)
             healthBar.fillAmount = (float)currentHealth / maxHealth;
 
@@ -64,6 +105,7 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        SavePersistentState();
         UpdateHealthBar();
     }
     
@@ -76,6 +118,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
         else
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        SavePersistentState();
         UpdateHealthBar();
     }
 
@@ -90,6 +133,46 @@ public class PlayerHealth : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
             sr.color = Color.white;
+
+    }
+
+    public static void PrepareForRespawn()
+    {
+        // Keep learned max health, but clear the previous scene's current-health cache.
+        skipPersistOnNextDisable = true;
+        hasPersistentState = false;
+        persistedCurrentHealth = 0;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        EnsureUIReferences();
+        UpdateHealthBar();
+    }
+
+    private void EnsureUIReferences()
+    {
+        if (healthBar == null)
+        {
+            GameObject barObj = GameObject.Find("HealthBarFill");
+            if (barObj != null)
+                healthBar = barObj.GetComponent<Image>();
+        }
+
+        if (healthText == null)
+        {
+            GameObject textObj = GameObject.Find("HealthText");
+            if (textObj != null)
+                healthText = textObj.GetComponent<TextMeshProUGUI>();
+        }
+    }
+
+    private void SavePersistentState()
+    {
+        persistedMaxHealth = Mathf.Max(1, maxHealth);
+        persistedCurrentHealth = Mathf.Clamp(currentHealth, 0, persistedMaxHealth);
+        hasPersistentState = true;
     }
 
     System.Collections.IEnumerator InvincibilityFrames()
