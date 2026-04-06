@@ -52,7 +52,6 @@ public class Bullet : MonoBehaviour
 
         PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
 
-        // Player-fired bullets should pass through the player.
         if (!_hitPlayer && playerHealth != null)
             return;
 
@@ -75,18 +74,23 @@ public class Bullet : MonoBehaviour
         GhostEnemy ghost = other.GetComponentInParent<GhostEnemy>();
         if (ghost != null) { ghost.TakeDamage(_damage); Destroy(gameObject); return; }
 
-    CursedBrawler brawler = other.GetComponent<CursedBrawler>();
-    if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
+        CursedBrawler brawler = other.GetComponent<CursedBrawler>();
+        if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
 
-    RanchHandEnemy ranchHand = other.GetComponent<RanchHandEnemy>();
-    if (ranchHand != null) { ranchHand.TakeDamage(_damage); Destroy(gameObject); return; }
+        CorruptedPriest priest = other.GetComponent<CorruptedPriest>();
+        if (priest != null) { priest.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        RanchHandEnemy ranchHand = other.GetComponent<RanchHandEnemy>();
+        if (ranchHand != null) { ranchHand.TakeDamage(_damage); Destroy(gameObject); return; }
 
         EnemyChase sheriff = other.GetComponentInParent<EnemyChase>();
         if (sheriff != null) { sheriff.TakeDamage(_damage); Destroy(gameObject); return; }
 
-        // new
         BreakableObject breakable = other.GetComponentInParent<BreakableObject>();
         if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        RestlessUndead undead = other.GetComponent<RestlessUndead>();
+        if (undead != null) { undead.TakeDamage(_damage); Destroy(gameObject); return; }
 
         Destroy(gameObject);
     }
