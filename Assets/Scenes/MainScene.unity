@@ -32802,6 +32802,12 @@ MonoBehaviour:
   typingSpeed: 0.04
   triggerDistance: 2
   interactKey: 121
+  fadeAfterDialogue: 0
+  fadeDelay: 0.2
+  fadeDuration: 0.8
+  autoStart: 0
+  oneShot: 1
+  lockPlayerDuringDialogue: 1
   audioMixer: {fileID: 0}
   dialogueTransitionSpeed: 0.5
 --- !u!212 &575282387
