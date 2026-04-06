@@ -77,6 +77,9 @@ public class Bullet : MonoBehaviour
         CursedBrawler brawler = other.GetComponent<CursedBrawler>();
         if (brawler != null) { brawler.TakeDamage(_damage); Destroy(gameObject); return; }
 
+        CorruptedPriest priest = other.GetComponent<CorruptedPriest>();
+        if (priest != null) { priest.TakeDamage(_damage); Destroy(gameObject); return; }
+
         RanchHandEnemy ranchHand = other.GetComponent<RanchHandEnemy>();
         if (ranchHand != null) { ranchHand.TakeDamage(_damage); Destroy(gameObject); return; }
 
