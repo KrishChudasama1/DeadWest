@@ -1,0 +1,1131 @@
+fileFormatVersion: 2
+guid: c23c19d8b67c64aaa8c7909aa451989f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2159157238050318388
+    second: 64x64_Atlas_HorseRider_I_Complete_0
+  - first:
+      213: 563205077679495490
+    second: 64x64_Atlas_HorseRider_I_Complete_1
+  - first:
+      213: -5328148357532689471
+    second: 64x64_Atlas_HorseRider_I_Complete_2
+  - first:
+      213: 2456140135705909812
+    second: 64x64_Atlas_HorseRider_I_Complete_3
+  - first:
+      213: 8009036556202065901
+    second: 64x64_Atlas_HorseRider_I_Complete_4
+  - first:
+      213: 3409172239356495384
+    second: 64x64_Atlas_HorseRider_I_Complete_5
+  - first:
+      213: 2359264147166640175
+    second: 64x64_Atlas_HorseRider_I_Complete_6
+  - first:
+      213: 2663130006148903891
+    second: 64x64_Atlas_HorseRider_I_Complete_7
+  - first:
+      213: 4207399502053744688
+    second: 64x64_Atlas_HorseRider_I_Complete_8
+  - first:
+      213: -6329469709577240173
+    second: 64x64_Atlas_HorseRider_I_Complete_9
+  - first:
+      213: 4942240878415365979
+    second: 64x64_Atlas_HorseRider_I_Complete_10
+  - first:
+      213: -2144078403800048493
+    second: 64x64_Atlas_HorseRider_I_Complete_11
+  - first:
+      213: -8495077098678042532
+    second: 64x64_Atlas_HorseRider_I_Complete_12
+  - first:
+      213: 3756439500010696545
+    second: 64x64_Atlas_HorseRider_I_Complete_13
+  - first:
+      213: -5618035901511835185
+    second: 64x64_Atlas_HorseRider_I_Complete_14
+  - first:
+      213: 7385933863336328918
+    second: 64x64_Atlas_HorseRider_I_Complete_15
+  - first:
+      213: -6890930400246982442
+    second: 64x64_Atlas_HorseRider_I_Complete_16
+  - first:
+      213: -2664110222597431269
+    second: 64x64_Atlas_HorseRider_I_Complete_17
+  - first:
+      213: 1389517551159518199
+    second: 64x64_Atlas_HorseRider_I_Complete_18
+  - first:
+      213: -57044686771574287
+    second: 64x64_Atlas_HorseRider_I_Complete_19
+  - first:
+      213: -4820248487924105214
+    second: 64x64_Atlas_HorseRider_I_Complete_20
+  - first:
+      213: 1636986538513241352
+    second: 64x64_Atlas_HorseRider_I_Complete_21
+  - first:
+      213: 6246457648704012141
+    second: 64x64_Atlas_HorseRider_I_Complete_22
+  - first:
+      213: 6479337854468662705
+    second: 64x64_Atlas_HorseRider_I_Complete_23
+  - first:
+      213: 7889448941903525510
+    second: 64x64_Atlas_HorseRider_I_Complete_24
+  - first:
+      213: 628427426551588290
+    second: 64x64_Atlas_HorseRider_I_Complete_25
+  - first:
+      213: 2211782688025083378
+    second: 64x64_Atlas_HorseRider_I_Complete_26
+  - first:
+      213: 8201813201044249029
+    second: 64x64_Atlas_HorseRider_I_Complete_27
+  - first:
+      213: 8839635334585513732
+    second: 64x64_Atlas_HorseRider_I_Complete_28
+  - first:
+      213: 2134223409092656648
+    second: 64x64_Atlas_HorseRider_I_Complete_29
+  - first:
+      213: -1164421607440130371
+    second: 64x64_Atlas_HorseRider_I_Complete_30
+  - first:
+      213: 7243282600558725898
+    second: 64x64_Atlas_HorseRider_I_Complete_31
+  - first:
+      213: 6520994095341313141
+    second: 64x64_Atlas_HorseRider_I_Complete_32
+  - first:
+      213: 8581169262321778002
+    second: 64x64_Atlas_HorseRider_I_Complete_33
+  - first:
+      213: 3390419371392722201
+    second: 64x64_Atlas_HorseRider_I_Complete_34
+  - first:
+      213: 8438373335963687745
+    second: 64x64_Atlas_HorseRider_I_Complete_35
+  - first:
+      213: -7970998786548552445
+    second: 64x64_Atlas_HorseRider_I_Complete_36
+  - first:
+      213: -8934371294927714248
+    second: 64x64_Atlas_HorseRider_I_Complete_37
+  - first:
+      213: 3585246310613046005
+    second: 64x64_Atlas_HorseRider_I_Complete_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 15
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 320
+        width: 58
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 438e33c711ed6fd10800000000000000
+      internalID: 2159157238050318388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 320
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24958ceb808e0d700800000000000000
+      internalID: 563205077679495490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 320
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cbdeae6c4d9e06b0800000000000000
+      internalID: -5328148357532689471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_3
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 320
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43a9453b076f51220800000000000000
+      internalID: 2456140135705909812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 320
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: defba8d6050d52f60800000000000000
+      internalID: 8009036556202065901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 320
+        width: 49
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81687f0d610df4f20800000000000000
+      internalID: 3409172239356495384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 320
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f28be2fed3acdb020800000000000000
+      internalID: 2359264147166640175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_7
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 256
+        width: 49
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d3703771a655f420800000000000000
+      internalID: 2663130006148903891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_8
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 256
+        width: 49
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 030a11c2e8fa36a30800000000000000
+      internalID: 4207399502053744688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_9
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 256
+        width: 49
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 391cd0885d43928a0800000000000000
+      internalID: -6329469709577240173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_10
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 256
+        width: 49
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57cc50d4ed569440800000000000000
+      internalID: 4942240878415365979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_11
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 256
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c59e23d04be32e0800000000000000
+      internalID: -2144078403800048493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_12
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 256
+        width: 60
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c504db9336c6b1a80800000000000000
+      internalID: -8495077098678042532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_13
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 258
+        width: 59
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16f2262a2dd812430800000000000000
+      internalID: 3756439500010696545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_14
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 192
+        width: 61
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1eefafc1ab802b0800000000000000
+      internalID: -5618035901511835185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_15
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 192
+        width: 62
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6deb0b267bb108660800000000000000
+      internalID: 7385933863336328918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_16
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 192
+        width: 61
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d896598f4f7e50a0800000000000000
+      internalID: -6890930400246982442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_17
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 192
+        width: 52
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b10e79b1edd270bd0800000000000000
+      internalID: -2664110222597431269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_18
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 192
+        width: 53
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f3a80ec9de884310800000000000000
+      internalID: 1389517551159518199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_19
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 192
+        width: 51
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f928acd826553ff0800000000000000
+      internalID: -57044686771574287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_20
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 192
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2008b2cf9890b1db0800000000000000
+      internalID: -4820248487924105214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_21
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 128
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8059d2a659eb7b610800000000000000
+      internalID: 1636986538513241352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_22
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 128
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f3687e220efa650800000000000000
+      internalID: 6246457648704012141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_23
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 128
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5a85b137b3be950800000000000000
+      internalID: 6479337854468662705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_24
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 128
+        width: 46
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 686bdb73304fc7d60800000000000000
+      internalID: 7889448941903525510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_25
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 128
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c568b63a6f98b800800000000000000
+      internalID: 628427426551588290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_26
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 128
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fdf710e2a4d1be10800000000000000
+      internalID: 2211782688025083378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_27
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 128
+        width: 41
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c91a5ab6a1b2d170800000000000000
+      internalID: 8201813201044249029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_28
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 64
+        width: 40
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407f5fd9081bcaa70800000000000000
+      internalID: 8839635334585513732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_29
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 64
+        width: 46
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e7a4a02e84e9d10800000000000000
+      internalID: 2134223409092656648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_30
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 64
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbeddb7a7b427dfe0800000000000000
+      internalID: -1164421607440130371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_31
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 64
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0b021e062f458460800000000000000
+      internalID: 7243282600558725898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_32
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 64
+        width: 49
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57c1d3b74993f7a50800000000000000
+      internalID: 6520994095341313141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_33
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 64
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25db036aaff661770800000000000000
+      internalID: 8581169262321778002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_34
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 64
+        width: 48
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915677f74703d0f20800000000000000
+      internalID: 3390419371392722201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_35
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14b5e3437df1b1570800000000000000
+      internalID: 8438373335963687745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_36
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 0
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d24b6f5d2516190800000000000000
+      internalID: -7970998786548552445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_37
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 59
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8380362c4acb20480800000000000000
+      internalID: -8934371294927714248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 64x64_Atlas_HorseRider_I_Complete_38
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 0
+        width: 59
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f2de58268a51c130800000000000000
+      internalID: 3585246310613046005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      64x64_Atlas_HorseRider_I_Complete_0: 2159157238050318388
+      64x64_Atlas_HorseRider_I_Complete_1: 563205077679495490
+      64x64_Atlas_HorseRider_I_Complete_10: 4942240878415365979
+      64x64_Atlas_HorseRider_I_Complete_11: -2144078403800048493
+      64x64_Atlas_HorseRider_I_Complete_12: -8495077098678042532
+      64x64_Atlas_HorseRider_I_Complete_13: 3756439500010696545
+      64x64_Atlas_HorseRider_I_Complete_14: -5618035901511835185
+      64x64_Atlas_HorseRider_I_Complete_15: 7385933863336328918
+      64x64_Atlas_HorseRider_I_Complete_16: -6890930400246982442
+      64x64_Atlas_HorseRider_I_Complete_17: -2664110222597431269
+      64x64_Atlas_HorseRider_I_Complete_18: 1389517551159518199
+      64x64_Atlas_HorseRider_I_Complete_19: -57044686771574287
+      64x64_Atlas_HorseRider_I_Complete_2: -5328148357532689471
+      64x64_Atlas_HorseRider_I_Complete_20: -4820248487924105214
+      64x64_Atlas_HorseRider_I_Complete_21: 1636986538513241352
+      64x64_Atlas_HorseRider_I_Complete_22: 6246457648704012141
+      64x64_Atlas_HorseRider_I_Complete_23: 6479337854468662705
+      64x64_Atlas_HorseRider_I_Complete_24: 7889448941903525510
+      64x64_Atlas_HorseRider_I_Complete_25: 628427426551588290
+      64x64_Atlas_HorseRider_I_Complete_26: 2211782688025083378
+      64x64_Atlas_HorseRider_I_Complete_27: 8201813201044249029
+      64x64_Atlas_HorseRider_I_Complete_28: 8839635334585513732
+      64x64_Atlas_HorseRider_I_Complete_29: 2134223409092656648
+      64x64_Atlas_HorseRider_I_Complete_3: 2456140135705909812
+      64x64_Atlas_HorseRider_I_Complete_30: -1164421607440130371
+      64x64_Atlas_HorseRider_I_Complete_31: 7243282600558725898
+      64x64_Atlas_HorseRider_I_Complete_32: 6520994095341313141
+      64x64_Atlas_HorseRider_I_Complete_33: 8581169262321778002
+      64x64_Atlas_HorseRider_I_Complete_34: 3390419371392722201
+      64x64_Atlas_HorseRider_I_Complete_35: 8438373335963687745
+      64x64_Atlas_HorseRider_I_Complete_36: -7970998786548552445
+      64x64_Atlas_HorseRider_I_Complete_37: -8934371294927714248
+      64x64_Atlas_HorseRider_I_Complete_38: 3585246310613046005
+      64x64_Atlas_HorseRider_I_Complete_4: 8009036556202065901
+      64x64_Atlas_HorseRider_I_Complete_5: 3409172239356495384
+      64x64_Atlas_HorseRider_I_Complete_6: 2359264147166640175
+      64x64_Atlas_HorseRider_I_Complete_7: 2663130006148903891
+      64x64_Atlas_HorseRider_I_Complete_8: 4207399502053744688
+      64x64_Atlas_HorseRider_I_Complete_9: -6329469709577240173
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

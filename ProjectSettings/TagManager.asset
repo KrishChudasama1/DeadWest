@@ -10,11 +10,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - object
+  - Background
   - Water
   - UI
   - Enemy
-  - 
+  - Lasso
   - 
   - 
   - 
@@ -57,6 +57,12 @@ TagManager:
     locked: 0
   - name: overlay
     uniqueID: 3538851771
+    locked: 0
+  - name: table
+    uniqueID: 1674452897
+    locked: 0
+  - name: saloon
+    uniqueID: 307595127
     locked: 0
   m_RenderingLayers:
   - Default

@@ -42,7 +42,6 @@ public class GhostEnemy : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            // Stop moving and attack
             if (canAttack && !isAttacking)
                 StartCoroutine(Attack());
         }
@@ -74,10 +73,8 @@ public class GhostEnemy : MonoBehaviour
 
         animator.SetBool("IsAttacking", true);
 
-        // Wait for wind up
         yield return new WaitForSeconds(0.3f);
 
-        // Deal damage if still in range
         if (Vector2.Distance(transform.position, player.position) <= attackRange)
         {
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
@@ -128,7 +125,6 @@ public class GhostEnemy : MonoBehaviour
         if (xpOnDeath <= 0)
             return;
 
-        // If a pickup prefab is assigned, spawn it and set the XP value on it.
         if (xpPickupPrefab != null)
         {
             GameObject drop = Instantiate(xpPickupPrefab, transform.position, Quaternion.identity);
@@ -144,18 +140,7 @@ public class GhostEnemy : MonoBehaviour
             return;
         }
 
-        // Fallback: grant XP directly if no pickup prefab is configured.
-        XPManager xpManager = null;
-        if (player != null)
-            xpManager = player.GetComponent<XPManager>();
-
-        if (xpManager == null)
-            xpManager = FindObjectOfType<XPManager>();
-
-        if (xpManager != null)
-            xpManager.GainExperience(xpOnDeath);
-        else
-            Debug.LogWarning("No XPManager found. Ghost XP could not be awarded.");
+    XPManager.AddExperience(xpOnDeath);
     }
 
     void OnDrawGizmosSelected()
