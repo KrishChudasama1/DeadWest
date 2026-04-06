@@ -234,7 +234,7 @@ public class NPCDialogue : MonoBehaviour
             c.a = 0f;
             r.color = c;
         }
-t
+        
         gameObject.SetActive(false);
     }
 
