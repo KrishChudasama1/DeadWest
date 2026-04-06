@@ -1,15 +1,24 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-// Written by Mark Zhang - SE2250 Project Task 3
 public class BuildingEntry : MonoBehaviour
 {
+    [Header("Door Settings")]
     public float fadeSpeed = 1.2f;
     public float walkDistance = 0.75f;
+    public string sceneToLoad; 
+
+    // --- RESTORED TO FIX THE COMPILER ERROR ---
+    [Header("Local Lock (From Street Manager)")]
+    public bool isLocked = false; 
+
+    [Header("Progression System")]
+    [Tooltip("0 = Unlocked from start. 1 = Requires beating level 1, etc.")]
+    public int requiredProgressLevel = 0; 
     
     private GameObject sheriff;
     private SpriteRenderer sheriffRender;
     private bool isEntering = false;
-    
     private Vector3 targetPos;
     private float progress = 0f; 
 
@@ -18,39 +27,63 @@ public class BuildingEntry : MonoBehaviour
         if (isEntering && sheriff != null)
         {
             progress += Time.deltaTime * fadeSpeed;
-
-            // Move sheriff into building
             sheriff.transform.position = Vector3.Lerp(sheriff.transform.position, targetPos, progress);
-
-            // Update transparency
+            
             Color c = sheriffRender.color;
             c.a = Mathf.Lerp(1f, 0f, progress);
             sheriffRender.color = c;
 
-            // End transition
             if (progress >= 1f)
             {
                 isEntering = false;
-                Debug.Log("Sheriff entered building");
+
+                // Save Hub Bookmark
+                string currentScene = SceneManager.GetActiveScene().name;
+                if (currentScene == "MainScene" || currentScene == "Street") 
+                {
+                    PlayerPrefs.SetFloat("HubX", sheriff.transform.position.x);
+                    PlayerPrefs.SetFloat("HubY", sheriff.transform.position.y);
+                    PlayerPrefs.SetInt("ReturningToHub", 1); 
+                }
+
+                SceneManager.LoadScene(sceneToLoad); 
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Start transition if player hits the trigger
         if (other.CompareTag("Player") && !isEntering)
         {
+            
+            if (isLocked)
+            {
+                Debug.Log("Door is locked by the StreetLevelManager!");
+                return; 
+            }
+
+            
+            int currentSaveProgress = PlayerPrefs.GetInt("GameProgress", 0);
+            if (currentSaveProgress < requiredProgressLevel)
+            {
+                Debug.Log($"Door locked! You need Progress Level {requiredProgressLevel}, but you are only at Level {currentSaveProgress}.");
+                return; 
+            }
+
             sheriff = other.gameObject;
             sheriffRender = sheriff.GetComponent<SpriteRenderer>();
-            
             targetPos = sheriff.transform.position + new Vector3(0, walkDistance, 0);
 
-            // Disable player control
-            var moveScript = sheriff.GetComponent<MonoBehaviour>(); 
+            Animator anim = sheriff.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetFloat("Speed", 0f); 
+                anim.SetBool("IsMoving", false); 
+            }
+
+            var moveScript = sheriff.GetComponent<PlayerMovement>(); 
             if (moveScript != null) moveScript.enabled = false;
 
-            // Allow ghosting through teammate's wall colliders
             var col = sheriff.GetComponent<Collider2D>();
             if (col != null) col.isTrigger = true;
 
