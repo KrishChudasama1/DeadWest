@@ -2757,7 +2757,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 228603192}
   m_HandleRect: {fileID: 0}
@@ -7275,11 +7275,11 @@ PrefabInstance:
     - target: {fileID: 3554721495123285212, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
       propertyPath: XPSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 558772840}
     - target: {fileID: 3554721495123285212, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
       propertyPath: currentLevelText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1669828065}
     - target: {fileID: 3959915487523690728, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -7311,11 +7311,11 @@ PrefabInstance:
     - target: {fileID: 8979948660517676997, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2130229991}
     - target: {fileID: 8979948660517676997, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
       propertyPath: healthText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2086798270}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
