@@ -11,12 +11,18 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D _rb;
     private int        _damage;
     private bool       _initialized;
+    private bool       _hitPlayer;
+    private bool       _hitEnemies;
+    private Transform  _owner;
 
-    public void Init(Vector2 direction, int damage)
+    public void Init(Vector2 direction, int damage, bool hitPlayer = false, bool hitEnemies = true, Transform owner = null)
     {
         _direction     = direction.normalized;
         _spawnPosition = transform.position;
         _damage        = damage;
+        _hitPlayer     = hitPlayer;
+        _hitEnemies    = hitEnemies;
+        _owner         = owner;
         _initialized   = true;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -41,9 +47,31 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) return;
+        if (_owner != null && (other.transform == _owner || other.transform.IsChildOf(_owner)))
+            return;
 
-        GhostEnemy ghost = other.GetComponent<GhostEnemy>();
+        PlayerHealth playerHealth = other.GetComponentInParent<PlayerHealth>();
+
+        if (!_hitPlayer && playerHealth != null)
+            return;
+
+        if (_hitPlayer)
+        {
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(_damage);
+                Destroy(gameObject);
+                return;
+            }
+        }
+
+        if (!_hitEnemies)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        GhostEnemy ghost = other.GetComponentInParent<GhostEnemy>();
         if (ghost != null) { ghost.TakeDamage(_damage); Destroy(gameObject); return; }
 
         CursedBrawler brawler = other.GetComponent<CursedBrawler>();
@@ -52,9 +80,17 @@ public class Bullet : MonoBehaviour
         CorruptedPriest priest = other.GetComponent<CorruptedPriest>();
         if (priest != null) { priest.TakeDamage(_damage); Destroy(gameObject); return; }
 
-        // ← new
-        BreakableObject breakable = other.GetComponent<BreakableObject>();
+        RanchHandEnemy ranchHand = other.GetComponent<RanchHandEnemy>();
+        if (ranchHand != null) { ranchHand.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        EnemyChase sheriff = other.GetComponentInParent<EnemyChase>();
+        if (sheriff != null) { sheriff.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        BreakableObject breakable = other.GetComponentInParent<BreakableObject>();
         if (breakable != null) { breakable.TakeDamage(_damage); Destroy(gameObject); return; }
+
+        RestlessUndead undead = other.GetComponent<RestlessUndead>();
+        if (undead != null) { undead.TakeDamage(_damage); Destroy(gameObject); return; }
 
         Destroy(gameObject);
     }

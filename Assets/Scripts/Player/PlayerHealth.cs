@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI")]
     public Image healthBar;
-    public TextMeshProUGUI healthText; // Add this line
+    public TextMeshProUGUI healthText;
 
 
     private bool isInvincible = false;
@@ -50,6 +50,12 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = currentHealth + " / " + maxHealth;
     }
     
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UpdateHealthBar();
+    }
+    
     public void IncreaseMaxHealth(int amount, bool refillHealth)
     {
         maxHealth += amount;
@@ -62,7 +68,6 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvincible = true;
 
-        // Flash the player sprite to show damage
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         for (int i = 0; i < 5; i++)
         {
@@ -78,6 +83,6 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player died!");
-        // Add game over logic here later
+        GameOverManager.ShowGameOver();
     }
-} 
+}

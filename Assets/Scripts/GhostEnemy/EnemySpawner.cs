@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawning")] public GameObject enemyPrefab;
     public int enemiesToSpawn = 6;
     public float timeBetweenSpawns = 2f;
-    public float spawnOffset = 1.5f; // how far outside camera edge to spawn
+    public float spawnOffset = 1.5f;
 
     [Header("Trigger")]
     [SerializeField] private NPCDialogue dialogueTrigger;
@@ -74,25 +74,25 @@ public class EnemySpawner : MonoBehaviour
 
         switch (side)
         {
-            case 0: // top
+            case 0:
                 spawnPos = new Vector2(
                     Random.Range(camPos.x - camWidth, camPos.x + camWidth),
                     camPos.y + camHeight + spawnOffset
                 );
                 break;
-            case 1: // bottom
+            case 1:
                 spawnPos = new Vector2(
                     Random.Range(camPos.x - camWidth, camPos.x + camWidth),
                     camPos.y - camHeight - spawnOffset
                 );
                 break;
-            case 2: // left
+            case 2:
                 spawnPos = new Vector2(
                     camPos.x - camWidth - spawnOffset,
                     Random.Range(camPos.y - camHeight, camPos.y + camHeight)
                 );
                 break;
-            case 3: // right
+            case 3:
                 spawnPos = new Vector2(
                     camPos.x + camWidth + spawnOffset,
                     Random.Range(camPos.y - camHeight, camPos.y + camHeight)

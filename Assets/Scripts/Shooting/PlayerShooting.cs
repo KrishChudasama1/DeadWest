@@ -13,10 +13,12 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float crosshairPulseSize = 48f;
     [SerializeField] private float pulseDuration      = 0.1f;
 
+    public static bool IsInteracting = false;
+
     private IWeapon _weapon;
     private Camera  _cam;
     private float   _currentCrosshairSize;
-    private bool    _isStunned = false; // ← new
+    private bool    _isStunned = false;
 
     private void Start()
     {
@@ -34,10 +36,11 @@ public class PlayerShooting : MonoBehaviour
     {
         if (_weapon == null) return;
 
-        Cursor.visible = InventoryManager.IsInventoryOpen;
+        Cursor.visible = InventoryManager.IsInventoryOpen || IsInteracting;
 
         if (InventoryManager.IsInventoryOpen) return;
-        if (_isStunned) return; // ← block shooting while stunned
+        if (_isStunned) return;
+        if (IsInteracting) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -47,7 +50,6 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    // ← called by CursedBrawler when charge hits player
     public void Stun(float duration)
     {
         StartCoroutine(StunRoutine(duration));
@@ -85,6 +87,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (crosshairTexture == null) return;
         if (InventoryManager.IsInventoryOpen) return;
+        if (IsInteracting) return;
 
         Vector2 mousePos = Event.current.mousePosition;
         float   half     = _currentCrosshairSize / 2f;
@@ -97,7 +100,21 @@ public class PlayerShooting : MonoBehaviour
 
     private Vector2 GetShootDirection()
     {
+        // Ensure the cached camera is valid (it can be destroyed during scene loads)
+        if (_cam == null)
+        {
+            _cam = Camera.main;
+        }
+
+        if (_cam == null)
+        {
+            // No camera available (editor or scene transition); return a default direction to avoid exceptions
+            Debug.LogWarning("PlayerShooting: no Camera available when calculating shoot direction.");
+            return Vector2.right;
+        }
+
         Vector3 mouseScreen  = Input.mousePosition;
+        // Use camera's Z so ScreenToWorldPoint maps correctly
         mouseScreen.z        = Mathf.Abs(_cam.transform.position.z);
         Vector2 mouseWorld   = _cam.ScreenToWorldPoint(mouseScreen);
         Vector2 playerPos    = transform.position;
