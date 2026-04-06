@@ -16,9 +16,20 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isInvincible = false;
 
+    private static bool hasSavedHealthState;
+    private static int savedMaxHealth;
+
+    private void Awake()
+    {
+        if (hasSavedHealthState)
+            maxHealth = savedMaxHealth;
+
+        maxHealth = Mathf.Max(1, maxHealth);
+        currentHealth = maxHealth;
+    }
+
     void Start()
     {
-        currentHealth = maxHealth;
         UpdateHealthBar();
     }
     
@@ -58,10 +69,27 @@ public class PlayerHealth : MonoBehaviour
     
     public void IncreaseMaxHealth(int amount, bool refillHealth)
     {
-        maxHealth += amount;
+        maxHealth = Mathf.Max(1, maxHealth + amount);
+        SaveHealthState();
+
         if (refillHealth)
             currentHealth = maxHealth;
+        else
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthBar();
+    }
+
+    public void RespawnToFullHealth()
+    {
+        StopAllCoroutines();
+        isInvincible = false;
+
+        currentHealth = maxHealth;
+        UpdateHealthBar();
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = Color.white;
     }
 
     System.Collections.IEnumerator InvincibilityFrames()
@@ -82,7 +110,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        SaveHealthState();
         Debug.Log("Player died!");
         GameOverManager.ShowGameOver();
+    }
+
+    private void SaveHealthState()
+    {
+        hasSavedHealthState = true;
+        savedMaxHealth = Mathf.Max(1, maxHealth);
     }
 }

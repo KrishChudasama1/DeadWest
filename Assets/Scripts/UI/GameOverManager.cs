@@ -42,7 +42,8 @@ public class GameOverManager : MonoBehaviour
     public void OnRespawnButtonClicked()
     {
         Time.timeScale = 1f; // Resume time before loading
-        SceneManager.LoadScene("MainScene");
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     public void OnQuitButtonClicked()

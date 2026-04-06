@@ -5,6 +5,7 @@ public class CameraFollow : MonoBehaviour
 {
     [Header("Target")]
     [SerializeField] private Transform target;
+    [SerializeField] private string playerTag = "Player";
 
     [Header("Follow Settings")]
     [SerializeField] private float smoothSpeed = 8f;
@@ -21,8 +22,18 @@ public class CameraFollow : MonoBehaviour
     [Tooltip("Camera won't move until the player exceeds this distance from center.")]
     [SerializeField] private float deadzone = 0.5f;
 
+    private bool hasSnappedToTarget;
+
+    private void OnEnable()
+    {
+        TryAcquireTarget();
+    }
+
     private void LateUpdate()
     {
+        if (target == null)
+            TryAcquireTarget();
+
         if (target == null) return;
 
         Vector3 desiredPos = target.position + offset;
@@ -50,6 +61,22 @@ public class CameraFollow : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+        hasSnappedToTarget = false;
+    }
+
+    private void TryAcquireTarget()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag(playerTag);
+        if (player == null)
+            return;
+
+        target = player.transform;
+
+        if (!hasSnappedToTarget)
+        {
+            transform.position = target.position + offset;
+            hasSnappedToTarget = true;
+        }
     }
 
   
