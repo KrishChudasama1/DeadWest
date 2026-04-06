@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16592d3179f814f2cad272737474be58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteTrigger
-  newProgressLevel: 5
+  newProgressLevel: 3
 --- !u!114 &1509701874
 MonoBehaviour:
   m_ObjectHideFlags: 0
