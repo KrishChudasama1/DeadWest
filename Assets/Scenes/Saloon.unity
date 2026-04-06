@@ -6021,6 +6021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetPlayerPosition
   spawnOffset: {x: 0, y: -3, z: 0}
+  newSortingLayer: saloon
 --- !u!114 &1403463276
 MonoBehaviour:
   m_ObjectHideFlags: 0

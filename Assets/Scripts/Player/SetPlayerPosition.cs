@@ -3,8 +3,11 @@ using UnityEngine;
 public class SetPlayerPosition : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [Tooltip("Pushes the player this many units away from the trigger so they don't spawn in walls.")]
-    public Vector3 spawnOffset = new Vector3(0f, 1.5f, 0f);
+    public Vector3 spawnOffset = new Vector3(0f, 0f, 0f); 
+    
+    [Header("Visual Fixes")]
+    [Tooltip("Type the exact name of the Sorting Layer for this room (e.g., 'saloon' or 'Default')")]
+    public string newSortingLayer = "Default"; // <--- WE ADDED THIS
 
     void Start()
     {
@@ -12,31 +15,25 @@ public class SetPlayerPosition : MonoBehaviour
         
         if (player != null)
         {
-            // Snap the Sheriff to the door PLUS the safe offset
+            // Move Sheriff
             player.transform.position = transform.position + spawnOffset;
 
-            // Fix Alpha (Make fully visible)
+            // Force Visibility and UPDATE SORTING LAYER
             SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
                 sr.color = Color.white; 
+                sr.sortingLayerName = newSortingLayer; // fix sorting layer issue
             }
 
-            // Fixes the paralysis and running glitch
+            // Enable Movement
             var moveScript = player.GetComponent<PlayerMovement>();
             if (moveScript != null) moveScript.enabled = true;
 
             var col = player.GetComponent<Collider2D>();
             if (col != null) col.isTrigger = false;
 
-            Animator anim = player.GetComponent<Animator>();
-            if (anim != null)
-            {
-                anim.SetFloat("Speed", 0f); 
-                anim.SetBool("IsMoving", false); 
-            }
-
-            // Force the Camera to snap to the Sheriff (Z must be -10)
+            // Snap Camera
             Camera mainCam = Camera.main;
             if (mainCam != null)
             {
