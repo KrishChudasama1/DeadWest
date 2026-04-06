@@ -3,10 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class BuildingEntry : MonoBehaviour
 {
+    [Header("Door Settings")]
     public float fadeSpeed = 1.2f;
     public float walkDistance = 0.75f;
     public string sceneToLoad; 
-    public bool isLocked = true; 
+
+    // --- RESTORED TO FIX THE COMPILER ERROR ---
+    [Header("Local Lock (From Street Manager)")]
+    public bool isLocked = false; 
+
+    [Header("Progression System")]
+    [Tooltip("0 = Unlocked from start. 1 = Requires beating level 1, etc.")]
+    public int requiredProgressLevel = 0; 
     
     private GameObject sheriff;
     private SpriteRenderer sheriffRender;
@@ -29,7 +37,7 @@ public class BuildingEntry : MonoBehaviour
             {
                 isEntering = false;
 
-                // --- SAVE THE BOOKMARK ---
+                // Save Hub Bookmark
                 string currentScene = SceneManager.GetActiveScene().name;
                 if (currentScene == "MainScene" || currentScene == "Street") 
                 {
@@ -47,9 +55,18 @@ public class BuildingEntry : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isEntering)
         {
+            // 1. Check the old StreetLevelManager lock
             if (isLocked)
             {
-                Debug.Log("Door is locked!");
+                Debug.Log("Door is locked by the StreetLevelManager!");
+                return; 
+            }
+
+            // 2. Check the new Save File progression lock
+            int currentSaveProgress = PlayerPrefs.GetInt("GameProgress", 0);
+            if (currentSaveProgress < requiredProgressLevel)
+            {
+                Debug.Log($"Door locked! You need Progress Level {requiredProgressLevel}, but you are only at Level {currentSaveProgress}.");
                 return; 
             }
 
@@ -57,7 +74,6 @@ public class BuildingEntry : MonoBehaviour
             sheriffRender = sheriff.GetComponent<SpriteRenderer>();
             targetPos = sheriff.transform.position + new Vector3(0, walkDistance, 0);
 
-            // Halt the animation to prevent the "Running Glitch"
             Animator anim = sheriff.GetComponent<Animator>();
             if (anim != null)
             {
@@ -65,7 +81,6 @@ public class BuildingEntry : MonoBehaviour
                 anim.SetBool("IsMoving", false); 
             }
 
-            // Disable movement and make the collider a trigger so they safely fade out
             var moveScript = sheriff.GetComponent<PlayerMovement>(); 
             if (moveScript != null) moveScript.enabled = false;
 

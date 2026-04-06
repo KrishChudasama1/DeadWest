@@ -1201,7 +1201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StableLevel.LevelManager
   waveSpawner: {fileID: 805756554}
-  raceTrackGate: {fileID: 1980840477}
+  raceTrackGate: {fileID: 0}
   targetSceneName: HorseStable
 --- !u!4 &351392327
 Transform:
@@ -3238,6 +3238,7 @@ GameObject:
   - component: {fileID: 992497222}
   - component: {fileID: 992497221}
   - component: {fileID: 992497224}
+  - component: {fileID: 992497225}
   m_Layer: 0
   m_Name: ExitToStreet
   m_TagString: Untagged
@@ -3261,6 +3262,7 @@ MonoBehaviour:
   walkDistance: -0.5
   sceneToLoad: MainScene
   isLocked: 0
+  requiredProgressLevel: 0
 --- !u!61 &992497222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3336,6 +3338,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetPlayerPosition
   spawnOffset: {x: -5, y: 5, z: 0}
+--- !u!114 &992497225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992497220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16592d3179f814f2cad272737474be58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteTrigger
+  newProgressLevel: 4
 --- !u!1 &1013330613
 GameObject:
   m_ObjectHideFlags: 0
@@ -6470,7 +6485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1980840479}
   - component: {fileID: 1980840478}
-  - component: {fileID: 1980840477}
+  - component: {fileID: 1980840480}
   m_Layer: 0
   m_Name: RaceTrackGate
   m_TagString: Untagged
@@ -6478,21 +6493,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1980840477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980840476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fe99b0d8456400f9e98749507c6bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StableLevel.RaceTrackGate
-  raceTrackSceneName: RaceTrack
-  fadeDuration: 1
-  promptUI: {fileID: 0}
 --- !u!61 &1980840478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6527,7 +6527,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.16492558, y: 1.3975334}
+  m_Offset: {x: 0.16492558, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6537,7 +6537,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.607624, y: 0.4618206}
+  m_Size: {x: 1.607624, y: 3}
   m_EdgeRadius: 0
 --- !u!4 &1980840479
 Transform:
@@ -6548,12 +6548,29 @@ Transform:
   m_GameObject: {fileID: 1980840476}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.52, y: 9.85, z: 0}
+  m_LocalPosition: {x: -9.48, y: 11.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1980840480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980840476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce009175110a44514b8aa5911c4974f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingEntry
+  fadeSpeed: 1.2
+  walkDistance: 0.75
+  sceneToLoad: RaceTrack
+  isLocked: 0
+  requiredProgressLevel: 0
 --- !u!1 &1987040909
 GameObject:
   m_ObjectHideFlags: 0

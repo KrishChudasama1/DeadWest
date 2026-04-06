@@ -5922,6 +5922,7 @@ GameObject:
   - component: {fileID: 1403463272}
   - component: {fileID: 1403463274}
   - component: {fileID: 1403463275}
+  - component: {fileID: 1403463276}
   m_Layer: 0
   m_Name: ExitToStreet
   m_TagString: Untagged
@@ -5945,6 +5946,7 @@ MonoBehaviour:
   walkDistance: 0.75
   sceneToLoad: MainScene
   isLocked: 0
+  requiredProgressLevel: 0
 --- !u!4 &1403463273
 Transform:
   m_ObjectHideFlags: 0
@@ -6018,6 +6020,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66343edc0cb24b5b95a199ea745b118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetPlayerPosition
+  spawnOffset: {x: 0, y: -3, z: 0}
+--- !u!114 &1403463276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403463271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16592d3179f814f2cad272737474be58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteTrigger
+  newProgressLevel: 1
 --- !u!1 &1499360405
 GameObject:
   m_ObjectHideFlags: 0
