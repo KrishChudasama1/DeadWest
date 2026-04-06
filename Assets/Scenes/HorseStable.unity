@@ -538,7 +538,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4832258203156073925, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1764528945}
   m_SourcePrefab: {fileID: 100100000, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
 --- !u!1 &203844586
 GameObject:
@@ -3570,6 +3573,11 @@ MonoBehaviour:
   minY: -16
   maxY: 16
   deadzone: 0.5
+--- !u!1 &1003434293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4832258203156073925, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
+  m_PrefabInstance: {fileID: 85505523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013330613
 GameObject:
   m_ObjectHideFlags: 0
@@ -5676,7 +5684,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5595415061617521013, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
   m_PrefabInstance: {fileID: 85505523}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1003434293}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5f9a066fbaba4aa082dfa740ae84205, type: 3}
@@ -5687,6 +5695,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1615594280738069221, guid: b46d5dae8fe7d46279a6db105405d5d4, type: 3}
   m_PrefabInstance: {fileID: 85505523}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1764528945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003434293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84320d4a1af944858eedd6dae808e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StableLevel.LassoThrow
+  lassoProjectilePrefab: {fileID: 8008204981843478324, guid: 3bef31dc381644e1fb893b718a137291, type: 3}
+  throwCooldown: 0.8
+  muzzleDistance: 0.5
+  throwKey: 108
+  lassoThrowSfx: {fileID: 8300000, guid: 5e8cbeb14f8a447b48f029c33047b524, type: 3}
+  sfxVolume: 1
 --- !u!1 &1779024299
 GameObject:
   m_ObjectHideFlags: 0
@@ -5825,7 +5851,7 @@ MonoBehaviour:
     y: 24
     width: 320
     height: 220
-  hasLasso: 1
+  hasLasso: 0
   lassoProjectilePrefab: {fileID: 8008204981843478324, guid: 3bef31dc381644e1fb893b718a137291, type: 3}
 --- !u!4 &1779977204
 Transform:

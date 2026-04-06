@@ -16,11 +16,9 @@ namespace StableLevel
         [Header("Health")]
         public int maxHits = 3;
 
-        // ── Events ──────────────────────────────────────────────
-        /// <summary>Fired when the rider takes the final lasso hit.</summary>
         public event Action OnRiderDefeated;
 
-        // ── Private state ───────────────────────────────────────
+      
         private int currentHits = 0;
         private bool isDefeated = false;
         private bool isInvincible = false;
@@ -29,35 +27,62 @@ namespace StableLevel
         private Rigidbody2D rb;
         private SpriteRenderer sr;
         private Transform _chargeTarget;       // cached player transform for charge
+        
+    [Header("Audio")]
+    [Tooltip("Short neigh sound played when the rider starts running or when defeated.")]
+    public AudioClip neighClip;
 
-        // ────────────────────────────────────────────────────────
-        // Unity callbacks
-        // ────────────────────────────────────────────────────────
+    [Tooltip("Looping gallop audio played while the rider is moving.")]
+    public AudioClip gallopLoopClip;
+
+    [Range(0f,1f)]
+    public float gallopVolume = 0.8f;
+
+    private AudioSource _sfxSource; // neigh
+    private AudioSource _loopSource; // for looping gallop
+
+       
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             sr = GetComponent<SpriteRenderer>();
 
-            // Start inactive — caller uses Activate()
+            
             gameObject.SetActive(false);
+            
+            _sfxSource = gameObject.AddComponent<AudioSource>();
+            _sfxSource.playOnAwake = false;
+
+            _loopSource = gameObject.AddComponent<AudioSource>();
+            _loopSource.playOnAwake = false;
+            _loopSource.loop = true;
+            _loopSource.volume = gallopVolume;
         }
 
-        /// <summary>
-        /// Enables the GameObject and starts movement along the waypoint loop.
-        /// </summary>
+        
         public void Activate()
         {
             gameObject.SetActive(true);
             currentWaypointIndex = 0;
             Debug.Log("PhantomRider: Activated.");
+            // Play neigh and start gallop loop when rider begins running
+            if (neighClip != null && _sfxSource != null)
+                _sfxSource.PlayOneShot(neighClip);
+
+            if (gallopLoopClip != null && _loopSource != null && !_loopSource.isPlaying)
+            {
+                _loopSource.clip = gallopLoopClip;
+                _loopSource.volume = gallopVolume;
+                _loopSource.Play();
+            }
         }
 
         private void FixedUpdate()
         {
             if (isDefeated) return;
 
-            // ── Charging at the player (timer expired) ──
+    
             if (isCharging)
             {
                 if (_chargeTarget == null) return;
@@ -80,7 +105,7 @@ namespace StableLevel
                 return;
             }
 
-            // ── Normal waypoint patrol ──
+           
             if (waypoints == null || waypoints.Length == 0) return;
 
             Transform target = waypoints[currentWaypointIndex];
@@ -101,14 +126,7 @@ namespace StableLevel
             }
         }
 
-        // ────────────────────────────────────────────────────────
-        // Charge attack (called when the duel timer expires)
-        // ────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// Stops waypoint patrol and charges directly at the player.
-        /// On arrival, deals lethal damage (kills the player).
-        /// </summary>
+       
         public void ChargeAndKillPlayer()
         {
             if (isDefeated) return;
@@ -151,14 +169,9 @@ namespace StableLevel
             isCharging = false;
         }
 
-        // ────────────────────────────────────────────────────────
-        // Lasso interaction
-        // ────────────────────────────────────────────────────────
+      
 
-        /// <summary>
-        /// Called by LassoProjectile when it hits this rider.
-        /// NOT compatible with Bullet.cs (no TakeDamage(int)).
-        /// </summary>
+       
         public void TakeLassoHit()
         {
             if (isDefeated || isInvincible) return;
@@ -177,13 +190,17 @@ namespace StableLevel
                 isDefeated = true;
                 Debug.Log("PhantomRider: defeated!");
                 OnRiderDefeated?.Invoke();
+                // Play death neigh and stop gallop
+                if (neighClip != null && _sfxSource != null)
+                    _sfxSource.PlayOneShot(neighClip);
+                if (_loopSource != null && _loopSource.isPlaying)
+                    _loopSource.Stop();
+
                 StartCoroutine(DefeatSequence());
             }
         }
 
-        // ────────────────────────────────────────────────────────
-        // Coroutines
-        // ────────────────────────────────────────────────────────
+       
 
         private IEnumerator FlashWhite()
         {
@@ -217,9 +234,7 @@ namespace StableLevel
             Destroy(gameObject);
         }
 
-        // ────────────────────────────────────────────────────────
-        // Gizmos
-        // ────────────────────────────────────────────────────────
+       
 
         private void OnDrawGizmosSelected()
         {
