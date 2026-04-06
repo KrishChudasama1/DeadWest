@@ -22,19 +22,19 @@ public class CameraFollow : MonoBehaviour
 
     private void Start() 
     {
-        // Find the player the moment the scene fully starts
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             target = player.transform;
-            // INSTANTLY snap the camera to the player so we don't stare at a blank wall!
+            
             transform.position = new Vector3(target.position.x, target.position.y, offset.z);
         }
     }
 
     private void LateUpdate()
     {
-        // Backup check just in case the player loads late
+        
         if (target == null)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");

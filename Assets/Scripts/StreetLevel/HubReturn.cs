@@ -9,12 +9,12 @@ public class HubReturn : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
-                // 1. Snap player back to the bookmarked door coordinates
+                // Snap player back to the bookmarked door coordinates
                 float returnX = PlayerPrefs.GetFloat("HubX");
                 float returnY = PlayerPrefs.GetFloat("HubY");
                 player.transform.position = new Vector3(returnX, returnY - 1.5f, 0f);
                 
-                // 2. Fix Alpha (Make visible)
+                // Fix Alpha (Make visible)
                 SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
                 if (sr != null)
                 {
@@ -23,7 +23,7 @@ public class HubReturn : MonoBehaviour
                     sr.color = c;
                 }
 
-                // 3. WAKE UP THE SHERIFF
+                // Activate the sheriff
                 var moveScript = player.GetComponent<PlayerMovement>();
                 if (moveScript != null) moveScript.enabled = true;
 

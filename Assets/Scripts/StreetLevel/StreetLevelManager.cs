@@ -56,12 +56,12 @@ public class StreetLevelManager : MonoBehaviour
         }
         else if (progressStage > orderedDoors.Length)
         {
-            // They beat every teammate's level!
+            
             Debug.Log("All levels complete. The final showdown begins!");
-            // Trigger your hidden boss here
+            
         }
     }
-    // This must be inside the StreetLevelManager class
+    
     public int GetCluesFound() 
     { 
         return currentClues; 

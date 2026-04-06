@@ -12,11 +12,11 @@ public class LevelCompleteTrigger : MonoBehaviour
         {
             int currentProgress = PlayerPrefs.GetInt("GameProgress", 0);
 
-            // Only upgrade the save file! We don't want to downgrade them if they replay an old level.
+            
             if (newProgressLevel > currentProgress)
             {
                 PlayerPrefs.SetInt("GameProgress", newProgressLevel);
-                PlayerPrefs.Save(); // Force Unity to write the save file immediately
+                PlayerPrefs.Save(); 
                 
                 Debug.Log($"LEVEL COMPLETE! Game Progress is now: {newProgressLevel}");
             }

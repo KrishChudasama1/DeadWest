@@ -10,12 +10,12 @@ public class HubEnemySpawner : MonoBehaviour
 
     void Update()
     {
-        // Do not spawn enemies if the player has finished the clue hunt
+        
         if (PlayerPrefs.GetInt("HubProgress", 0) > 0) return;
 
         spawnTimer += Time.deltaTime;
 
-        // Dynamic Difficulty: faster spawns based on clues found
+        
         int cluesFound = StreetLevelManager.Instance.GetCluesFound();
         float currentSpawnRate = Mathf.Max(1f, baseSpawnRate - cluesFound); 
 

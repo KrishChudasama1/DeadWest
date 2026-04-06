@@ -7,8 +7,8 @@ public class TutorialUIManager : MonoBehaviour
     public static TutorialUIManager Instance;
     
     [Header("UI References")]
-    public TextMeshProUGUI tutorialText; // Drag your on-screen text here
-    public float displayTime = 4f; // How long the hint stays on screen
+    public TextMeshProUGUI tutorialText; 
+    public float displayTime = 4f; 
 
     void Awake() 
     { 
@@ -17,7 +17,7 @@ public class TutorialUIManager : MonoBehaviour
 
     void Start()
     {
-        // Ensure it starts hidden
+        
         if (tutorialText != null) tutorialText.gameObject.SetActive(false);
     }
 
@@ -25,7 +25,7 @@ public class TutorialUIManager : MonoBehaviour
     {
         if (tutorialText == null) return;
         
-        StopAllCoroutines(); // Stops any currently fading text
+        StopAllCoroutines(); 
         StartCoroutine(DisplayRoutine(message));
     }
 

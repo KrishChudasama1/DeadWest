@@ -12,17 +12,17 @@ public class SetPlayerPosition : MonoBehaviour
         
         if (player != null)
         {
-            // 1. Snap the Sheriff to the door PLUS the safe offset
+            // Snap the Sheriff to the door PLUS the safe offset
             player.transform.position = transform.position + spawnOffset;
 
-            // 2. Fix Alpha (Make fully visible)
+            // Fix Alpha (Make fully visible)
             SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
                 sr.color = Color.white; 
             }
 
-            // 3. WAKE UP THE SHERIFF (Fixes the paralysis and running glitch)
+            // Fixes the paralysis and running glitch
             var moveScript = player.GetComponent<PlayerMovement>();
             if (moveScript != null) moveScript.enabled = true;
 
@@ -36,7 +36,7 @@ public class SetPlayerPosition : MonoBehaviour
                 anim.SetBool("IsMoving", false); 
             }
 
-            // 4. Force the Camera to snap to the Sheriff (Z must be -10)
+            // Force the Camera to snap to the Sheriff (Z must be -10)
             Camera mainCam = Camera.main;
             if (mainCam != null)
             {

@@ -55,14 +55,14 @@ public class BuildingEntry : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isEntering)
         {
-            // 1. Check the old StreetLevelManager lock
+            
             if (isLocked)
             {
                 Debug.Log("Door is locked by the StreetLevelManager!");
                 return; 
             }
 
-            // 2. Check the new Save File progression lock
+            
             int currentSaveProgress = PlayerPrefs.GetInt("GameProgress", 0);
             if (currentSaveProgress < requiredProgressLevel)
             {
