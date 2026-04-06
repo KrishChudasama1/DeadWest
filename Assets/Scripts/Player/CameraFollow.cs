@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class CameraFollow : MonoBehaviour
 {
     [Header("Target")]
@@ -21,14 +20,34 @@ public class CameraFollow : MonoBehaviour
     [Tooltip("Camera won't move until the player exceeds this distance from center.")]
     [SerializeField] private float deadzone = 0.5f;
 
+    private void Start() 
+    {
+        // Find the player the moment the scene fully starts
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+            // INSTANTLY snap the camera to the player so we don't stare at a blank wall!
+            transform.position = new Vector3(target.position.x, target.position.y, offset.z);
+        }
+    }
+
     private void LateUpdate()
     {
-        if (target == null) return;
+        // Backup check just in case the player loads late
+        if (target == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null) target = player.transform;
+            return;
+        }
 
         Vector3 desiredPos = target.position + offset;
 
         // Deadzone check
-        float dist = Vector2.Distance(transform.position, desiredPos + Vector3.forward * 10f);
+        float dist = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), 
+                                      new Vector2(desiredPos.x, desiredPos.y));
+        
         if (dist < deadzone) return;
 
         Vector3 smoothed = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
@@ -46,19 +65,8 @@ public class CameraFollow : MonoBehaviour
         transform.position = smoothed;
     }
 
-    
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
-    }
-
-  
-    void OnDrawGizmosSelected()
-    {
-        if (!useBounds) return;
-        Gizmos.color = Color.yellow;
-        Vector3 center = new Vector3((minX + maxX) / 2f, (minY + maxY) / 2f, 0f);
-        Vector3 size   = new Vector3(maxX - minX, maxY - minY, 0f);
-        Gizmos.DrawWireCube(center, size);
     }
 }

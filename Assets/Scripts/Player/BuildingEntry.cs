@@ -5,8 +5,8 @@ public class BuildingEntry : MonoBehaviour
 {
     public float fadeSpeed = 1.2f;
     public float walkDistance = 0.75f;
-    public string sceneToLoad; // exact name of team member scene 
-    public bool isLocked = true; // Controlled by the StreetLevelManager
+    public string sceneToLoad; 
+    public bool isLocked = true; 
     
     private GameObject sheriff;
     private SpriteRenderer sheriffRender;
@@ -28,7 +28,17 @@ public class BuildingEntry : MonoBehaviour
             if (progress >= 1f)
             {
                 isEntering = false;
-                SceneManager.LoadScene(sceneToLoad); // Move to team member level
+
+                // --- SAVE THE BOOKMARK ---
+                string currentScene = SceneManager.GetActiveScene().name;
+                if (currentScene == "MainScene" || currentScene == "Street") 
+                {
+                    PlayerPrefs.SetFloat("HubX", sheriff.transform.position.x);
+                    PlayerPrefs.SetFloat("HubY", sheriff.transform.position.y);
+                    PlayerPrefs.SetInt("ReturningToHub", 1); 
+                }
+
+                SceneManager.LoadScene(sceneToLoad); 
             }
         }
     }
@@ -39,15 +49,24 @@ public class BuildingEntry : MonoBehaviour
         {
             if (isLocked)
             {
-                Debug.Log("Door is locked! Finish the current objective.");
-                return; // Stop here if locked
+                Debug.Log("Door is locked!");
+                return; 
             }
 
             sheriff = other.gameObject;
             sheriffRender = sheriff.GetComponent<SpriteRenderer>();
             targetPos = sheriff.transform.position + new Vector3(0, walkDistance, 0);
 
-            var moveScript = sheriff.GetComponent<MonoBehaviour>(); 
+            // Halt the animation to prevent the "Running Glitch"
+            Animator anim = sheriff.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetFloat("Speed", 0f); 
+                anim.SetBool("IsMoving", false); 
+            }
+
+            // Disable movement and make the collider a trigger so they safely fade out
+            var moveScript = sheriff.GetComponent<PlayerMovement>(); 
             if (moveScript != null) moveScript.enabled = false;
 
             var col = sheriff.GetComponent<Collider2D>();
