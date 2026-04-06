@@ -2,22 +2,24 @@ using UnityEngine;
 
 public class SetPlayerPosition : MonoBehaviour
 {
+    [Header("Spawn Settings")]
+    [Tooltip("Pushes the player this many units away from the trigger so they don't spawn in walls.")]
+    public Vector3 spawnOffset = new Vector3(0f, 1.5f, 0f);
+
     void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         
         if (player != null)
         {
-            // 1. Snap the Sheriff to the door
-            player.transform.position = transform.position;
+            // 1. Snap the Sheriff to the door PLUS the safe offset
+            player.transform.position = transform.position + spawnOffset;
 
-            // 2. Fix Alpha (Make visible)
+            // 2. Fix Alpha (Make fully visible)
             SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                Color c = sr.color;
-                c.a = 1f; 
-                sr.color = c;
+                sr.color = Color.white; 
             }
 
             // 3. WAKE UP THE SHERIFF (Fixes the paralysis and running glitch)
