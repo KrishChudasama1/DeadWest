@@ -57,6 +57,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+    // let slow-goop zones pass through bullets
+    if (other.GetComponentInParent<global::SlowZone>() != null) return;
         if (_owner != null && (other.transform == _owner || other.transform.IsChildOf(_owner)))
             return;
 

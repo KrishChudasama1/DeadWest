@@ -182,13 +182,18 @@ public class PlayerHealth : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         for (int i = 0; i < 5; i++)
         {
+            // Flash red (partially transparent) but preserve current tint afterward
+            Color prior = sr.color;
             sr.color = new Color(1, 0, 0, 0.5f);
             yield return new WaitForSeconds(invincibilityTime / 10);
-            sr.color = Color.white;
+            sr.color = prior;
             yield return new WaitForSeconds(invincibilityTime / 10);
         }
 
         isInvincible = false;
+        // Restore tint based on movement state (e.g. green when slowed)
+        PlayerMovement pm = GetComponent<PlayerMovement>();
+        if (pm != null) pm.RefreshTint();
     }
 
     void Die()

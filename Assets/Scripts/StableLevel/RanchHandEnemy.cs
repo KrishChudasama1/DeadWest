@@ -21,6 +21,15 @@ public class RanchHandEnemy : MonoBehaviour
     [Header("XP")]
     public int xpOnDeath = 3;
     public GameObject xpPickupPrefab;
+    [Header("Death Goop")]
+    [Tooltip("Prefab for the slow-goop zone spawned when this enemy dies.")]
+    public GameObject slowZonePrefab;
+    [Tooltip("Multiplier applied to player speed while inside the goop (0.7 = 30% slow).")]
+    public float slowMultiplier = 0.7f;
+    [Header("Audio")]
+    [Tooltip("One-shot sound played when this ranch hand dies.")]
+    public AudioClip deathClip;
+    [Range(0f,1f)] public float deathVolume = 1f;
 
     private Transform player;
     private Animator animator;
@@ -28,6 +37,7 @@ public class RanchHandEnemy : MonoBehaviour
     private bool isAttacking = false;
     private bool canAttack = true;
     private bool prevSrEnabled = true;
+    private bool _isDying = false;
 
     void Start()
     {
@@ -36,7 +46,6 @@ public class RanchHandEnemy : MonoBehaviour
 
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-    // Prevent URP / dynamic occlusion from culling this enemy unexpectedly
     #if UNITY_2018_1_OR_NEWER
     sr.allowOcclusionWhenDynamic = false;
     #endif
@@ -134,7 +143,26 @@ public class RanchHandEnemy : MonoBehaviour
     void Die()
     {
         DropOrGrantXP();
+        SpawnSlowZone();
+
+        if (deathClip != null)
+        {
+            AudioSource.PlayClipAtPoint(deathClip, transform.position, deathVolume);
+        }
+
         Destroy(gameObject);
+    }
+
+    void SpawnSlowZone()
+    {
+        if (slowZonePrefab == null) return;
+
+        GameObject goop = Instantiate(slowZonePrefab, transform.position, Quaternion.identity);
+        SlowZone sz = goop.GetComponent<SlowZone>();
+        if (sz != null)
+        {
+            sz.playerSpeedMultiplier = slowMultiplier;
+        }
     }
 
     void DropOrGrantXP()
@@ -156,7 +184,6 @@ public class RanchHandEnemy : MonoBehaviour
             return;
         }
 
-    // Use the singleton helper to award XP (will fallback to finding an XPManager if needed)
     XPManager.AddExperience(xpOnDeath);
     }
 
@@ -170,7 +197,6 @@ public class RanchHandEnemy : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Keep the sprite's sorting order updated so Y-sorting matches the player
         if (sr != null)
         {
             float feetY = 0f;
@@ -184,13 +210,11 @@ public class RanchHandEnemy : MonoBehaviour
         }
     }
 
-    // ...existing code...
 
     private void OnBecameInvisible()
     {
         Debug.Log($"RanchHandEnemy '{name}' OnBecameInvisible at {transform.position}");
 
-        // If the sprite renderer was turned off accidentally while the enemy is alive, re-enable it.
         if (currentHealth > 0 && sr != null && !sr.enabled)
         {
             Debug.Log($"RanchHandEnemy '{name}': re-enabling SpriteRenderer because enemy is alive.");

@@ -27,6 +27,9 @@ namespace StableLevel
         // Fired when the last enemy of the last wave dies
         public event Action OnAllWavesCleared;
 
+    // Public flag other systems can query to know if spawning finished
+    public bool AllWavesCleared { get; private set; } = false;
+
         private Coroutine spawnRoutine;
 
         
@@ -106,6 +109,7 @@ namespace StableLevel
             }
 
             // Fire event to notify listeners that all waves have been cleared
+            AllWavesCleared = true;
             OnAllWavesCleared?.Invoke();
             spawnRoutine = null;
         }

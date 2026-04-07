@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private System.Action _onMovementStarted;
 
     private Coroutine _stunCoroutine;
+    // Active speed modifiers (multiplicative). 1 = default speed.
+    private List<float> _speedModifiers = new List<float>();
+    private float _speedMultiplier = 1f;
+    // Track whether player currently has any slow multipliers applied
+    private bool _isSlowed = false;
 
     private void Start()
     {
@@ -64,9 +70,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float speed = Input.GetKey(KeyCode.LeftShift)
+        float baseSpeed = Input.GetKey(KeyCode.LeftShift)
             ? moveSpeed * sprintMultiplier
             : moveSpeed;
+
+        float speed = baseSpeed * _speedMultiplier;
 
         _rb.MovePosition(_rb.position + _movement.normalized * speed * Time.fixedDeltaTime);
     }
@@ -105,6 +113,67 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(_stunCoroutine);
 
         _stunCoroutine = StartCoroutine(StunRoutine(duration));
+    }
+
+    // Add a multiplicative speed modifier for a duration (e.g. 0.7f for -30%).
+    public void AddTemporarySpeedMultiplier(float multiplier, float duration)
+    {
+        if (multiplier <= 0f) return;
+
+        _speedModifiers.Add(multiplier);
+        RecalculateSpeedMultiplier();
+
+        StartCoroutine(SpeedModifierRoutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedModifierRoutine(float multiplier, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        // Remove one instance of this multiplier
+        _speedModifiers.Remove(multiplier);
+        RecalculateSpeedMultiplier();
+    }
+
+    private void RecalculateSpeedMultiplier()
+    {
+        float prod = 1f;
+        for (int i = 0; i < _speedModifiers.Count; i++)
+            prod *= _speedModifiers[i];
+
+        _speedMultiplier = prod;
+        bool nowSlowed = _speedMultiplier < 0.999f;
+        if (nowSlowed != _isSlowed)
+        {
+            _isSlowed = nowSlowed;
+            RefreshTint();
+        }
+    }
+
+    // Update sprite tint based on slowed state (green when slowed, white otherwise)
+    public void RefreshTint()
+    {
+        if (_spriteRenderer == null) return;
+
+        if (_isSlowed)
+            _spriteRenderer.color = Color.green;
+        else
+            _spriteRenderer.color = Color.white;
+    }
+
+    // Persistent multiplier: adds immediately and stays until explicitly removed.
+    public void AddSpeedMultiplier(float multiplier)
+    {
+        if (multiplier <= 0f) return;
+        _speedModifiers.Add(multiplier);
+        RecalculateSpeedMultiplier();
+    }
+
+    // Removes one instance of a previously added multiplier.
+    public void RemoveSpeedMultiplier(float multiplier)
+    {
+        if (multiplier <= 0f) return;
+        _speedModifiers.Remove(multiplier);
+        RecalculateSpeedMultiplier();
     }
 
     private IEnumerator StunRoutine(float duration)

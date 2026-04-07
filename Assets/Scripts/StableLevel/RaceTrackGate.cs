@@ -18,6 +18,10 @@ namespace StableLevel
         [Tooltip("If assigned, this prompt text object is shown when the gate unlocks.")]
         [SerializeField] private GameObject promptUI;
 
+    [Header("Access Control")]
+    [Tooltip("If true, gate cannot be entered until LevelManager unlocks it (after waves cleared).")]
+    [SerializeField] private bool requireWavesCleared = true;
+
        
         private Collider2D gateTrigger;
         private SpriteRenderer sr;
@@ -76,6 +80,8 @@ namespace StableLevel
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!isUnlocked || isLoading) return;
+            // optional safety: disallow entry until LevelManager unlocked the gate
+            if (requireWavesCleared && !isUnlocked) return;
             if (!other.CompareTag("Player")) return;
 
             isLoading = true;
