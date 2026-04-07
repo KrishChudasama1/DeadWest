@@ -16,10 +16,8 @@ namespace StableLevel
         private bool _isEquipped = false;
         private Camera _cam;
 
-        /// <summary>True once the player has picked up the lasso.</summary>
         public bool HasLasso => _hasLasso;
 
-        /// <summary>True when the lasso is the active weapon (equipped via inventory).</summary>
         public bool IsEquipped => _isEquipped;
 
         public static LassoThrow Instance { get; private set; }
@@ -29,14 +27,7 @@ namespace StableLevel
 
     private AudioSource _audioSource;
 
-        // ────────────────────────────────────────────────────────
-        // Bootstrap: auto-attach to the Player if not already there
-        // ────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// Call this once (e.g. from a scene manager) to ensure LassoThrow
-        /// exists on the Player. Safe to call multiple times.
-        /// </summary>
+      
         public static LassoThrow EnsureOnPlayer()
         {
             if (Instance != null) return Instance;
@@ -55,16 +46,16 @@ namespace StableLevel
             return lt;
         }
 
-        // ────────────────────────────────────────────────────────
+        
 
         private void Awake()
         {
             Instance = this;
-            // Try to cache an AudioSource if present on the same GameObject
+            
             _audioSource = GetComponent<AudioSource>();
             if (_audioSource == null)
             {
-                // don't auto-create here; we'll add one on-demand in Start so it exists on the Player object
+                
             }
         }
 
@@ -72,7 +63,7 @@ namespace StableLevel
         {
             _cam = Camera.main;
             LassoPickup.OnLassoPickedUp += OnLassoAcquired;
-            // Ensure AudioSource exists on the player GameObject so PlayOneShot will work reliably
+            
             if (_audioSource == null)
             {
                 _audioSource = gameObject.GetComponent<AudioSource>();
@@ -80,7 +71,7 @@ namespace StableLevel
                 {
                     _audioSource = gameObject.AddComponent<AudioSource>();
                     _audioSource.playOnAwake = false;
-                    _audioSource.spatialBlend = 0f; // 2D sound by default
+                    _audioSource.spatialBlend = 0f; 
                 }
             }
         }
@@ -99,7 +90,7 @@ namespace StableLevel
 
         public void Equip()
         {
-            _hasLasso = true;   // force — the inventory already confirmed pickup
+            _hasLasso = true;   
             _isEquipped = true;
             Debug.Log($"LassoThrow: lasso equipped. hasLasso={_hasLasso}, prefab={(lassoProjectilePrefab != null ? lassoProjectilePrefab.name : "NULL")}");
         }
@@ -138,7 +129,7 @@ namespace StableLevel
         {
             if (_cam == null) _cam = Camera.main;
 
-            // ScreenToWorldPoint needs z = distance from camera to the game plane
+            
             Vector3 mouseScreenPos = Input.mousePosition;
             mouseScreenPos.z = Mathf.Abs(_cam.transform.position.z);
             Vector3 mouseWorldPos = _cam.ScreenToWorldPoint(mouseScreenPos);
