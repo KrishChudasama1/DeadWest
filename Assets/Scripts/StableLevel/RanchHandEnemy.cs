@@ -21,6 +21,12 @@ public class RanchHandEnemy : MonoBehaviour
     [Header("XP")]
     public int xpOnDeath = 3;
     public GameObject xpPickupPrefab;
+    [Header("Death Goop")]
+    [Tooltip("Prefab for the slow-goop zone spawned when this enemy dies.")]
+    public GameObject slowZonePrefab;
+    [Tooltip("Multiplier applied to player speed while inside the goop (0.7 = 30% slow).")]
+    public float slowMultiplier = 0.7f;
+    // goop is persistent; slow only applies while player is inside
 
     private Transform player;
     private Animator animator;
@@ -134,7 +140,20 @@ public class RanchHandEnemy : MonoBehaviour
     void Die()
     {
         DropOrGrantXP();
+        SpawnSlowZone();
         Destroy(gameObject);
+    }
+
+    void SpawnSlowZone()
+    {
+        if (slowZonePrefab == null) return;
+
+        GameObject goop = Instantiate(slowZonePrefab, transform.position, Quaternion.identity);
+        SlowZone sz = goop.GetComponent<SlowZone>();
+        if (sz != null)
+        {
+            sz.playerSpeedMultiplier = slowMultiplier;
+        }
     }
 
     void DropOrGrantXP()
