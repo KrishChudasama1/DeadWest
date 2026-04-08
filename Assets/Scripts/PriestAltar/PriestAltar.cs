@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class PriestAltar : MonoBehaviour
 {
@@ -13,9 +13,9 @@ public class PriestAltar : MonoBehaviour
     public TextMeshProUGUI interactPrompt;
     public TextMeshProUGUI altarText;
 
-    [Header("Victory Screen")]
-    public GameObject victoryScreen;
-    public TextMeshProUGUI victoryText;
+    [Header("Video")]
+    public GameObject videoScreen;
+    public VideoPlayer videoPlayer;
 
     private Transform player;
     private bool priestSpawned = false;
@@ -35,9 +35,8 @@ public class PriestAltar : MonoBehaviour
             altarText.text = "Place down the relics";
         }
 
-        // Hide victory screen at start
-        if (victoryScreen != null)
-            victoryScreen.SetActive(false);
+        if (videoScreen != null)
+            videoScreen.SetActive(false);
     }
 
     void Update()
@@ -47,7 +46,6 @@ public class PriestAltar : MonoBehaviour
         float dist = Vector2.Distance(transform.position, player.position);
         bool inRange = dist <= interactRange;
 
-        // Check if the priest has been killed
         if (priestSpawned && spawnedPriest == null && !priestDead)
         {
             priestDead = true;
@@ -55,7 +53,6 @@ public class PriestAltar : MonoBehaviour
                 altarText.text = "The curse has been weakened...";
         }
 
-        // Show correct prompt depending on state
         if (interactPrompt != null)
         {
             interactPrompt.gameObject.SetActive(inRange);
@@ -71,13 +68,12 @@ public class PriestAltar : MonoBehaviour
             }
         }
 
-        // Handle Y press
         if (inRange && Input.GetKeyDown(KeyCode.Y))
         {
             if (!priestSpawned)
                 SpawnPriest();
             else if (priestDead)
-                ShowVictoryScreen();
+                ShowVictoryVideo();
         }
     }
 
@@ -103,26 +99,71 @@ public class PriestAltar : MonoBehaviour
         if (interactPrompt != null)
             interactPrompt.gameObject.SetActive(false);
 
+        ChurchMusicManager.SwitchToBossMusic();
+
         Debug.Log("Corrupted Priest spawned!");
     }
 
-    void ShowVictoryScreen()
+    void ShowVictoryVideo()
     {
-        if (victoryScreen != null)
-            victoryScreen.SetActive(true);
-
-        if (victoryText != null)
-            victoryText.text = "Congratulations, you have lifted the curse";
-
         if (altarText != null)
             altarText.gameObject.SetActive(false);
 
         if (interactPrompt != null)
             interactPrompt.gameObject.SetActive(false);
 
-        // Freeze the game
-        Time.timeScale = 0f;
+        GameObject playerCanvas = GameObject.Find("PlayerCanvas");
+        if (playerCanvas != null)
+            playerCanvas.SetActive(false);
 
-        Debug.Log("Victory!");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            MonoBehaviour[] scripts = playerObj.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in scripts)
+            {
+                if (script.GetType().Name == "Ammohud" ||
+                    script.GetType().Name == "AmmoHud" ||
+                    script.GetType().Name == "AmmoHUD")
+                {
+                    script.enabled = false;
+                    break;
+                }
+            }
+
+            PlayerMovement pm = playerObj.GetComponent<PlayerMovement>();
+            if (pm != null) pm.enabled = false;
+
+            PlayerShooting ps = playerObj.GetComponent<PlayerShooting>();
+            if (ps != null) ps.enabled = false;
+        }
+
+        if (videoScreen != null)
+            videoScreen.SetActive(true);
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.targetTexture.Release();
+            videoPlayer.time = 0;
+            videoPlayer.timeReference = VideoTimeReference.InternalTime;
+            videoPlayer.isLooping = false;
+            videoPlayer.Play();
+            videoPlayer.loopPointReached += OnVideoFinished;
+        }
+
+        Time.timeScale = 1f;
+        Debug.Log("Playing victory video!");
+    }
+
+    void OnVideoFinished(VideoPlayer vp)
+    {
+        vp.Pause();
+        vp.time = vp.length - 0.05;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, interactRange);
     }
 }
