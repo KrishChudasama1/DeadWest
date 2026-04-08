@@ -8,6 +8,7 @@ public class GraveInteraction : MonoBehaviour
     public float digDuration = 2f;
     public GameObject interactPrompt;
     public Sprite dugSprite;
+    public AudioClip digSound;
     [SerializeField] private ImagePopup imagePopup;
 
     private bool playerNearby = false;
@@ -15,10 +16,12 @@ public class GraveInteraction : MonoBehaviour
     private PlayerMovement playerMovement;
     private Animator playerAnimator;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -66,7 +69,17 @@ public class GraveInteraction : MonoBehaviour
         if (playerAnimator != null)
             playerAnimator.SetBool("IsDigging", true);
 
+        if (audioSource != null && digSound != null)
+        {
+            audioSource.clip = digSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+
         yield return new WaitForSeconds(digDuration);
+
+        if (audioSource != null)
+            audioSource.Stop();
 
         if (playerAnimator != null)
             playerAnimator.SetBool("IsDigging", false);
