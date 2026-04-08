@@ -46,6 +46,10 @@ public class WaveManager : MonoBehaviour
     public bool autoStartOnLevelLoad = false;
     public float autoStartDelay = 2f;
 
+    [Header("Wave Complete Popup")]
+    [SerializeField] private bool showPopupOnAllWavesComplete = false;
+    [SerializeField] private ImagePopup waveCompletePopup;
+
     private int          currentWave      = -1;
     private bool         wavesStarted     = false;
     private bool         waveInProgress   = false;
@@ -89,7 +93,7 @@ public class WaveManager : MonoBehaviour
         {
             yield return new WaitForSeconds(waves[i].delayBeforeWave);
 
-            // ← switch to wave music when wave starts
+            //switch to wave music when wave starts
             PlayMusic(waveMusic);
 
             SpawnWave(waves[i]);
@@ -110,12 +114,6 @@ public class WaveManager : MonoBehaviour
     private void SpawnWave(Wave wave)
     {
         activeEnemies.Clear();
-
-        if (spawnPoints.Count == 0)
-        {
-            Debug.LogWarning("WaveManager has no spawn points assigned.");
-            return;
-        }
 
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
         ShuffleSpawnPoints(availableSpawnPoints);
@@ -216,9 +214,11 @@ public class WaveManager : MonoBehaviour
 
     private void OnAllWavesComplete()
     {
-        // Hook in whatever happens when all waves are done
-        // e.g. unlock a door, spawn a reward, trigger dialogue
-        Debug.Log("All waves defeated — trigger your end event here.");
+        if (showPopupOnAllWavesComplete)
+        {
+            if (waveCompletePopup != null)
+                waveCompletePopup.ShowImage();
+    }
     }
 
     public int  CurrentWave     => currentWave + 1;

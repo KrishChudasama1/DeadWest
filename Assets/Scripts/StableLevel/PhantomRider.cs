@@ -16,6 +16,9 @@ namespace StableLevel
         [Header("Health")]
         public int maxHits = 3;
 
+        [Header("Popup On Death")]
+        [SerializeField] private ImagePopup deathImagePopup;
+
         public event Action OnRiderDefeated;
 
       
@@ -189,6 +192,7 @@ namespace StableLevel
             {
                 isDefeated = true;
                 Debug.Log("PhantomRider: defeated!");
+                deathImagePopup?.ShowImage();
                 OnRiderDefeated?.Invoke();
                 // Play death neigh and stop gallop
                 if (neighClip != null && _sfxSource != null)

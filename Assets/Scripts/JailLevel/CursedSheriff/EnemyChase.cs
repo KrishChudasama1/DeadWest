@@ -33,6 +33,10 @@ public class EnemyChase : MonoBehaviour
     public AudioClip sheriffDefeatedMusic;
     public bool loopDefeatedMusic = true;
 
+    [Header("Popup On Death")]
+    [SerializeField] private bool showImagePopupOnDeath = false;
+    [SerializeField] private ImagePopup deathImagePopup;
+
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -152,6 +156,14 @@ public class EnemyChase : MonoBehaviour
         movement = Vector2.zero;
         animator.SetBool("IsMoving", false);
         animator.SetBool("IsShooting", false);
+
+        if (showImagePopupOnDeath)
+        {
+            if (deathImagePopup != null)
+                deathImagePopup.ShowImage();
+            else
+                Debug.LogWarning("EnemyChase: showImagePopupOnDeath is enabled but no ImagePopup is assigned.");
+        }
 
         SwapMusicOnDeath();
 

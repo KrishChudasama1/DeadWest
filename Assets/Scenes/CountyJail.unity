@@ -620,6 +620,7 @@ RectTransform:
   - {fileID: 1673438116}
   - {fileID: 710382212}
   - {fileID: 1423364518}
+  - {fileID: 1709069269}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1374,9 +1375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce009175110a44514b8aa5911c4974f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingEntry
-  fadeSpeed: 1.2
-  walkDistance: -0.2
+  fadeDuration: 0.8
   sceneToLoad: MainScene
+  enterKey: 101
+  fontSize: 24
+  promptColor: {r: 1, g: 1, b: 1, a: 1}
   isLocked: 0
   requiredProgressLevel: 0
 --- !u!114 &354566343
@@ -4431,6 +4434,8 @@ MonoBehaviour:
   checkInterval: 1
   autoStartOnLevelLoad: 1
   autoStartDelay: 2
+  showPopupOnAllWavesComplete: 0
+  waveCompletePopup: {fileID: 0}
 --- !u!4 &1121288157
 Transform:
   m_ObjectHideFlags: 0
@@ -5953,6 +5958,97 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1709069268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1709069269}
+  - component: {fileID: 1709069272}
+  - component: {fileID: 1709069271}
+  - component: {fileID: 1709069270}
+  m_Layer: 5
+  m_Name: RelicCollected
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1709069269
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709069268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 138468078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1709069270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709069268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e5b9d3b0eef46989c53b0d5c60c607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImagePopup
+  popupImage: {fileID: 1709069271}
+  displayDuration: 3
+  pauseGameWhileVisible: 1
+--- !u!114 &1709069271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709069268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 45e5a47d203584ee4ab72ec6d1d0cce9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1709069272
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709069268}
+  m_CullTransparentMesh: 1
 --- !u!1 &1765933939
 GameObject:
   m_ObjectHideFlags: 0
@@ -6927,9 +7023,17 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
+      propertyPath: deathImagePopup
+      value: 
+      objectReference: {fileID: 1709069270}
+    - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
       propertyPath: levelMusicSource
       value: 
       objectReference: {fileID: 1055397027}
+    - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
+      propertyPath: showImagePopupOnDeath
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6774164970738018265, guid: d948dbb9006af4a44873fdb475202817, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.99

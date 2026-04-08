@@ -8,6 +8,7 @@ public class GraveInteraction : MonoBehaviour
     public float digDuration = 2f;
     public GameObject interactPrompt;
     public Sprite dugSprite;
+    [SerializeField] private ImagePopup imagePopup;
 
     private bool playerNearby = false;
     private bool hasBeenDug = false;
@@ -80,6 +81,6 @@ public class GraveInteraction : MonoBehaviour
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
 
         if (hasRelic)
-            Debug.Log("You found the relic!");
+            imagePopup?.ShowImage();
     }
 }
