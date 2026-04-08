@@ -33,6 +33,16 @@ public class EnemyChase : MonoBehaviour
     public AudioClip sheriffDefeatedMusic;
     public bool loopDefeatedMusic = true;
 
+    [Header("Weapon Drop")]
+    [Tooltip("Prefab with a WeaponPickup component that unlocks the reward gun.")]
+    public GameObject weaponPickupPrefab;
+
+    [Tooltip("RevolverData asset to unlock when the pickup is collected.")]
+    public RevolverData weaponDropData;
+
+    [Tooltip("Spawn the weapon pickup when the sheriff dies.")]
+    public bool dropWeaponOnDeath = true;
+
     [Header("Popup On Death")]
     [SerializeField] private bool showImagePopupOnDeath = false;
     [SerializeField] private ImagePopup deathImagePopup;
@@ -165,6 +175,7 @@ public class EnemyChase : MonoBehaviour
         }
 
         SwapMusicOnDeath();
+        DropWeaponOnDeath();
 
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
@@ -184,6 +195,30 @@ public class EnemyChase : MonoBehaviour
         levelMusicSource.clip = sheriffDefeatedMusic;
         levelMusicSource.loop = loopDefeatedMusic;
         levelMusicSource.Play();
+    }
+
+    private void DropWeaponOnDeath()
+    {
+        if (!dropWeaponOnDeath)
+            return;
+
+        if (weaponPickupPrefab == null || weaponDropData == null)
+        {
+            Debug.LogWarning("EnemyChase: weapon drop is enabled but the prefab or RevolverData is missing.");
+            return;
+        }
+
+        GameObject drop = Instantiate(weaponPickupPrefab, transform.position, Quaternion.identity);
+        WeaponPickup pickup = drop.GetComponent<WeaponPickup>();
+
+        if (pickup != null)
+        {
+            pickup.SetWeaponData(weaponDropData);
+        }
+        else
+        {
+            Debug.LogWarning("EnemyChase: weaponPickupPrefab is missing a WeaponPickup component.");
+        }
     }
 
     private void TriggerHitFlash()

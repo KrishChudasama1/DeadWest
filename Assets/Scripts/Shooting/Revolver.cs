@@ -199,11 +199,8 @@ public class Revolver : MonoBehaviour, IWeapon
         _currentAmmo--;
         _lastShotTime = Time.time;
 
-		if (gunshotSound != null)
-        	_audioSource.PlayOneShot(gunshotSound);
-
         SetAnimTrigger(GetShootTrigger(shootDirection));
-        SpawnBullet(shootDirection);
+        StartCoroutine(FireBurst(shootDirection));
     }
 
     private void Holster()
@@ -329,21 +326,44 @@ public class Revolver : MonoBehaviour, IWeapon
         return center + direction.normalized * muzzleDistance;
     }
 
-    private void SpawnBullet(Vector2 direction)
+    private IEnumerator FireBurst(Vector2 direction)
     {
         if (_runtimeBulletPrefab == null)
         {
             Debug.LogWarning("[Revolver] No bullet prefab assigned in RevolverData.");
-            return;
+            yield break;
         }
 
-        Vector2    spawnPos = GetMuzzlePosition(direction);
+        int shots = Mathf.Max(1, _data.shotsPerTriggerPull);
+        float interval = shots > 1 ? Mathf.Max(0f, _data.fireRate / shots) : 0f;
+
+        for (int i = 0; i < shots; i++)
+        {
+            SpawnBurstBullet(direction, i, shots);
+
+            if (i < shots - 1 && interval > 0f)
+                yield return new WaitForSeconds(interval);
+        }
+    }
+
+    private void SpawnBurstBullet(Vector2 direction, int shotIndex, int totalShots)
+    {
+        if (gunshotSound != null)
+            _audioSource.PlayOneShot(gunshotSound);
+
+        Vector2 spreadAxis = new Vector2(-direction.y, direction.x);
+        if (spreadAxis.sqrMagnitude < 0.0001f)
+            spreadAxis = Vector2.up;
+        spreadAxis.Normalize();
+
+        float centeredIndex = shotIndex - (totalShots - 1) * 0.5f;
+        Vector2 offset = spreadAxis * centeredIndex * _data.shotSpread;
+        Vector2 spawnPos = GetMuzzlePosition(direction) + offset;
+
         GameObject bulletGO = Instantiate(_runtimeBulletPrefab, spawnPos, Quaternion.identity);
-        Bullet     bullet   = bulletGO.GetComponent<Bullet>();
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
             bullet.Init(direction, _data.damage);
-        else
-            Debug.LogWarning("[Revolver] Bullet prefab is missing a Bullet component.");
     }
 }

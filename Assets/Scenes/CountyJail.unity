@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d00f91395edf412f8ae2c633daf283b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinManager
-  coins: 0
+  coins: 1
   coinText: {fileID: 894240983}
 --- !u!4 &519427071
 Transform:
@@ -3333,18 +3333,27 @@ MonoBehaviour:
   gunEntries:
   - gunData: {fileID: 11400000, guid: 64052a5fd826346c8a7ff454e92d7140, type: 2}
     unlockedAtStart: 1
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   - gunData: {fileID: 11400000, guid: 9638cfd36ae2643cdaafaa8f3cec284f, type: 2}
     unlockedAtStart: 0
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   - gunData: {fileID: 11400000, guid: 2fc37544dc8d446f7aea2634b681573d, type: 2}
     unlockedAtStart: 0
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   - gunData: {fileID: 11400000, guid: 18adbaab29fe049e4a8df885dbc49fb2, type: 2}
     unlockedAtStart: 0
+    purchasable: 1
+    goldCost: 0
+    requiredLevel: 0
+  - gunData: {fileID: 11400000, guid: 9b3240523ac1242fab61c4f5cc6526ca, type: 2}
+    unlockedAtStart: 0
+    purchasable: 0
     goldCost: 0
     requiredLevel: 0
   windowRect:
@@ -3352,7 +3361,7 @@ MonoBehaviour:
     x: 24
     y: 24
     width: 360
-    height: 300
+    height: 350
   shopWindowRect:
     serializedVersion: 2
     x: 410
@@ -7026,6 +7035,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
+      propertyPath: weaponDropData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3240523ac1242fab61c4f5cc6526ca, type: 2}
+    - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
       propertyPath: deathImagePopup
       value: 
       objectReference: {fileID: 1709069270}
@@ -7033,6 +7046,10 @@ PrefabInstance:
       propertyPath: levelMusicSource
       value: 
       objectReference: {fileID: 1055397027}
+    - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
+      propertyPath: weaponPickupPrefab
+      value: 
+      objectReference: {fileID: 5964855622078173355, guid: 0d028ac2d4298404d84f8a6bf85918b8, type: 3}
     - target: {fileID: 6294724447253198647, guid: d948dbb9006af4a44873fdb475202817, type: 3}
       propertyPath: showImagePopupOnDeath
       value: 1

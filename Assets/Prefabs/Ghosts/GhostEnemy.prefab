@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2552997607622652552}
   - component: {fileID: 1949278781946703561}
   - component: {fileID: 2670689214073538280}
+  - component: {fileID: -9185337872694411784}
   m_Layer: 6
   m_Name: GhostEnemy
   m_TagString: Enemy
@@ -200,3 +201,19 @@ MonoBehaviour:
   maxHealth: 50
   xpOnDeath: 2
   xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}
+  coinPrefab: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
+  coinDropAmount: 1
+  coinDropSpread: 0.25
+--- !u!114 &-9185337872694411784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022301192757816360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2ab2ded6b884c9a9577280271c77b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DepthSorter
+  sortingOffset: 0

@@ -6,11 +6,13 @@ public class RestlessUndeadMovement : MonoBehaviour
     public float detectionRange = 8f;
     public float attackRange = 1.5f;
     public int attackDamage = 10;
+    public AudioClip attackSound;
 
     private Transform player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private AudioSource audioSource;
     private bool isAttacking = false;
 
     void Start()
@@ -18,6 +20,7 @@ public class RestlessUndeadMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -60,6 +63,9 @@ public class RestlessUndeadMovement : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer <= attackRange)
         {
+            if (audioSource != null && attackSound != null)
+                audioSource.PlayOneShot(attackSound);
+
             PlayerHealth playerHealth = player.GetComponentInParent<PlayerHealth>();
             if (playerHealth != null)
                 playerHealth.TakeDamage(attackDamage);
@@ -73,6 +79,7 @@ public class RestlessUndeadMovement : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
     void OnDisable()
     {
         if (rb != null)

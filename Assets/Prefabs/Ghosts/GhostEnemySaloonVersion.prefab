@@ -201,6 +201,9 @@ MonoBehaviour:
   maxHealth: 50
   xpOnDeath: 2
   xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}
+  coinPrefab: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
+  coinDropAmount: 1
+  coinDropSpread: 0.25
 --- !u!114 &-7827105573612384680
 MonoBehaviour:
   m_ObjectHideFlags: 0
