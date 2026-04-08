@@ -855,18 +855,22 @@ MonoBehaviour:
   gunEntries:
   - gunData: {fileID: 11400000, guid: 64052a5fd826346c8a7ff454e92d7140, type: 2}
     unlockedAtStart: 1
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   - gunData: {fileID: 11400000, guid: 9638cfd36ae2643cdaafaa8f3cec284f, type: 2}
     unlockedAtStart: 0
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   - gunData: {fileID: 11400000, guid: 2fc37544dc8d446f7aea2634b681573d, type: 2}
     unlockedAtStart: 0
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   - gunData: {fileID: 11400000, guid: 18adbaab29fe049e4a8df885dbc49fb2, type: 2}
     unlockedAtStart: 0
+    purchasable: 1
     goldCost: 0
     requiredLevel: 0
   windowRect:
@@ -6308,8 +6312,10 @@ MonoBehaviour:
   promptColor: {r: 1, g: 1, b: 1, a: 1}
   isLocked: 0
   requiredProgressLevel: 0
+  completionSceneNames: []
   lockedMessage: Complete the previous level first!
   lockedMessageDuration: 2
+  completedMessage: You already collected this relic.
 --- !u!4 &1403463273
 Transform:
   m_ObjectHideFlags: 0
@@ -6397,7 +6403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16592d3179f814f2cad272737474be58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteTrigger
-  newProgressLevel: 1
+  updatesGameProgress: 0
+  newProgressLevel: 2
 --- !u!1 &1445582422
 GameObject:
   m_ObjectHideFlags: 0

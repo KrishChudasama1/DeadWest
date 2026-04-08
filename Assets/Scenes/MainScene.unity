@@ -34683,7 +34683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418106321861979947, guid: 756b43ead948644efbf948df53e73ce6, type: 3}
       propertyPath: requiredProgressLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37167,7 +37167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418106321861979947, guid: 756b43ead948644efbf948df53e73ce6, type: 3}
       propertyPath: requiredProgressLevel
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44881,8 +44881,8 @@ Transform:
   m_Children:
   - {fileID: 1553249705}
   - {fileID: 784098665}
-  - {fileID: 1288308054}
   - {fileID: 1158143243}
+  - {fileID: 1288308054}
   - {fileID: 2028579661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54945,7 +54945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418106321861979947, guid: 756b43ead948644efbf948df53e73ce6, type: 3}
       propertyPath: requiredProgressLevel
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55031,7 +55031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5418106321861979947, guid: 756b43ead948644efbf948df53e73ce6, type: 3}
       propertyPath: requiredProgressLevel
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
