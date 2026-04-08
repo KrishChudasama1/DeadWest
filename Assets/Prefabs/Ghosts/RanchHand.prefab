@@ -201,6 +201,9 @@ MonoBehaviour:
   maxHealth: 30
   xpOnDeath: 3
   xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}
+  coinPrefab: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
+  coinDropAmount: 1
+  coinDropSpread: 0.25
   slowZonePrefab: {fileID: 4639042160775619927, guid: fe4e8bec5a53a4354aff1d7e6cf7a899, type: 3}
   slowMultiplier: 0.3
   deathClip: {fileID: 8300000, guid: 909fdbf864264400f93c25bac506fa82, type: 3}

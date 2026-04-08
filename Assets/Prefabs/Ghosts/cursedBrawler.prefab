@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7067209683626844180}
   - component: {fileID: 8906966160649137970}
   - component: {fileID: 5327729944313512107}
+  - component: {fileID: -4497695812469439393}
   m_Layer: 6
   m_Name: cursedBrawler
   m_TagString: Enemy
@@ -198,6 +199,9 @@ MonoBehaviour:
   maxHealth: 100
   xpOnDeath: 5
   xpPickupPrefab: {fileID: 6456485486044720356, guid: d73084ff46f6b46798f5f9a7fb30f50a, type: 3}
+  coinPrefab: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
+  coinDropAmount: 1
+  coinDropSpread: 0.25
   chaseRange: 40
   meleeRange: 2.4
   moveSpeed: 3
@@ -326,3 +330,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4497695812469439393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524942815214291366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2ab2ded6b884c9a9577280271c77b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DepthSorter
+  sortingOffset: 0

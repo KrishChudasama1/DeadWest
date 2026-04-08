@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d00f91395edf412f8ae2c633daf283b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinManager
-  coins: 0
+  coins: 1
   coinText: {fileID: 894240983}
 --- !u!4 &519427071
 Transform:
