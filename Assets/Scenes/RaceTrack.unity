@@ -939,7 +939,7 @@ MonoBehaviour:
   phantomRider: {fileID: 1822088567}
   playerSpawnPoint: {fileID: 733521530}
   riderActivateDelay: 3
-  duelTimeLimit: 30
+  duelTimeLimit: 15
 --- !u!4 &883632717
 Transform:
   m_ObjectHideFlags: 0
@@ -2130,9 +2130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce009175110a44514b8aa5911c4974f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingEntry
-  fadeSpeed: 1.2
-  walkDistance: 0.75
+  fadeDuration: 0.8
   sceneToLoad: MainScene
+  enterKey: 101
+  fontSize: 24
+  promptColor: {r: 1, g: 1, b: 1, a: 1}
   isLocked: 0
   requiredProgressLevel: 0
 --- !u!61 &1509701875
@@ -2600,7 +2602,7 @@ MonoBehaviour:
   - {fileID: 1754493333}
   - {fileID: 1435242762}
   - {fileID: 1720804588}
-  moveSpeed: 6
+  moveSpeed: 10
   maxHits: 3
   neighClip: {fileID: 8300000, guid: 80eb86ff081934ae7a5bf14d17b7dd65, type: 3}
   gallopLoopClip: {fileID: 8300000, guid: 92125b80c2f454dd5b8832e6000324d1, type: 3}
