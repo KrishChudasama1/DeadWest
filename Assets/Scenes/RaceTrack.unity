@@ -433,7 +433,7 @@ MonoBehaviour:
     x: 410
     y: 24
     width: 320
-    height: 220
+    height: 300
   hasLasso: 1
   lassoProjectilePrefab: {fileID: 8008204981843478324, guid: 3bef31dc381644e1fb893b718a137291, type: 3}
 --- !u!4 &412416260
