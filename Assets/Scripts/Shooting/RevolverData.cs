@@ -19,6 +19,14 @@ public class RevolverData : ScriptableObject
     [Tooltip("Damage dealt per bullet.")]
     public int   damage      = 10;
 
+    [Header("Firing Pattern")]
+    [Tooltip("Number of bullets fired per trigger pull.")]
+    [Min(1)]
+    public int shotsPerTriggerPull = 1;
+
+    [Tooltip("Side-to-side spacing between bullets when multiple shots are fired.")]
+    public float shotSpread = 0.08f;
+
     [Header("Bullet")]
     [Tooltip("Swap to change bullet appearance for this gun.")]
     public GameObject bulletPrefab;

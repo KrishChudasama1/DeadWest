@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
     {
         public RevolverData gunData;
         public bool unlockedAtStart = true;
+        public bool purchasable = true;
         public int goldCost = 0;
         public int requiredLevel = 0;
 
@@ -48,8 +49,7 @@ public class InventoryManager : MonoBehaviour
     private bool _lassoEquipped = false;
 
     private void Awake()
-    {
-        //  Singleton: persist across scenes, destroy duplicates 
+    { 
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -268,6 +268,12 @@ public class InventoryManager : MonoBehaviour
                     continue;
                 }
 
+                if (!entry.purchasable)
+                {
+                    GUILayout.Label($"{gunName}");
+                    continue;
+                }
+
                 bool meetsLevel = currentLevel >= entry.requiredLevel;
                 bool canAfford = currentGold >= entry.goldCost;
                 string buyLabel = $"Buy {gunName} ({entry.goldCost}g, Lv {entry.requiredLevel})";
@@ -375,7 +381,7 @@ public class InventoryManager : MonoBehaviour
             return;
 
         GunEntry entry = gunEntries[index];
-        if (entry.gunData == null || entry.isUnlocked)
+        if (entry.gunData == null || entry.isUnlocked || !entry.purchasable)
             return;
 
         int currentLevel = GetCurrentLevel();
