@@ -2131,6 +2131,7 @@ GameObject:
   - component: {fileID: 387387495}
   - component: {fileID: 387387497}
   - component: {fileID: 387387496}
+  - component: {fileID: 387387498}
   m_Layer: 5
   m_Name: RelicCollected
   m_TagString: Untagged
@@ -2195,6 +2196,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387387494}
   m_CullTransparentMesh: 1
+--- !u!114 &387387498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387387494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e5b9d3b0eef46989c53b0d5c60c607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImagePopup
+  popupImage: {fileID: 387387496}
+  displayDuration: 3
+  pauseGameWhileVisible: 1
 --- !u!1 &436043548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5936,6 +5952,8 @@ MonoBehaviour:
   checkInterval: 1
   autoStartOnLevelLoad: 0
   autoStartDelay: 2
+  showPopupOnAllWavesComplete: 1
+  waveCompletePopup: {fileID: 387387498}
 --- !u!4 &1325429968
 Transform:
   m_ObjectHideFlags: 0
