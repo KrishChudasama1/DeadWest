@@ -55,7 +55,6 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 desiredPos = target.position + offset;
 
-        // Deadzone check
         float dist = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), 
                                       new Vector2(desiredPos.x, desiredPos.y));
         
@@ -63,7 +62,6 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 smoothed = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
 
-        // Clamp to world bounds
         if (useBounds)
         {
             float camHeight = Camera.main.orthographicSize;

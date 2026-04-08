@@ -69,11 +69,9 @@ namespace StableLevel
         {
             if (!_timerRunning && !_timedOut) return;
 
-            // Timer label
             float displayTime = Mathf.Max(0f, _timeRemaining);
             string timerText = _timedOut ? "TIME'S UP!" : $"{displayTime:F1}s";
 
-            // Style
             GUIStyle style = new GUIStyle(GUI.skin.label);
             style.fontSize = 36;
             style.fontStyle = FontStyle.Bold;
@@ -123,7 +121,6 @@ namespace StableLevel
                 phantomRider.Activate();
                 Debug.Log("RaceTrackManager: Phantom Rider activated — fight!");
 
-                // Start the duel countdown
                 _timeRemaining = duelTimeLimit;
                 _timerRunning = true;
                 Debug.Log($"RaceTrackManager: Duel timer started — {duelTimeLimit}s to defeat the rider!");

@@ -17,13 +17,13 @@ public class WaveManager : MonoBehaviour
     public class Wave
     {
         public List<SpawnEntry> enemies;
-        public float            delayBeforeWave = 3f; // seconds before this wave spawns
+        public float            delayBeforeWave = 3f;
     }
 
     [Header("Music")]
     public AudioClip normalMusic;
     public AudioClip waveMusic;
-    public float fadeDuration = 1.5f; // how long the crossfade takes
+    public float fadeDuration = 1.5f;
 
     private AudioSource musicSource;
     private Coroutine fadeCoroutine;
@@ -40,7 +40,7 @@ public class WaveManager : MonoBehaviour
     
     
     [Header("Settings")]
-    public float checkInterval = 1f; // how often to check if wave is cleared
+    public float checkInterval = 1f;
 
     [Header("Auto Start")]
     public bool autoStartOnLevelLoad = false;
@@ -59,7 +59,6 @@ public class WaveManager : MonoBehaviour
     {
         instance = this;
 
-        // Grab the AudioSource from the Main Camera
         musicSource = Camera.main.GetComponent<AudioSource>();
     }
 
@@ -93,7 +92,6 @@ public class WaveManager : MonoBehaviour
         {
             yield return new WaitForSeconds(waves[i].delayBeforeWave);
 
-            //switch to wave music when wave starts
             PlayMusic(waveMusic);
 
             SpawnWave(waves[i]);
@@ -103,7 +101,6 @@ public class WaveManager : MonoBehaviour
             Debug.Log($"Wave {i + 1} cleared!");
         }
 
-        //switch back to normal music when all waves done
         PlayMusic(normalMusic);
 
         Debug.Log("All waves complete!");
@@ -160,7 +157,6 @@ public class WaveManager : MonoBehaviour
         {
             yield return new WaitForSeconds(checkInterval);
 
-            // Remove any destroyed enemies from the list
             activeEnemies.RemoveAll(e => e == null);
 
             if (activeEnemies.Count == 0)
@@ -186,7 +182,6 @@ public class WaveManager : MonoBehaviour
     {
         float startVolume = musicSource.volume;
 
-        // Fade out current track
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {

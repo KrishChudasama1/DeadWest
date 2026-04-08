@@ -102,7 +102,6 @@ public class EnemyChase : MonoBehaviour
 
             animator.SetBool("IsMoving", true);
 
-            // Use dominant axis so directional states don't fight each other.
             if (Mathf.Abs(movement.y) >= Mathf.Abs(movement.x))
             {
                 facingDirection = new Vector2(0f, Mathf.Sign(movement.y));

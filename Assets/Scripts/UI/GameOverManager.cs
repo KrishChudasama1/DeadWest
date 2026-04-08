@@ -35,13 +35,13 @@ public class GameOverManager : MonoBehaviour
         if (instance != null && instance.gameOverPanel != null)
         {
             instance.gameOverPanel.SetActive(true);
-            Time.timeScale = 0f; // Pause the game
+            Time.timeScale = 0f;
         }
     }
 
     public void OnRespawnButtonClicked()
     {
-        Time.timeScale = 1f; // Resume time before loading
+        Time.timeScale = 1f;
         PlayerHealth.PrepareForRespawn();
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
@@ -49,7 +49,7 @@ public class GameOverManager : MonoBehaviour
 
     public void OnQuitButtonClicked()
     {
-        Time.timeScale = 1f; // Resume time before quitting
+        Time.timeScale = 1f;
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else

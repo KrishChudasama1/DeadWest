@@ -22,7 +22,6 @@ public class XPPickup : MonoBehaviour
             }
             else
             {
-                // Use singleton helper as a fallback
                 XPManager.AddExperience(xpValue);
             }
 

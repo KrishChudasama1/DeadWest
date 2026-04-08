@@ -126,7 +126,6 @@ public class InventoryManager : MonoBehaviour
     {
         GUILayout.Space(8f);
 
-        // Items section
         GUILayout.Label("Items:");
         if (hasLasso)
         {
@@ -315,7 +314,6 @@ public class InventoryManager : MonoBehaviour
 
         revolver.Equip(selectedEntry.gunData);
 
-        // Unequip lasso when a gun is equipped
         if (_lassoEquipped)
         {
             _lassoEquipped = false;
@@ -330,7 +328,6 @@ public class InventoryManager : MonoBehaviour
     {
         _lassoEquipped = !_lassoEquipped;
 
-        // Ensure LassoThrow exists on the Player (adds it at runtime if missing)
         var lassoThrow = StableLevel.LassoThrow.Instance;
         if (lassoThrow == null)
             lassoThrow = StableLevel.LassoThrow.EnsureOnPlayer();
@@ -342,7 +339,6 @@ public class InventoryManager : MonoBehaviour
             return;
         }
 
-        // Make sure it has the projectile prefab
         if (lassoThrow.lassoProjectilePrefab == null && lassoProjectilePrefab != null)
             lassoThrow.lassoProjectilePrefab = lassoProjectilePrefab;
 

@@ -134,7 +134,6 @@ public class XPManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // When a new scene is loaded, UI objects may be recreated — rebind them.
         EnsureUIReferences();
         UpdateUI();
     }

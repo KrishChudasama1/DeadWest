@@ -46,7 +46,6 @@ public class Bullet : MonoBehaviour
         if (Vector2.Distance(_spawnPosition, _rb.position) >= maxRange)
             Destroy(gameObject);
 
-        // Stop ignoring walls after the timer expires
         if (_ignoreWalls)
         {
             _ignoreWallsTimer -= Time.fixedDeltaTime;
@@ -57,7 +56,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-    // let slow-goop zones pass through bullets
     if (other.GetComponentInParent<global::SlowZone>() != null) return;
         if (_owner != null && (other.transform == _owner || other.transform.IsChildOf(_owner)))
             return;
@@ -85,7 +83,6 @@ public class Bullet : MonoBehaviour
         
         if (other.CompareTag("Player")) return;
 
-        // Ignore walls briefly after spawn so corner bullets don't die instantly
         if (_ignoreWalls && other.CompareTag("Wall")) return;
 
         GhostEnemy ghost = other.GetComponentInParent<GhostEnemy>();

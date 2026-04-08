@@ -21,13 +21,10 @@ namespace StableLevel
         [Header("Spawn Points")]
         public Transform[] spawnPoints;
 
-        // Tracks living enemies spawned by this spawner
         private List<GameObject> livingEnemies = new List<GameObject>();
 
-        // Fired when the last enemy of the last wave dies
         public event Action OnAllWavesCleared;
 
-    // Public flag other systems can query to know if spawning finished
     public bool AllWavesCleared { get; private set; } = false;
 
         private Coroutine spawnRoutine;
@@ -72,7 +69,6 @@ namespace StableLevel
                 if (wave.delayBeforeWave > 0f)
                     yield return new WaitForSeconds(wave.delayBeforeWave);
 
-                // Spawn the wave
                 for (int i = 0; i < Mathf.Max(0, wave.count); i++)
                 {
                     Transform spawnPoint = (spawnPoints != null && spawnPoints.Length > 0)
@@ -89,7 +85,6 @@ namespace StableLevel
                         yield return null;
                 }
 
-                // Wait until all enemies from this wave are dead before starting the next wave
                 while (true)
                 {
                     livingEnemies.RemoveAll(e => e == null);
@@ -99,7 +94,6 @@ namespace StableLevel
                 }
             }
 
-            // Wait until all spawned enemies are dead (clean up nulls periodically)
             while (true)
             {
                 livingEnemies.RemoveAll(e => e == null);
@@ -108,7 +102,6 @@ namespace StableLevel
                 yield return new WaitForSeconds(0.25f);
             }
 
-            // Fire event to notify listeners that all waves have been cleared
             AllWavesCleared = true;
             OnAllWavesCleared?.Invoke();
             spawnRoutine = null;

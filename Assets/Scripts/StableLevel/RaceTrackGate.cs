@@ -80,13 +80,11 @@ namespace StableLevel
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!isUnlocked || isLoading) return;
-            // optional safety: disallow entry until LevelManager unlocked the gate
             if (requireWavesCleared && !isUnlocked) return;
             if (!other.CompareTag("Player")) return;
 
             isLoading = true;
 
-            // Lock player movement during transition
             PlayerMovement pm = other.GetComponent<PlayerMovement>();
             if (pm != null)
                 pm.SetMovementLocked(true);
@@ -97,7 +95,6 @@ namespace StableLevel
 
         private IEnumerator TransitionToRaceTrack()
         {
-            // Fade to black using the persistent ScreenFader
             if (ScreenFader.Instance != null)
                 yield return StartCoroutine(ScreenFader.Instance.FadeOut(fadeDuration));
 

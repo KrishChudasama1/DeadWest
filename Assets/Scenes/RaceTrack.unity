@@ -960,6 +960,7 @@ MonoBehaviour:
   popupImage: {fileID: 863869736}
   displayDuration: 3
   pauseGameWhileVisible: 1
+  progressLevelToSet: 2
 --- !u!114 &863869736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2228,6 +2229,8 @@ MonoBehaviour:
   promptColor: {r: 1, g: 1, b: 1, a: 1}
   isLocked: 0
   requiredProgressLevel: 0
+  lockedMessage: Complete the previous level first!
+  lockedMessageDuration: 2
 --- !u!61 &1509701875
 BoxCollider2D:
   m_ObjectHideFlags: 0
