@@ -33340,7 +33340,7 @@ MonoBehaviour:
   typingSpeed: 0.04
   triggerDistance: 2
   interactKey: 121
-  fadeAfterDialogue: 0
+  fadeAfterDialogue: 1
   fadeDelay: 0.2
   fadeDuration: 0.8
   autoStart: 0
@@ -39184,16 +39184,21 @@ MonoBehaviour:
   - gunData: {fileID: 11400000, guid: 9638cfd36ae2643cdaafaa8f3cec284f, type: 2}
     unlockedAtStart: 0
     purchasable: 1
-    goldCost: 0
-    requiredLevel: 0
+    goldCost: 6
+    requiredLevel: 2
   - gunData: {fileID: 11400000, guid: 2fc37544dc8d446f7aea2634b681573d, type: 2}
     unlockedAtStart: 0
     purchasable: 1
-    goldCost: 0
-    requiredLevel: 0
+    goldCost: 12
+    requiredLevel: 3
   - gunData: {fileID: 11400000, guid: 18adbaab29fe049e4a8df885dbc49fb2, type: 2}
     unlockedAtStart: 0
     purchasable: 1
+    goldCost: 20
+    requiredLevel: 5
+  - gunData: {fileID: 11400000, guid: 9b3240523ac1242fab61c4f5cc6526ca, type: 2}
+    unlockedAtStart: 0
+    purchasable: 0
     goldCost: 0
     requiredLevel: 0
   windowRect:
@@ -39201,13 +39206,13 @@ MonoBehaviour:
     x: 24
     y: 24
     width: 360
-    height: 300
+    height: 350
   shopWindowRect:
     serializedVersion: 2
     x: 410
     y: 24
     width: 320
-    height: 300
+    height: 350
   hasLasso: 0
   lassoProjectilePrefab: {fileID: 0}
 --- !u!4 &1294948225
@@ -43595,7 +43600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefab: {fileID: 6022301192757816360, guid: 0174fec38d9bf43acb3954d510b7e7ed, type: 3}
-  enemiesToSpawn: 6
+  enemiesToSpawn: 3
   timeBetweenSpawns: 4
   spawnOffset: 1.5
   dialogueTrigger: {fileID: 575282386}
