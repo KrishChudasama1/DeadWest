@@ -108,12 +108,10 @@ public class CorruptedPriest : MonoBehaviour
 
         float distToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // Don't interrupt busy states
         if (currentState == PriestState.Stunned ||
             currentState == PriestState.Casting)
             return;
 
-        // Out of chase range — go back to idle/patrol
         if (distToPlayer > chaseRange)
         {
             if (currentState != PriestState.Idle)
@@ -122,7 +120,6 @@ public class CorruptedPriest : MonoBehaviour
             return;
         }
 
-        // In chase range — move and attack
         if (currentState == PriestState.Idle)
             ChangeState(PriestState.Moving);
 
@@ -140,10 +137,6 @@ public class CorruptedPriest : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
     }
 
-    // --------------------------------------------------
-    // MOVEMENT
-    // --------------------------------------------------
-
     private void HandleMoving(float distToPlayer)
     {
         if (player == null) return;
@@ -151,7 +144,6 @@ public class CorruptedPriest : MonoBehaviour
         Vector2 direction = ((Vector2)player.position - rb.position).normalized;
         UpdateFacing(direction);
 
-        // Stay at cast range — don't walk into the player
         if (distToPlayer > castRange)
             moveDirection = direction;
         else
@@ -203,10 +195,6 @@ public class CorruptedPriest : MonoBehaviour
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
-    // --------------------------------------------------
-    // CASTING
-    // --------------------------------------------------
-
     private bool CanCast(float distToPlayer)
     {
         return castCooldownTimer <= 0f && distToPlayer <= castRange;
@@ -222,7 +210,6 @@ public class CorruptedPriest : MonoBehaviour
         ChangeState(PriestState.Casting);
         rb.linearVelocity = Vector2.zero;
 
-        // Face the player before casting
         Vector2 dir = ((Vector2)player.position - rb.position).normalized;
         UpdateFacing(dir);
 
@@ -230,7 +217,6 @@ public class CorruptedPriest : MonoBehaviour
 
         yield return new WaitForSeconds(castWindup);
 
-        // Spawn the projectile
         SpawnProjectile();
         PlaySound(castSound, castVolume);
 
@@ -240,7 +226,6 @@ public class CorruptedPriest : MonoBehaviour
         isBusy = false;
     }
 
-    // Called by the coroutine above — can also be hooked to an Animation Event
     public void SpawnProjectile()
     {
         if (corruptionProjectilePrefab == null || player == null) return;
@@ -257,10 +242,6 @@ public class CorruptedPriest : MonoBehaviour
         if (cp != null)
             cp.Init(dir, projectileDamage, projectileSpeed);
     }
-
-    // --------------------------------------------------
-    // DAMAGE & DEATH
-    // --------------------------------------------------
 
     public void TakeDamage(int amount)
     {
@@ -291,6 +272,7 @@ public class CorruptedPriest : MonoBehaviour
         PlaySound(deathSound, deathVolume);
         sr.enabled = false;
         DropOrGrantXP();
+        ChurchMusicManager.SwitchToVictoryMusic();
         Debug.Log("CorruptedPriest died!");
         Destroy(gameObject, deathSound != null ? deathSound.length + 0.1f : 0.5f);
     }
@@ -322,10 +304,6 @@ public class CorruptedPriest : MonoBehaviour
         else
             Debug.LogWarning("No XPManager found. Priest XP could not be awarded.");
     }
-
-    // --------------------------------------------------
-    // HELPERS
-    // --------------------------------------------------
 
     private void ChangeState(PriestState newState)
     {

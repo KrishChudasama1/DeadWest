@@ -135,12 +135,12 @@ MonoBehaviour:
   maxHealth: 400
   xpOnDeath: 3
   xpPickupPrefab: {fileID: 0}
-  chaseRange: 10
+  chaseRange: 100
   castRange: 8
   moveSpeed: 2.5
   corruptionProjectilePrefab: {fileID: 3057551009260951579, guid: 1a537243e005e4f4197ca2828ab1c585, type: 3}
-  projectileDamage: 25
-  castCooldown: 2
+  projectileDamage: 30
+  castCooldown: 1.5
   castWindup: 0.4
   castRecovery: 0.5
   projectileSpeed: 6
