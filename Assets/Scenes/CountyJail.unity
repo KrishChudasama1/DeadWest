@@ -6025,7 +6025,7 @@ MonoBehaviour:
   popupImage: {fileID: 1709069271}
   displayDuration: 3
   pauseGameWhileVisible: 1
-  progressLevelToSet: 3
+  progressLevelToSet: 4
 --- !u!114 &1709069271
 MonoBehaviour:
   m_ObjectHideFlags: 0

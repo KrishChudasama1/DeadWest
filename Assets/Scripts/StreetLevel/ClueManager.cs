@@ -19,7 +19,23 @@ public class ClueManager : MonoBehaviour
 
     void Start()
     {
-        // Set the text as soon as the level loads
+        // Check the permanent save file
+        int savedProgress = PlayerPrefs.GetInt("GameProgress", 0);
+
+        // If progress is 1 or higher, the skulls were already found!
+        if (savedProgress >= newProgressLevel)
+        {
+            cluesCollected = totalCluesRequired; // Set count to 3 so the math works
+            
+            // OPTIONAL: Find all skulls in the scene and hide them so they don't reappear
+            ClueItem[] skullsInScene = FindObjectsOfType<ClueItem>();
+            foreach (ClueItem skull in skullsInScene)
+            {
+                skull.gameObject.SetActive(false);
+            }
+        }
+
+        // Now update the text (it will either show 0/3 or "Saloon Unlocked!")
         UpdateObjectiveText();
     }
 
