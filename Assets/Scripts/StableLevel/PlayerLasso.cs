@@ -12,13 +12,11 @@ public class PlayerLasso : MonoBehaviour
     {
         hasLasso = true;
         Debug.Log("[PlayerLasso] Lasso unlocked!");
-        // TODO: enable lasso ability UI / input here
     }
 
     private void Update()
     {
         if (!hasLasso) return;
 
-        // TODO: handle lasso throw input 
     }
 }

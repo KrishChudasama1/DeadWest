@@ -8,25 +8,22 @@ namespace StableLevel
     {
         [Header("Movement")]
         [SerializeField] private float speed = 12f;
-        [SerializeField] private float maxRangeClamp = 20f;   // absolute maximum distance cap
-        [SerializeField] private float lingerTime = 0.15f;    // seconds the lasso stays at the target before destroying
+        [SerializeField] private float maxRangeClamp = 20f;
+        [SerializeField] private float lingerTime = 0.15f;
 
         [Header("Rope Visuals")]
         [SerializeField] private float ropeWidth = 0.06f;
-        [SerializeField] private Color ropeColor = new Color(0.72f, 0.53f, 0.26f); // tan / rope brown
+        [SerializeField] private Color ropeColor = new Color(0.72f, 0.53f, 0.26f);
 
         private Vector2 _direction;
         private Vector2 _spawnPosition;
         private Rigidbody2D _rb;
         private LineRenderer _lr;
-        private Transform _origin;   // player (or muzzle) that the rope starts from
+        private Transform _origin;
         private bool _initialized;
-        private float _targetRange;   // dynamic range based on cursor distance
-        private bool _arrived;        // true once the lasso reaches the target distance
+        private float _targetRange;
+        private bool _arrived;
 
-        /// <summary>
-        /// Initialise with a dynamic range (distance to cursor).
-        /// </summary>
         public void Init(Vector2 direction, Transform origin, float range)
         {
             _direction = direction.normalized;
@@ -43,16 +40,14 @@ namespace StableLevel
             _rb = GetComponent<Rigidbody2D>();
             _rb.gravityScale = 0f;
 
-            // Set up the LineRenderer as a simple rope line
             _lr = GetComponent<LineRenderer>();
             _lr.positionCount = 2;
             _lr.startWidth = ropeWidth;
             _lr.endWidth = ropeWidth;
             _lr.useWorldSpace = true;
-            _lr.sortingLayerName = "player";  // match your player sorting layer
-            _lr.sortingOrder = 10;             // draw on top
+            _lr.sortingLayerName = "player";
+            _lr.sortingOrder = 10;
 
-            // Try URP unlit first, fall back to Sprites/Default
             Shader shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
             if (shader == null)
                 shader = Shader.Find("Sprites/Default");
@@ -77,7 +72,7 @@ namespace StableLevel
                 {
                     _arrived = true;
                     _rb.linearVelocity = Vector2.zero;
-                    Destroy(gameObject, lingerTime);   // brief pause, then disappear
+                    Destroy(gameObject, lingerTime);
                 }
             }
         }
@@ -86,7 +81,6 @@ namespace StableLevel
         {
             if (!_initialized || _lr == null) return;
 
-            // Point 0 = player / origin, Point 1 = lasso tip (this object)
             Vector3 start = _origin != null ? _origin.position : (Vector3)_spawnPosition;
             start.z = 0f;
 
@@ -99,7 +93,6 @@ namespace StableLevel
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            // Only interact with PhantomRider, pass through everything else
             PhantomRider rider = other.GetComponent<PhantomRider>();
             if (rider != null)
             {

@@ -18,7 +18,6 @@ public class LassoPickup : MonoBehaviour
         PickUp();
     }
 
-    /// <summary>Fallback: if OnTriggerEnter2D never fires, we detect overlap manually.</summary>
     private void Update()
     {
         if (_pickedUp) return;

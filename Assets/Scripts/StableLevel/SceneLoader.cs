@@ -30,7 +30,6 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator TransitionRoutine()
     {
-        // Fade to black
         if (ScreenFader.Instance != null)
             yield return StartCoroutine(ScreenFader.Instance.FadeOut(fadeDuration));
 

@@ -37,7 +37,6 @@ public class SlowZone : MonoBehaviour
         PlayerMovement pm = other.GetComponent<PlayerMovement>();
         if (pm == null) return;
 
-        // If this zone already has an active slow on this player, do nothing
         if (_currentlySlowed.Contains(pm)) return;
 
         _currentlySlowed.Add(pm);

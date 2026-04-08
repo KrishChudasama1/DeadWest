@@ -152,7 +152,6 @@ namespace StableLevel
             if (lasso != null)
                 lasso.Init(direction, transform, distance);
 
-            // Play throw sound
             if (lassoThrowSfx != null)
             {
                 if (_audioSource != null)

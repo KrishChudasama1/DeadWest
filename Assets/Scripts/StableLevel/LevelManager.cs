@@ -20,7 +20,6 @@ namespace StableLevel
         private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
-        // Subscribe to lasso pickup so we can start spawning after the player picks it up
         LassoPickup.OnLassoPickedUp += OnLassoPickedUp;
         }
 
@@ -32,22 +31,18 @@ namespace StableLevel
 
         private void Start()
         {
-            // In case this object exists already in the target scene
                 if (string.Equals(SceneManager.GetActiveScene().name, targetSceneName, System.StringComparison.OrdinalIgnoreCase))
-                    // Don't auto-start here; wait for lasso pickup. Keep TryStartSpawner as a fallback.
                     Debug.Log("LevelManager: loaded target scene; waiting for lasso pickup to start waves.");
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (!string.Equals(scene.name, targetSceneName, System.StringComparison.OrdinalIgnoreCase)) return;
-                // Don't immediately start waves when the scene loads, wait for lasso pickup event.
                 Debug.Log("LevelManager: target scene loaded; waiting for lasso pickup to start waves.");
         }
 
             private void OnLassoPickedUp()
             {
-                // Only respond if we're in the target scene (case-insensitive)
                 if (!string.Equals(SceneManager.GetActiveScene().name, targetSceneName, System.StringComparison.OrdinalIgnoreCase)) return;
                 if (hasStarted) return;
 

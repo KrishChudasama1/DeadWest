@@ -7,7 +7,7 @@ public class SetPlayerPosition : MonoBehaviour
     
     [Header("Visual Fixes")]
     [Tooltip("Type the exact name of the Sorting Layer for this room (e.g., 'saloon' or 'Default')")]
-    public string newSortingLayer = "Default"; // <--- WE ADDED THIS
+    public string newSortingLayer = "Default";
 
     void Start()
     {
@@ -15,25 +15,21 @@ public class SetPlayerPosition : MonoBehaviour
         
         if (player != null)
         {
-            // Move Sheriff
             player.transform.position = transform.position + spawnOffset;
 
-            // Force Visibility and UPDATE SORTING LAYER
             SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
                 sr.color = Color.white; 
-                sr.sortingLayerName = newSortingLayer; // fix sorting layer issue
+                sr.sortingLayerName = newSortingLayer;
             }
 
-            // Enable Movement
             var moveScript = player.GetComponent<PlayerMovement>();
             if (moveScript != null) moveScript.enabled = true;
 
             var col = player.GetComponent<Collider2D>();
             if (col != null) col.isTrigger = false;
 
-            // Snap Camera
             Camera mainCam = Camera.main;
             if (mainCam != null)
             {

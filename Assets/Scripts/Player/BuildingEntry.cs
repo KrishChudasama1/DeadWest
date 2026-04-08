@@ -18,8 +18,15 @@ public class BuildingEntry : MonoBehaviour
     public bool isLocked = false;
 
     [Header("Progression System")]
-    [Tooltip("0 = Unlocked from start. 1 = Requires beating level 1, etc.")]
+    [Tooltip("0 = Unlocked from start. 1 = Requires collecting relic 1, etc.")]
     public int requiredProgressLevel = 0;
+    [Tooltip("Optional alternate scene names that also count as this building being completed.")]
+    public string[] completionSceneNames;
+
+    [Header("Locked Message")]
+    public string lockedMessage         = "Complete the previous level first!";
+    public float  lockedMessageDuration = 2f;
+    public string completedMessage      = "You already collected this relic.";
 
     private GameObject     sheriff;
     private SpriteRenderer sheriffRender;
@@ -34,6 +41,8 @@ public class BuildingEntry : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log($"[BuildingEntry] Awake — GameProgress = {PlayerPrefs.GetInt("GameProgress", 0)}");
+
         string currentScene = SceneManager.GetActiveScene().name;
         promptMessage = (currentScene != "MainScene" && currentScene != "Street")
             ? "[E] Exit"
@@ -70,7 +79,6 @@ public class BuildingEntry : MonoBehaviour
         _promptText.gameObject.SetActive(false);
     }
 
-    
     private void Update()
     {
         if (_promptText != null)
@@ -80,21 +88,26 @@ public class BuildingEntry : MonoBehaviour
             TryEnter();
     }
 
-    
     private void TryEnter()
     {
         if (sheriff == null) return;
 
         if (isLocked)
         {
-            Debug.Log("Door is locked by the StreetLevelManager!");
+            StartCoroutine(ShowLockedMessage("This door is locked."));
+            return;
+        }
+
+        if (IsHubEntrance() && IsAnyCompletionSceneCompleted())
+        {
+            StartCoroutine(ShowLockedMessage(completedMessage));
             return;
         }
 
         int currentSaveProgress = PlayerPrefs.GetInt("GameProgress", 0);
         if (currentSaveProgress < requiredProgressLevel)
         {
-            Debug.Log($"Door locked! Need progress level {requiredProgressLevel}.");
+            StartCoroutine(ShowLockedMessage(lockedMessage));
             return;
         }
 
@@ -103,7 +116,6 @@ public class BuildingEntry : MonoBehaviour
 
         isEntering = true;
 
-        // Lock movement immediately
         _playerMovement = sheriff.GetComponent<PlayerMovement>();
         if (_playerMovement != null) _playerMovement.SetMovementLocked(true);
 
@@ -113,7 +125,24 @@ public class BuildingEntry : MonoBehaviour
         StartCoroutine(FadeAndLoad());
     }
 
-    
+    private IEnumerator ShowLockedMessage(string message)
+    {
+        if (_promptText == null) yield break;
+
+        string original      = _promptText.text;
+        Color  originalColor = promptColor;
+
+        _promptText.text  = message;
+        _promptText.color = Color.red;
+        _promptText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(lockedMessageDuration);
+
+        _promptText.text  = original;
+        _promptText.color = originalColor;
+        _promptText.gameObject.SetActive(playerNear && !isEntering);
+    }
+
     private IEnumerator FadeAndLoad()
     {
         float elapsed = 0f;
@@ -133,7 +162,6 @@ public class BuildingEntry : MonoBehaviour
             yield return null;
         }
 
-       
         string currentScene = SceneManager.GetActiveScene().name;
         if (currentScene == "MainScene" || currentScene == "Street")
         {
@@ -145,11 +173,51 @@ public class BuildingEntry : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
-    
+    private bool IsHubEntrance()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        return (currentScene == "MainScene" || currentScene == "Street") && sceneToLoad != "MainScene" && sceneToLoad != "Street";
+    }
+
+    private bool IsSceneCompleted(string sceneName)
+    {
+        string completed = PlayerPrefs.GetString("CompletedScenes", "");
+        string[] completedScenes = completed.Split(',');
+
+        foreach (string completedScene in completedScenes)
+        {
+            if (completedScene == sceneName)
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool IsAnyCompletionSceneCompleted()
+    {
+        if (completionSceneNames != null && completionSceneNames.Length > 0)
+        {
+            foreach (string completionSceneName in completionSceneNames)
+            {
+                if (!string.IsNullOrWhiteSpace(completionSceneName) && IsSceneCompleted(completionSceneName))
+                    return true;
+            }
+        }
+
+        if (IsSceneCompleted(sceneToLoad))
+            return true;
+
+        if (sceneToLoad == "HorseStable" && IsSceneCompleted("RaceTrack"))
+            return true;
+
+        return false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isEntering)
         {
+            Debug.Log($"[BuildingEntry] Player entered trigger — GameProgress = {PlayerPrefs.GetInt("GameProgress", 0)}");
             sheriff    = other.gameObject;
             playerNear = true;
 
@@ -163,7 +231,7 @@ public class BuildingEntry : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNear = false;
-            
+
             if (isEntering && _playerMovement != null)
                 _playerMovement.SetMovementLocked(false);
 

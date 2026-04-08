@@ -19,10 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private System.Action _onMovementStarted;
 
     private Coroutine _stunCoroutine;
-    // Active speed modifiers (multiplicative). 1 = default speed.
     private List<float> _speedModifiers = new List<float>();
     private float _speedMultiplier = 1f;
-    // Track whether player currently has any slow multipliers applied
     private bool _isSlowed = false;
 
     private void Start()
@@ -45,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         _movement.x = Input.GetAxisRaw("Horizontal");
         _movement.y = Input.GetAxisRaw("Vertical");
 
-        // Notify Revolver the moment movement starts while gun is drawn
         if (_movement != Vector2.zero && _gunDrawn)
             _onMovementStarted?.Invoke();
 
@@ -57,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetFloat("MoveY", _movement.y);
         }
 
-        // Only flip from movement when gun is not drawn
         if (!_gunDrawn && _movement.x != 0)
             _spriteRenderer.flipX = _movement.x > 0;
     }
@@ -115,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
         _stunCoroutine = StartCoroutine(StunRoutine(duration));
     }
 
-    // Add a multiplicative speed modifier for a duration (e.g. 0.7f for -30%).
     public void AddTemporarySpeedMultiplier(float multiplier, float duration)
     {
         if (multiplier <= 0f) return;
@@ -129,7 +124,6 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SpeedModifierRoutine(float multiplier, float duration)
     {
         yield return new WaitForSeconds(duration);
-        // Remove one instance of this multiplier
         _speedModifiers.Remove(multiplier);
         RecalculateSpeedMultiplier();
     }
@@ -149,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Update sprite tint based on slowed state (green when slowed, white otherwise)
     public void RefreshTint()
     {
         if (_spriteRenderer == null) return;
@@ -160,7 +153,6 @@ public class PlayerMovement : MonoBehaviour
             _spriteRenderer.color = Color.white;
     }
 
-    // Persistent multiplier: adds immediately and stays until explicitly removed.
     public void AddSpeedMultiplier(float multiplier)
     {
         if (multiplier <= 0f) return;
@@ -168,7 +160,6 @@ public class PlayerMovement : MonoBehaviour
         RecalculateSpeedMultiplier();
     }
 
-    // Removes one instance of a previously added multiplier.
     public void RemoveSpeedMultiplier(float multiplier)
     {
         if (multiplier <= 0f) return;

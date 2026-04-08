@@ -24,7 +24,6 @@ public class ScreenFader : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Start fully transparent
         if (fadeCanvasGroup != null)
         {
             fadeCanvasGroup.alpha = 0f;
