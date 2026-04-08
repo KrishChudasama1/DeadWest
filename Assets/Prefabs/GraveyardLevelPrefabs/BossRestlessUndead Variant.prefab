@@ -13,8 +13,16 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1132963466242551508, guid: 3c09f98edb6224312965ff131e8941cf, type: 3}
+      propertyPath: xpDropAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132963466242551508, guid: 3c09f98edb6224312965ff131e8941cf, type: 3}
       propertyPath: respawnHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132963466242551508, guid: 3c09f98edb6224312965ff131e8941cf, type: 3}
+      propertyPath: coinDropAmount
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3612469843895348462, guid: 3c09f98edb6224312965ff131e8941cf, type: 3}
       propertyPath: m_Size.x
