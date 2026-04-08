@@ -3121,7 +3121,7 @@ MonoBehaviour:
     x: 410
     y: 24
     width: 320
-    height: 220
+    height: 300
   hasLasso: 0
   lassoProjectilePrefab: {fileID: 0}
 --- !u!4 &1097878078
