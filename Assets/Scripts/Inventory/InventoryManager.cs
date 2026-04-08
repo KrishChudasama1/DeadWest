@@ -19,7 +19,6 @@ public class InventoryManager : MonoBehaviour
 
     public static bool IsInventoryOpen { get; private set; }
 
-    /// <summary>Singleton instance that persists across scenes.</summary>
     public static InventoryManager Instance { get; private set; }
 
    
@@ -36,7 +35,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Window")]
     [SerializeField] private Rect windowRect = new Rect(24f, 24f, 360f, 300f);
-    [SerializeField] private Rect shopWindowRect = new Rect(410f, 24f, 360f, 360f);
+    [SerializeField] private Rect shopWindowRect = new Rect(410f, 24f, 360f, 500f);
 
     private int _selectedIndex;
     private bool _isShopOpen;
@@ -50,7 +49,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        // ── Singleton: persist across scenes, destroy duplicates ──
+        //  Singleton: persist across scenes, destroy duplicates 
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -93,14 +92,12 @@ public class InventoryManager : MonoBehaviour
         _isShopOpen = false;
     }
 
-    /// <summary>Re-find scene-specific references when a new scene loads.</summary>
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         revolver = FindFirstObjectByType<Revolver>();
         _xpManager = FindFirstObjectByType<XPManager>();
 
-        // The old Player (and its LassoThrow) was destroyed with the previous scene,
-        // so reset equipped state — user must re-equip from inventory in the new scene.
+
         _lassoEquipped = false;
 
         SyncSelectionWithCurrentGun();

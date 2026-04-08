@@ -18,7 +18,7 @@ namespace StableLevel
 
         [Header("Duel Timer")]
         [Tooltip("Seconds the player has to defeat the rider before he charges.")]
-        [SerializeField] private float duelTimeLimit = 30f;
+        [SerializeField] private float duelTimeLimit = 15f;
 
         private bool riderDefeated = false;
         private float _timeRemaining;
