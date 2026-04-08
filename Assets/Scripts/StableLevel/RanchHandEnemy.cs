@@ -21,6 +21,12 @@ public class RanchHandEnemy : MonoBehaviour
     [Header("XP")]
     public int xpOnDeath = 3;
     public GameObject xpPickupPrefab;
+
+    [Header("Drops")]
+    public GameObject coinPrefab;
+    public int coinDropAmount = 1;
+    public float coinDropSpread = 0.25f;
+
     [Header("Death Goop")]
     [Tooltip("Prefab for the slow-goop zone spawned when this enemy dies.")]
     public GameObject slowZonePrefab;
@@ -142,6 +148,7 @@ public class RanchHandEnemy : MonoBehaviour
 
     void Die()
     {
+        DropCoins();
         DropOrGrantXP();
         SpawnSlowZone();
 
@@ -151,6 +158,18 @@ public class RanchHandEnemy : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    void DropCoins()
+    {
+        if (coinPrefab == null || coinDropAmount <= 0)
+            return;
+
+        for (int i = 0; i < coinDropAmount; i++)
+        {
+            Vector2 offset = Random.insideUnitCircle * coinDropSpread;
+            Instantiate(coinPrefab, (Vector2)transform.position + offset, Quaternion.identity);
+        }
     }
 
     void SpawnSlowZone()

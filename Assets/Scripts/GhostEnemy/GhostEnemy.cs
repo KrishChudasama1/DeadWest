@@ -20,6 +20,11 @@ public class GhostEnemy : MonoBehaviour
     public int xpOnDeath = 2;
     public GameObject xpPickupPrefab;
 
+    [Header("Drops")]
+    public GameObject coinPrefab;
+    public int coinDropAmount = 1;
+    public float coinDropSpread = 0.25f;
+
     private Transform player;
     private Animator animator;
     private SpriteRenderer sr;
@@ -116,8 +121,21 @@ public class GhostEnemy : MonoBehaviour
 
     void Die()
     {
+        DropCoins();
         DropOrGrantXP();
         Destroy(gameObject);
+    }
+
+    void DropCoins()
+    {
+        if (coinPrefab == null || coinDropAmount <= 0)
+            return;
+
+        for (int i = 0; i < coinDropAmount; i++)
+        {
+            Vector2 offset = Random.insideUnitCircle * coinDropSpread;
+            Instantiate(coinPrefab, (Vector2)transform.position + offset, Quaternion.identity);
+        }
     }
 
     void DropOrGrantXP()

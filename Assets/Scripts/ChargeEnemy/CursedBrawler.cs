@@ -30,6 +30,11 @@ public class CursedBrawler : MonoBehaviour
     public int xpOnDeath = 2;
     public GameObject xpPickupPrefab;
 
+    [Header("Drops")]
+    public GameObject coinPrefab;
+    public int coinDropAmount = 1;
+    public float coinDropSpread = 0.25f;
+
     [Header("Detection")]
     public float chaseRange = 10f;
     public float meleeRange = 1.3f;
@@ -231,9 +236,22 @@ public class CursedBrawler : MonoBehaviour
         StopChargeLoop();
         PlaySound(deathSound, deathVolume);
         sr.enabled = false; 
+        DropCoins();
         DropOrGrantXP();
         Debug.Log("CursedBrawler died!");
         Destroy(gameObject, deathSound != null ? deathSound.length + 0.1f : 0.5f);
+    }
+
+    private void DropCoins()
+    {
+        if (coinPrefab == null || coinDropAmount <= 0)
+            return;
+
+        for (int i = 0; i < coinDropAmount; i++)
+        {
+            Vector2 offset = Random.insideUnitCircle * coinDropSpread;
+            Instantiate(coinPrefab, (Vector2)transform.position + offset, Quaternion.identity);
+        }
     }
 
     private void DropOrGrantXP()
