@@ -17,28 +17,35 @@ public class ClueManager : MonoBehaviour
     [Header("Reward Settings")]
     public int newProgressLevel = 1;
 
-    void Start()
+  void Start()
     {
-        // Check the permanent save file
         int savedProgress = PlayerPrefs.GetInt("GameProgress", 0);
 
-        // If progress is 1 or higher, the skulls were already found!
+        // If progress is 1 or higher, the skulls were already found in a past session.
         if (savedProgress >= newProgressLevel)
         {
-            cluesCollected = totalCluesRequired; // Set count to 3 so the math works
-            
-            // OPTIONAL: Find all skulls in the scene and hide them so they don't reappear
+            cluesCollected = totalCluesRequired;
+
+            // 1. Hide the physical skulls so they aren't in the dirt.
             ClueItem[] skullsInScene = FindObjectsOfType<ClueItem>();
             foreach (ClueItem skull in skullsInScene)
             {
                 skull.gameObject.SetActive(false);
             }
+
+            // 2. SILENCE THE UI: If the task was already done before we loaded this scene,
+            // we hide the text object immediately and STOP the script.
+            if (objectiveText != null)
+            {
+                objectiveText.gameObject.SetActive(false);
+            }
+            
+            return; // This "return" is the magic part—it prevents UpdateObjectiveText from ever running.
         }
 
-        // Now update the text (it will either show 0/3 or "Saloon Unlocked!")
+        // Only run this if the player actually still needs to find the skulls.
         UpdateObjectiveText();
     }
-
     public void CollectClue()
     {
         cluesCollected++;
@@ -55,18 +62,28 @@ public class ClueManager : MonoBehaviour
 
     private void UpdateObjectiveText()
     {
-        // Safety check to make sure we actually linked the text object
+        if (objectiveText == null) return;
+
+        if (cluesCollected < totalCluesRequired)
+        {
+            objectiveText.text = "Objective: Find 3 Skulls to unlock the Saloon (" + cluesCollected + "/" + totalCluesRequired + ")";
+            objectiveText.gameObject.SetActive(true);
+        }
+        else
+        {
+            objectiveText.text = "Objective: Saloon Unlocked!";
+            
+            // FIX: This tells Unity to wait 5 seconds and then run the Hide function
+            Invoke("HideObjectiveText", 5f);
+        }
+    }
+
+	// Helper function to turn off the text
+    private void HideObjectiveText()
+    {
         if (objectiveText != null)
         {
-            if (cluesCollected < totalCluesRequired)
-            {
-                objectiveText.text = "Objective: Find 3 Skulls to unlock the Saloon (" + cluesCollected + "/" + totalCluesRequired + ")";
-            }
-            else
-            {
-                // What it says when they win!
-                objectiveText.text = "Objective: Saloon Unlocked!";
-            }
+            objectiveText.gameObject.SetActive(false);
         }
     }
 
