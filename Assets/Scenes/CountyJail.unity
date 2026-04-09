@@ -1382,8 +1382,10 @@ MonoBehaviour:
   promptColor: {r: 1, g: 1, b: 1, a: 1}
   isLocked: 0
   requiredProgressLevel: 0
+  completionSceneNames: []
   lockedMessage: Complete the previous level first!
   lockedMessageDuration: 2
+  completedMessage: You already collected this relic.
 --- !u!114 &354566343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,7 +1473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16592d3179f814f2cad272737474be58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteTrigger
-  newProgressLevel: 3
+  updatesGameProgress: 0
+  newProgressLevel: 4
 --- !u!1 &364980481
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,7 +6025,7 @@ MonoBehaviour:
   popupImage: {fileID: 1709069271}
   displayDuration: 3
   pauseGameWhileVisible: 1
-  progressLevelToSet: 3
+  progressLevelToSet: 4
 --- !u!114 &1709069271
 MonoBehaviour:
   m_ObjectHideFlags: 0

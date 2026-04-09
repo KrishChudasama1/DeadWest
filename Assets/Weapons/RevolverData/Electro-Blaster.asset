@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RevolverData
   weaponName: Electro-Blaster
   fireRate: 0.35
-  chamberSize: 6
+  chamberSize: 30
   reloadTime: 2
-  damage: 20
+  damage: 30
   shotsPerTriggerPull: 1
   shotSpread: 0.08
   bulletPrefab: {fileID: 4478265653480145829, guid: be3564126f5be4bb28b0238e4875a03b, type: 3}

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e8b585bb17c1483c9964d27ac69b55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinPickup
-  coinValue: 3
+  coinValue: 1
 --- !u!58 &4945825067701397203
 CircleCollider2D:
   m_ObjectHideFlags: 0

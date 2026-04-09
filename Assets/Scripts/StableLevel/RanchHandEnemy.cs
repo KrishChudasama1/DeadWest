@@ -47,6 +47,9 @@ public class RanchHandEnemy : MonoBehaviour
 
     void Start()
     {
+        // Let all ranch hands on the same layer pass through each other
+        Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
+
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         if (p != null) player = p.transform;
 
