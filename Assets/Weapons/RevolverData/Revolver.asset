@@ -17,4 +17,6 @@ MonoBehaviour:
   chamberSize: 6
   reloadTime: 2
   damage: 10
+  shotsPerTriggerPull: 1
+  shotSpread: 0.08
   bulletPrefab: {fileID: 4226655067213873264, guid: 261a3dd96b65143b0adfb99720486a1f, type: 3}

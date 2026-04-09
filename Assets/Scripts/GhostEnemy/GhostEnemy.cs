@@ -33,6 +33,9 @@ public class GhostEnemy : MonoBehaviour
 
     void Start()
     {
+        // Let all ghosts on the same layer pass through each other
+        Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();

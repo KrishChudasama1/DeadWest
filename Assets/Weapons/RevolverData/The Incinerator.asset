@@ -16,5 +16,7 @@ MonoBehaviour:
   fireRate: 0.35
   chamberSize: 6
   reloadTime: 2
-  damage: 15
+  damage: 20
+  shotsPerTriggerPull: 1
+  shotSpread: 0.08
   bulletPrefab: {fileID: 4510673169719882859, guid: cdd1d317b67134d7e8e93efdec09bdeb, type: 3}

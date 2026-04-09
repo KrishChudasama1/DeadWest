@@ -196,6 +196,11 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         SaveHealthState();
+
+        // Lose all coins on death
+        if (CoinManager.instance != null)
+            CoinManager.instance.ResetCoins();
+
         Debug.Log("Player died!");
         GameOverManager.ShowGameOver();
     }
